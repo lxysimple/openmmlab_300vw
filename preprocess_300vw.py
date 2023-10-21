@@ -5,6 +5,7 @@ import os
 import numpy as np
 import json
 from PIL import Image
+from meta300vw import dataset_info # 文件名如果是300vw.py则无法导入，因为不支持数字开头的变量
 
 class Preprocess300vw:
     def __init__(self):
@@ -37,7 +38,7 @@ class Preprocess300vw:
         self.videos_train = [ i for i in self.videos_all if i not in self.videos_test_1 
                                                         and i not in self.videos_test_2 
                                                         and i not in self.videos_test_3]
-        self.videos_all = self.videos_all[:3] # 测试时数据搞小点
+        self.videos_all = self.videos_all[:2] # 测试时数据搞小点
 
         # Downsample FPS to `1 / sample_rate`. Default: 5.
         self.sample_rate = 40 # 约等于1fps
@@ -46,7 +47,7 @@ class Preprocess300vw:
     # 其中self.sample_rate可控制转换率，其越小，单个视频转换的图片数量越多
     def convert_jpg(self):
         video_frames_json = {}
-        id = 0
+
         for video in self.videos_all:
             video_path = join(self.original_dir, video, 'vid.avi')
             cap = cv2.VideoCapture(video_path)
@@ -58,7 +59,7 @@ class Preprocess300vw:
                     break
                 if i % self.sample_rate == 0: # 用这种方式控制视频转化率
                     # f是格式化字符串，d表示i是整数，06代表占6个格子多余填充0
-                    imgname = f'{id:06d}.jpg' # 要高精度的化.png最好
+                    imgname = f'{i:06d}.jpg' # 要高精度的化.png最好
 
                     dest_path = join(self.processed_dir, 'images', video)
                     dest = join(dest_path, imgname)
@@ -66,68 +67,47 @@ class Preprocess300vw:
                         os.makedirs(dest_path)
                     cv2.imwrite(dest, img)
 
-                    video_frames_json[f'{video}'] 
-                    video_frames_json[f'{video}'].append(id)
-
                     if i == frame_count: # 如果读到最后1帧，则退出
                         break
                 i += 1
-                id +=1
             cap.release()
 
             print(f'视频 "{video_path}" 已经转换完毕. ')
         
-        print(video_frames_json)
         return 
     
     # 该函数应该在convert_jpg后执行
     def convert_annot(self, dataset, filename):
+
         json_data = { # 这个格式是模仿300w的注解文件的
-                "idimages":     [], 
-                "annotations":  [],
-                "categories":   [{"id": 1, "name": "person"}]
+                "data_list":  [],
+                "metainfo":   dataset_info
         }
 
-        id = 0
         for video_id in dataset: # 遍历不同数据集所包含的各视频所在目录
             annot_path = join(self.original_dir, video_id, 'annot')
 
             i = 1
             annots = os.listdir(annot_path)
+            annot_merge = []
             for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
                 if i % self.sample_rate == 0: # 在这里控制转化率
-                    idimage = {'id': id} # 这个是json_data字典中的idimages键的一个值
-                    annotation = {'segmentation': [], 
-                                  'num_keypoints': 68, 
-                                  'bbox': [],
-                                  'category_id': 1,
-                                  'id': id,
-                                  'image_id': id,
-                                  'area': None, # 是人脸的面积，这里未知
-                                  'iscrowd': 0 # 是否多个人脸折叠在一起，0表示没有
-                                 } # 这个是json_data字典中的annotations键的一个子元素
+                    annotation = {}
 
                     # 找到1个帧注解所对应图片的路径
                     pic_name = os.path.splitext(annot)[0] + ".jpg"
                     pic_path = join(self.processed_dir, 'images', video_id, pic_name)
-                    idimage['file_name'] = pic_path
-
-                    # 获取图片的宽、高
-                    image = Image.open(pic_path)
-                    width, height = image.size
-                    idimage['height'] = height
-                    idimage['width'] = width
+                    annotation['img_path'] = pic_path
 
                     # 找到1个帧注解中的关键点坐标
                     annot_file = join(annot_path, annot)
                     keypoints = self._keypoint_from_pts_(annot_file)
                     annotation['keypoints'] = keypoints
                     
-                    json_data['annotations'].append(annotation)
-                    json_data['idimages'].append(idimage)
-                   
+                    annot_merge.append(annotation)
+                  
                 i += 1
-                id +=1
+            json_data['data_list'].append(annot_merge)
             print(f'文件夹 "{annot_path}" 已经转换完毕. ')
 
         # 创建注解文件的目录（没有该目录，无法创建注解文件）
@@ -172,7 +152,7 @@ class Preprocess300vw:
 if __name__ == '__main__':
     convert300vw = Preprocess300vw()
     convert300vw.convert_jpg()
-    convert300vw.convert_annot(convert300vw.videos_all,'videos_all_annot.json')
+    convert300vw.convert_annot(convert300vw.videos_train,'train.json')
 
 
 
