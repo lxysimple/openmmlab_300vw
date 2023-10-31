@@ -11,9 +11,9 @@ from meta300vw import dataset_info # 文件名如果是300vw.py则无法导入�
 class Preprocess300vw:
     def __init__(self):
         # 要转换的300vw数据集主目录
-        self.original_dir = 'E:\\mmpose\\data\\300VW_Dataset_2015_12_14\\'
+        self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
         # 转换后的主目录
-        self.processed_dir = 'E:\\mmpose\\data\\300vw\\'
+        self.processed_dir = '/home/xyli/data/300vw'
 
         # 300vw一共有这么多视频，每个视频都用一个文件夹装着
         self.videos_all =  ['001', '002', '003', '004', '007', '009', '010', '011', '013', '015', 
@@ -42,7 +42,7 @@ class Preprocess300vw:
         self.videos_all = self.videos_all[:2] # 测试时数据搞小点
 
         # Downsample FPS to `1 / sample_rate`. Default: 5.
-        self.sample_rate = 40 # 约等于1fps
+        self.sample_rate = 5 # 约等于1fps
 
     # 对数据集中所有视频转换成多张图片
     # 其中self.sample_rate可控制转换率，其越小，单个视频转换的图片数量越多
@@ -253,8 +253,9 @@ class Preprocess300vw:
 
 if __name__ == '__main__':
     convert300vw = Preprocess300vw()
-    convert300vw.convert_jpg(convert300vw.videos_all)
-    convert300vw.convert_annot(convert300vw.videos_all,'train.json', 'E:\\mmpose\\data\\300vw\\images')
+    convert300vw.convert_jpg(convert300vw.videos_train)
+    convert300vw.convert_annot(convert300vw.videos_train,'train.json', 
+                               '/home/xyli/data/300VW_Dataset_2015_12_14/images')
 
 
 
