@@ -7,6 +7,7 @@ import json
 from PIL import Image
 from meta300vw import dataset_info # 文件名如果是300vw.py则无法导入，因为不支持数字开头的变量
 
+# test
 class Preprocess300vw:
     def __init__(self):
         # 要转换的300vw数据集主目录
