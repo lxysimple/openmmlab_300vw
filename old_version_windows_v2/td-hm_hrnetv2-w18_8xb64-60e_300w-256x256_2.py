@@ -3,19 +3,38 @@ _base_ = ["E:\\mmpose\\mmpose\\configs\\_base_\\default_runtime.py"]
 
 
 # runtime
-train_cfg = dict(max_epochs=60, val_interval=1)
+train_cfg = dict(max_epochs=60, val_interval=10)
+
 
 # optimizer
-optim_wrapper = dict(optimizer=dict(
-    type='Adam',
-    lr=2e-3,
-))
+optim_wrapper = dict(
+    optimizer=dict(
+        type='Adam',
+        lr=2e-5, # 2e-5最合适
+    ),
+    paramwise_cfg=dict(
+        custom_keys={
+            # 0最合适
+            'backbone.conv1': dict(lr_mult=0),
+            'backbone.bn1': dict(lr_mult=0),
+            'backbone.bn2': dict(lr_mult=0),
+            'backbone.layer1': dict(lr_mult=0),
+
+        }
+    )
+)
+
+# optimizer
+# optim_wrapper = dict(optimizer=dict(
+#     type='Adam',
+#     lr=2e-3, # 0.002
+# ))
 
 # learning policy
 param_scheduler = [
-    dict(
-        type='LinearLR', begin=0, end=500, start_factor=0.001,
-        by_epoch=False),  # warm-up
+    # dict(
+    #     type='LinearLR', begin=0, end=500, start_factor=0.0001,
+    #     by_epoch=False),  # warm-up
     dict(
         type='MultiStepLR',
         begin=0,
@@ -80,10 +99,10 @@ model = dict(
                 multiscale_output=True),
             # 自定义上采样算法
             upsample=dict(mode='bilinear', align_corners=False))
-            ,
-        init_cfg=dict(
-            # type='Pretrained', checkpoint='open-mmlab://msra/hrnetv2_w18'),
-            type='Pretrained', checkpoint='E:\\mmpose\\checkpoint\\hrnetv2_w18_wflw_256x256_dark-3f8e0c2c_20210125.pth'),
+            # ,
+            # init_cfg=dict(
+            #     # type='Pretrained', checkpoint='open-mmlab://msra/hrnetv2_w18'),
+            #     type='Pretrained', checkpoint='E:\\mmpose\\checkpoint\\hrnetv2_w18_wflw_256x256_dark-3f8e0c2c_20210125.pth'),
     ),
     neck=dict(
         # 就是将各分支的feature map上采样融合到branch1分支中
@@ -102,7 +121,8 @@ model = dict(
         # conv_out_channels=(270, ), # 从源码中可知，每个中间层输出c=270
         conv_out_channels=(270, ), # 从源码中可知，每个中间层输出c=270
         conv_kernel_sizes=(1, ), 
-        loss=dict(type='KeypointMSELoss', use_target_weight=True),
+        # loss=dict(type='KeypointMSELoss', use_target_weight=True),
+        loss=dict(type='KeypointMSELoss', use_target_weight=False),
         decoder=codec), # 生成热图
     test_cfg=dict(
         flip_test=True,
@@ -111,21 +131,24 @@ model = dict(
     ))
 
 # base dataset settings
-dataset_type = 'Face300WDataset'
-data_mode = 'topdown' 
+# dataset_type = 'Face300WDataset'
+# data_mode = 'topdown' 
 # data_root = 'data/300w/'
-data_root = 'E:\\mmpose\\data\\300w\\'
+# data_root = 'E:/mmpose/data/300vw'
 
 # pipelines
 train_pipeline = [
     dict(type='LoadImage'),
     dict(type='GetBBoxCenterScale'), # 这里要标准化bbox(x,y,w,h)
-    dict(type='RandomFlip', direction='horizontal'), # 这里要知道图片宽、高
-    dict(
-        type='RandomBBoxTransform',
-        shift_prob=0,
-        rotate_factor=60,
-        scale_factor=(0.75, 1.25)),
+
+    # # 做了变换可能适应于困难样本，但在普通验证集上效果不好
+    # dict(type='RandomFlip', direction='horizontal'), # 这里要知道图片宽、高
+    # dict(
+    #     type='RandomBBoxTransform',
+    #     shift_prob=0,
+    #     rotate_factor=60,
+    #     scale_factor=(0.75, 1.25)), # 这里可视化发现框+关键点变换后都蛮准的
+
     dict(type='TopdownAffine', input_size=codec['input_size']),
     dict(type='GenerateTarget', encoder=codec),
     dict(type='PackPoseInputs')
@@ -139,28 +162,47 @@ val_pipeline = [
 
 # data loaders
 train_dataloader = dict(
-    batch_size=64,
-    num_workers=2,
-    persistent_workers=True, # 一直让dataset对象在内存中
+    batch_size=16,
+    num_workers=0,
+    # persistent_workers=True, # 一直让dataset对象在内存中
     sampler=dict(type='DefaultSampler', shuffle=True),
+    # dataset=dict(
+    #     type=dataset_type,
+    #     data_root=data_root,
+    #     data_mode=data_mode,
+    #     ann_file='annotations/face_landmarks_300w_train.json',
+    #     data_prefix=dict(img='images/'),
+    #     pipeline=train_pipeline,
+    # )
+    # dataset=dict(
+    #     type='Face300VWDataset',
+    #     data_root='E:/mmpose/data/300vw',
+    #     ann_file='annotations/train.json',
+    #     data_prefix=dict(img='images/'),
+    #     pipeline=train_pipeline,
+    # )
+
     dataset=dict(
-        type=dataset_type,
-        data_root=data_root,
-        data_mode=data_mode,
-        ann_file='annotations/face_landmarks_300w_train.json',
+        type='Face300WDataset',
+        data_root='E:/mmpose/data/300vw',
+        ann_file='annotations/train.json',
         data_prefix=dict(img='images/'),
         pipeline=train_pipeline,
-    ))
+    )
+
+)
+
+# 用300w的验证集验证
 val_dataloader = dict(
-    batch_size=32,
-    num_workers=2,
-    persistent_workers=True,
+    batch_size=8,
+    num_workers=0,
+    # persistent_workers=True,
     drop_last=False,
     sampler=dict(type='DefaultSampler', shuffle=False, round_up=False),
     dataset=dict(
-        type=dataset_type,
-        data_root=data_root,
-        data_mode=data_mode,
+        type='Face300WDataset',
+        data_root='E:/mmpose/data/300w',
+        data_mode='topdown',
         # ann_file='annotations/face_landmarks_300w_valid.json',
         ann_file='annotations\\face_landmarks_300w_valid.json',
         # data_prefix=dict(img='images/'),

@@ -76,42 +76,17 @@ class Preprocess300vw:
         return 
     
     # 该函数应该在convert_jpg后执行
-    def convert_annot(self, dataset, filename, dataroot):
+    def convert_annot(self, dataset, filename):
 
-        json_data = { 
-                'images': [ 
-                            # {
-                            #     'file_name': '000000001268.jpg',
-                            #     'height': 427, 
-                            #     'width': 640, 
-                            #     'id': 1268 
-                            # },
-                ],
-                'annotations': [ # 所有目标的列表
-                                    # {
-                                    #     'segmentation': [],
-                                    #     'num_keypoints': 10,
-                                    #     'iscrowd': 0,
-                                    #     'category_id': 1,
-
-                                    #     'keypoints': [
-                                    #         0,0,0,
-                                    #         0,0,0,
-                                    #         0,0,0],
-                                    #     'area': 3894.5826, 
-                                    #     'image_id': 1268, 
-                                    #     'bbox': [402.34, 205.02, 65.26, 88.45],
-                                    #     'id': 215218 
-                                    #     'center':
-
-                                    # },
-                ],
-                "categories": [
-                    {
-                        "id": 1,
-                        "name": "person"
-                    }
-                ]
+        json_data = { # 这个格式是模仿300w的注解文件的
+                "images":  [],
+                "annotations": {    'segmentation': [],
+                                    'num_keypoints': 68,
+                                    'iscrowd': 0,
+                                    'category_id': 1,
+                                
+                                },
+                "categories": {'id': 1, 'name': 'person'} # coco格式数据集中要调用
         }
 
         id = 0 
@@ -120,40 +95,28 @@ class Preprocess300vw:
 
             i = 1
             annots = os.listdir(annot_path)
+            annot_merge = []
             for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
                 if i % self.sample_rate == 0: # 在这里控制转化率
-                    annotation = {
-                        'segmentation': [],
-                        'num_keypoints': 10,
-                        'iscrowd': 0,
-                        'category_id': 1,
-                    }
-                    image = {}
+                    annotation = {}
 
                     # 找到1个帧注解所对应图片的路径
                     pic_name = os.path.splitext(annot)[0] + ".jpg"
-                    pic_path = join(video_id, pic_name)
-                    image['file_name'] = pic_path
+                    pic_path = join(self.processed_dir, 'images', video_id, pic_name)
+                    annotation['img_path'] = pic_path
 
                     # 添加图片宽、高
-                    pic_path = join(dataroot, pic_path)
-                    image_pic = Image.open(pic_path) # 打开图片
-                    pic_width, pic_height = image_pic.size
-                    image['height'] = pic_height
-                    image['width'] = pic_width
-                    image_pic.close() # 关闭图像
+                    image = Image.open(pic_path) # 打开图片
+                    pic_width, pic_height = image.size
+                    annotation['height'] = pic_height
+                    annotation['width'] = pic_width
+                    image.close() # 关闭图像
 
 
                     # 找到1个帧注解中的关键点坐标
                     annot_file = join(annot_path, annot)
                     keypoints = self._keypoint_from_pts_(annot_file)
-                    # 每个关键点坐标为x,y,c，c就是置信度，一般为1
-                    keypoints3 = []
-                    for kp_i in range(1,68*2+1):
-                        keypoints3.append(keypoints[kp_i-1])
-                        if kp_i%2==0:
-                            keypoints3.append(1)
-                    annotation['keypoints'] = keypoints3
+                    annotation['keypoints'] = keypoints
                     
                     # 计算左上坐标、宽、高
                     keypoints_x = []
@@ -163,52 +126,24 @@ class Preprocess300vw:
                             keypoints_x.append(keypoints[j])
                         else:
                             keypoints_y.append(keypoints[j])
-                    x_left = min(keypoints_x)  
+
+                    x_left = min(keypoints_x) - 5.0 # 5是增加一点人为误差，不让关键点就在框边上
                     x_right = max(keypoints_x) 
                     y_low = min(keypoints_y) 
-                    y_high = max(keypoints_y) 
-                    w = x_right - x_left 
-                    h = y_high - y_low 
+                    y_high = max(keypoints_y) + 5.0
+                    w = x_right - x_left + 5.0
+                    h = y_high - y_low + 5.0
                     annotation['bbox'] = [x_left, y_high, w, h]
 
-                    # # 以人脸框做上角为原点计算xy
-                    # keypoints3 = []
-                    # for kp_i in range(1,68*2+1):
-                    #     if kp_i%2 == 1:
-                    #         keypoints[kp_i-1] -= x_left
-                    #     else:
-                    #         keypoints[kp_i-1] -= y_low
-
-                    #     keypoints3.append(keypoints[kp_i-1])
-                    #     if kp_i%2==0:
-                    #         keypoints3.append(1)
-                    # annotation['keypoints'] = keypoints3
-
-
-
-                    # 计算人脸面积
-                    annotation['area'] = w*h
-                    
-                    # 计算center
-                    center = [
-                        (x_left + x_right)/2,
-                        (y_low + y_high)/2
-                    ]
-                    annotation['center'] = center
-
                     # 添加image_id与id
-                    image['id'] = id
-                    annotation['image_id'] = id
+                    annotation['img_id'] = id
                     annotation['id'] = id
 
-                    json_data['images'].append(image)
-                    json_data['annotations'].append(annotation)
 
-                    # 对人脸框进行一个fun(bbox, 0.8, 200)一个神秘的缩放，反正scale=0.8时框几乎不变
-                    annotation['scale'] = 0.8
-
+                    annot_merge.append(annotation)
                 id += 1
                 i += 1
+            json_data['data_list'].append(annot_merge)
             print(f'文件夹 "{annot_path}" 已经转换完毕. ')
 
         # 创建注解文件的目录（没有该目录，无法创建注解文件）
@@ -253,7 +188,7 @@ class Preprocess300vw:
 if __name__ == '__main__':
     convert300vw = Preprocess300vw()
     convert300vw.convert_jpg(convert300vw.videos_all)
-    convert300vw.convert_annot(convert300vw.videos_all,'train.json', 'E:\\mmpose\\data\\300vw\\images')
+    convert300vw.convert_annot(convert300vw.videos_all,'train.json')
 
 
 
