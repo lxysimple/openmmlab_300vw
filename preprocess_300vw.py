@@ -121,7 +121,10 @@ class Preprocess300vw:
 
             i = 1
             annots = os.listdir(annot_path)
+            annots.sort() # 服务器上这个列表默认是乱的，无语
             for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
+
+
                 if i % self.sample_rate == 0: # 在这里控制转化率
                     annotation = {
                         'segmentation': [],
@@ -131,7 +134,7 @@ class Preprocess300vw:
                     }
                     image = {}
 
-                    print(annot,i,)
+                    # print(annot,i,)
 
                     # 找到1个帧注解所对应图片的路径
                     pic_name = os.path.splitext(annot)[0] + ".jpg"
