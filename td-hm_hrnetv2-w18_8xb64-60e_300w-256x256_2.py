@@ -145,12 +145,12 @@ train_pipeline = [
     dict(type='GetBBoxCenterScale'), # 这里要标准化bbox(x,y,w,h)
 
     # # 做了变换可能适应于困难样本，但在普通验证集上效果不好
-    # dict(type='RandomFlip', direction='horizontal'), # 这里要知道图片宽、高
-    # dict(
-    #     type='RandomBBoxTransform',
-    #     shift_prob=0,
-    #     rotate_factor=60,
-    #     scale_factor=(0.75, 1.25)), # 这里可视化发现框+关键点变换后都蛮准的
+    dict(type='RandomFlip', direction='horizontal'), # 这里要知道图片宽、高
+    dict(
+        type='RandomBBoxTransform',
+        shift_prob=0,
+        rotate_factor=60,
+        scale_factor=(0.75, 1.25)), # 这里可视化发现框+关键点变换后都蛮准的
 
     dict(type='TopdownAffine', input_size=codec['input_size']),
     dict(type='GenerateTarget', encoder=codec),
