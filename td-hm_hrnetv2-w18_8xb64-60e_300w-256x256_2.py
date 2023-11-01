@@ -1,5 +1,5 @@
 # _base_ = ['../../../_base_/default_runtime.py']
-_base_ = ["E:\\mmpose\\mmpose\\configs\\_base_\\default_runtime.py"]
+_base_ = ["/home/xyli/mmpose/configs/_base_/default_runtime.py"]
 
 
 # runtime
@@ -58,6 +58,9 @@ codec = dict(
     sigma=1.5)
 
 # model settings
+resume = True
+load_from = 'work_dirs/td-hm_res50_8xb64-210e_coco-256x192/latest.pth'
+
 model = dict(
     type='TopdownPoseEstimator',
     data_preprocessor=dict(
@@ -184,7 +187,7 @@ train_dataloader = dict(
 
     dataset=dict(
         type='Face300WDataset',
-        data_root='E:/mmpose/data/300vw',
+        data_root='/home/xyli/data/300vw',
         ann_file='annotations/train.json',
         data_prefix=dict(img='images/'),
         pipeline=train_pipeline,
