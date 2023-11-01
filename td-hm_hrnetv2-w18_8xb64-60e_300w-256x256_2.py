@@ -58,8 +58,8 @@ codec = dict(
     sigma=1.5)
 
 # model settings
-resume = True
-load_from = 'work_dirs/td-hm_res50_8xb64-210e_coco-256x192/latest.pth'
+# resume = True # 提供的权重中无训练状态
+load_from = '/home/xyli/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth'
 
 model = dict(
     type='TopdownPoseEstimator',
@@ -204,12 +204,11 @@ val_dataloader = dict(
     sampler=dict(type='DefaultSampler', shuffle=False, round_up=False),
     dataset=dict(
         type='Face300WDataset',
-        data_root='E:/mmpose/data/300w',
+        data_root='/home/xyli/data/300w',
         data_mode='topdown',
         # ann_file='annotations/face_landmarks_300w_valid.json',
-        ann_file='annotations\\face_landmarks_300w_valid.json',
-        # data_prefix=dict(img='images/'),
-        data_prefix=dict(img='images\\'),
+        ann_file='annotations/face_landmarks_300w_valid.json',
+        data_prefix=dict(img='images/'),
         test_mode=True,
         pipeline=val_pipeline,
     ))
