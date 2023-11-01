@@ -253,9 +253,9 @@ class Preprocess300vw:
 
 if __name__ == '__main__':
     convert300vw = Preprocess300vw()
-    convert300vw.convert_jpg(convert300vw.videos_train)
+    # convert300vw.convert_jpg(convert300vw.videos_train)
     convert300vw.convert_annot(convert300vw.videos_train,'train.json', 
-                               '/home/xyli/data/300VW_Dataset_2015_12_14/images')
+                               '/home/xyli/data/300vw/images')
 
 
 
