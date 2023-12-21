@@ -49,16 +49,16 @@ class Preprocess300vw:
                             '537', '538', '540', '541', '546', '547', '548', '550', '551', '553', 
                             '557', '558', '559', '562']
         
-        # Category 1
+        # Category 1 in laboratory and naturalistic well-lit conditions
         self.videos_test_1 = ['114', '124', '125', '126', '150', '158', '401', '402', '505', '506',
                               '507', '508', '509', '510', '511', '514', '515', '518', '519', '520', 
                               '521', '522', '524', '525', '537', '538', '540', '541', '546', '547', 
                               '548']
-        # Category 2
+        # Category 2 in real-world human-computer interaction applications
         self.videos_test_2 = ['203', '208', '211', '212', '213', '214', '218', '224', '403', '404', 
                               '405', '406', '407', '408', '409', '412', '550', '551', '553']
         
-        # Category 3
+        # Category 3 in arbitrary conditions
         self.videos_test_3 = ['410', '411', '516', '517', '526', '528', '529', '530', '531', '533', 
                               '557', '558', '559', '562']
 
@@ -83,6 +83,11 @@ class Preprocess300vw:
                 success, img = cap.read() # 读取视频的下一帧
                 if not success: # 如果读一个帧失败了，则退出读取该视频帧过程，换到其它视频
                     break
+                    
+                # if this frame is broken, skip it.
+                if video in self.broken_frames and i in self.broken_frames[video]:
+                    break
+                    
                 if i % self.sample_rate == 0: # 用这种方式控制视频转化率
                     # f是格式化字符串，d表示i是整数，06代表占6个格子多余填充0
                     imgname = f'{i:06d}.jpg' # 要高精度的化.png最好
