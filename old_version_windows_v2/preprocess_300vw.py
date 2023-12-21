@@ -38,10 +38,10 @@ class Preprocess300vw:
         self.videos_train = [ i for i in self.videos_all if i not in self.videos_test_1 
                                                         and i not in self.videos_test_2 
                                                         and i not in self.videos_test_3]
-        self.videos_all = self.videos_all[:2] # 测试时数据搞小点
+        self.videos_all = self.videos_train[0:20] # 测试时数据搞小点
 
         # Downsample FPS to `1 / sample_rate`. Default: 5.
-        self.sample_rate = 40 # 约等于1fps
+        self.sample_rate = 80 # 约等于1fps
 
     # 对数据集中所有视频转换成多张图片
     # 其中self.sample_rate可控制转换率，其越小，单个视频转换的图片数量越多
@@ -155,7 +155,7 @@ class Preprocess300vw:
                             keypoints3.append(1)
                     annotation['keypoints'] = keypoints3
                     
-                    # 计算左上坐标、宽、高
+                    # 计算左上坐标、宽、高，无需计算bbox，因为Face300WDataset中会用scale+center求出bbox
                     keypoints_x = []
                     keypoints_y = []
                     for j in range(68):
@@ -169,7 +169,12 @@ class Preprocess300vw:
                     y_high = max(keypoints_y) 
                     w = x_right - x_left 
                     h = y_high - y_low 
-                    annotation['bbox'] = [x_left, y_high, w, h]
+                    # annotation['bbox'] = [1, 1, 2, 2]
+                    # annotation['bbox'] = [x_left, y_high, w, h]
+                    # annotation['bbox'] = [x_left, y_high, x_right, y_low]
+                    scale = max(w+5 , h+5)
+                    scale = scale / 200.0
+                    annotation['scale'] = scale
 
                     # # 以人脸框做上角为原点计算xy
                     # keypoints3 = []
@@ -204,8 +209,8 @@ class Preprocess300vw:
                     json_data['images'].append(image)
                     json_data['annotations'].append(annotation)
 
-                    # 对人脸框进行一个fun(bbox, 0.8, 200)一个神秘的缩放，反正scale=0.8时框几乎不变
-                    annotation['scale'] = 0.8
+                    
+                    
 
                 id += 1
                 i += 1
@@ -225,6 +230,7 @@ class Preprocess300vw:
 
     # 从一个.pts格式文件中提取68个关键点到列表中，并返回该列表
     def _keypoint_from_pts_(self,file_path):
+
         # 创建一个列表来存储关键点坐标
         keypoints = []
 

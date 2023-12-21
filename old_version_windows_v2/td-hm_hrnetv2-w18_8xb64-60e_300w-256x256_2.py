@@ -188,8 +188,10 @@ train_dataloader = dict(
 
     dataset=dict(
         type='Face300WDataset',
-        data_root='E:/mmpose/data/300vw',
-        ann_file='annotations/train.json',
+        # data_root='E:/mmpose/data/300vw',
+        data_root='E:/mmpose/data/300w',
+        # ann_file='annotations/train.json',
+        ann_file='annotations/face_landmarks_300w_train.json',
         data_prefix=dict(img='images/'),
         pipeline=train_pipeline,
     )
