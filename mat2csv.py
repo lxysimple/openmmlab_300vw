@@ -21,8 +21,12 @@ for filename in os.listdir(input_folder):
         # 使用 loadmat 函数读取 .mat 文件
         mat_data = scipy.io.loadmat(mat_file_path)
 
+        # 获取 .mat 文件中的数据（这里假设只有一个变量）
+        variable_name = [key for key in mat_data.keys() if not key.startswith("__")][0]
+        data = mat_data[variable_name]
+
         # 将数据转换为 Pandas DataFrame
-        df = pd.DataFrame(mat_data)
+        df = pd.DataFrame(data, columns=[f"column_{i+1}" for i in range(data.shape[1])])
 
         # 替换文件扩展名为 .csv，并构建输出文件路径
         csv_file_path = os.path.join(output_folder, os.path.splitext(filename)[0] + '.csv')
