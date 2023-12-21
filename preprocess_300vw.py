@@ -10,10 +10,15 @@ from meta300vw import dataset_info # 文件名如果是300vw.py则无法导入�
 # test
 class Preprocess300vw:
     def __init__(self):
-        # 要转换的300vw数据集主目录
-        self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
-        # 转换后的主目录
-        self.processed_dir = '/home/xyli/data/300vw'
+        # In Linux:
+        # # 要转换的300vw数据集主目录
+        # self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
+        # # 转换后的主目录
+        # self.processed_dir = 'E:/mmpose/data/300vw'
+
+        # In Windows:
+        self.original_dir = 'E:/mmpose/data/300VW_Dataset_2015_12_14'
+        self.processed_dir = 'E:/mmpose/data/300vw'
 
         # The broken frames in test dataset
         self.broken_frames = {
@@ -65,10 +70,12 @@ class Preprocess300vw:
         self.videos_train = [ i for i in self.videos_all if i not in self.videos_test_1 
                                                         and i not in self.videos_test_2 
                                                         and i not in self.videos_test_3]
-        self.videos_all = self.videos_all[:2] # 测试时数据搞小点
+        
+        self.videos_part = ['540'] # 测试时数据搞小点
 
         # Downsample FPS to `1 / sample_rate`. Default: 5.
-        self.sample_rate = 5 # 约等于1fps
+        # self.sample_rate = 5 # 约等于1fps
+        self.sample_rate = 1 # all the frames
 
     # 对数据集中所有视频转换成多张图片
     # 其中self.sample_rate可控制转换率，其越小，单个视频转换的图片数量越多
@@ -86,7 +93,8 @@ class Preprocess300vw:
                     
                 # if this frame is broken, skip it.
                 if video in self.broken_frames and i in self.broken_frames[video]:
-                    break
+                    i += 1
+                    continue
                     
                 if i % self.sample_rate == 0: # 用这种方式控制视频转化率
                     # f是格式化字符串，d表示i是整数，06代表占6个格子多余填充0
@@ -155,6 +163,12 @@ class Preprocess300vw:
             annots.sort() # 服务器上这个列表默认是乱的，无语
             for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
 
+                
+                # if this frame is broken, skip it.
+                # '000001.pts' -> '000001' -> 1
+                if video_id in self.broken_frames and int(annot.split('.')[0]) in self.broken_frames[video_id]:
+                    i += 1
+                    continue
 
                 if i % self.sample_rate == 0: # 在这里控制转化率
                     annotation = {
@@ -289,10 +303,16 @@ class Preprocess300vw:
 
 if __name__ == '__main__':
     convert300vw = Preprocess300vw()
-    # convert300vw.convert_jpg(convert300vw.videos_train)
-    convert300vw.convert_annot(convert300vw.videos_train,'train.json', 
-                               '/home/xyli/data/300vw/images')
 
+    # All the data
+    # convert300vw.convert_jpg(convert300vw.videos_train)
+    # convert300vw.convert_annot(convert300vw.videos_train,'train.json', 
+    #                            '/home/xyli/data/300vw/images')
+
+    # A bit of data to test
+    # convert300vw.convert_jpg(convert300vw.videos_part)
+    convert300vw.convert_annot(convert300vw.videos_part,'train.json', 
+                               'E:\\mmpose\\data\\300vw\\images')
 
 
 
