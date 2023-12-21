@@ -15,6 +15,22 @@ class Preprocess300vw:
         # 转换后的主目录
         self.processed_dir = '/home/xyli/data/300vw'
 
+        # The broken frames in test dataset
+        self.broken_frames = {
+            '401':[], 
+            '402',
+            '410', 
+            '411',
+            '508',
+            '518', 
+            '529',
+            '530', 
+            '531',
+            '533',
+            '540', '547','548', '551','553',
+            '557'
+        }
+
         # 300vw一共有这么多视频，每个视频都用一个文件夹装着
         self.videos_all =  ['001', '002', '003', '004', '007', '009', '010', '011', '013', '015', 
                             '016', '017', '018', '019', '020', '022', '025', '027', '028', '029', 
@@ -28,14 +44,20 @@ class Preprocess300vw:
                             '521', '522', '524', '525', '526', '528', '529', '530', '531', '533', 
                             '537', '538', '540', '541', '546', '547', '548', '550', '551', '553', 
                             '557', '558', '559', '562']
+        
+        # Category 1
         self.videos_test_1 = ['114', '124', '125', '126', '150', '158', '401', '402', '505', '506',
                               '507', '508', '509', '510', '511', '514', '515', '518', '519', '520', 
                               '521', '522', '524', '525', '537', '538', '540', '541', '546', '547', 
                               '548']
+        # Category 2
         self.videos_test_2 = ['203', '208', '211', '212', '213', '214', '218', '224', '403', '404', 
                               '405', '406', '407', '408', '409', '412', '550', '551', '553']
+        
+        # Category 3
         self.videos_test_3 = ['410', '411', '516', '517', '526', '528', '529', '530', '531', '533', 
                               '557', '558', '559', '562']
+
         self.videos_train = [ i for i in self.videos_all if i not in self.videos_test_1 
                                                         and i not in self.videos_test_2 
                                                         and i not in self.videos_test_3]
@@ -52,7 +74,7 @@ class Preprocess300vw:
             video_path = join(self.original_dir, video, 'vid.avi')
             cap = cv2.VideoCapture(video_path)
             frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) # 获取视频的总帧数
-            i = 1
+            i = 1 # start from 1.
             while True:
                 success, img = cap.read() # 读取视频的下一帧
                 if not success: # 如果读一个帧失败了，则退出读取该视频帧过程，换到其它视频
