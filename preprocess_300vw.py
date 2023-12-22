@@ -303,14 +303,14 @@ if __name__ == '__main__':
     convert300vw = Preprocess300vw()
 
     # All the data
-    convert300vw.convert_jpg(convert300vw.videos_train)
-    convert300vw.convert_annot(convert300vw.videos_train,'train.json', 
-                               '/home/xyli/data/300vw/images')
+    # convert300vw.convert_jpg(convert300vw.videos_train)
+    # convert300vw.convert_annot(convert300vw.videos_train,'train.json', 
+    #                            '/home/xyli/data/300vw/images')
 
     # A bit of data to test
-    # convert300vw.convert_jpg(convert300vw.videos_part)
-    # convert300vw.convert_annot(convert300vw.videos_part,'train.json', 
-    #                            'E:\\mmpose\\data\\300vw\\images')
+    convert300vw.convert_jpg(convert300vw.videos_part)
+    convert300vw.convert_annot(convert300vw.videos_part,'train.json', 
+                               'E:\\mmpose\\data\\300vw\\images')
 
 
 

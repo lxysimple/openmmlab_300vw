@@ -1,5 +1,5 @@
-# _base_ = ['../../../_base_/default_runtime.py']
-_base_ = ["/home/xyli/mmpose/configs/_base_/default_runtime.py"]
+# _base_ = ["/home/xyli/mmpose/configs/_base_/default_runtime.py"]
+_base_ = ["E:\\mmpose\\mmpose\\configs\\_base_\\default_runtime.py"]
 
 
 # runtime
@@ -80,7 +80,8 @@ codec = dict(
 
 # model settings
 # resume = True # 提供的权重中无训练状态
-load_from = '/home/xyli/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth'
+# load_from = '/home/xyli/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth'
+load_from = 'E:/mmpose/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth'
 
 model = dict(
     type='TopdownPoseEstimator',
@@ -182,12 +183,61 @@ val_pipeline = [
     dict(type='PackPoseInputs')
 ]
 
+
+# In Windows
+# 300w dataset
+dataset_300w =dict(
+    type='Face300WDataset',
+    data_root='E:/mmpose/data/300w/',
+    data_mode='topdown',
+    ann_file='annotations/face_landmarks_300w_train.json',
+    data_prefix=dict(img='images/'),
+    pipeline=train_pipeline,
+) 
+# 300vw dataset
+dataset_300vw =dict(
+    type='Face300WDataset',
+    data_root='E:/mmpose/data/300vw/',
+    data_mode='topdown',
+    ann_file='annotations/train.json',
+    data_prefix=dict(img='images/'),
+    pipeline=train_pipeline,
+) 
+# 300vw + 300w
+# warning: you should cross out the validate 'meta300w == meta300vw?' at the MMEngine code in system env.
+dataset_all = dict(
+    type='ConcatDataset',
+    datasets=(dataset_300w, dataset_300vw)
+)
+
+# validation in 300w
+dataset_vali = dict(
+    type='Face300WDataset',
+    # data_root='/home/xyli/data/300w',
+    data_root='E:/mmpose/data/300w',
+    data_mode='topdown',
+    ann_file='annotations/face_landmarks_300w_valid.json',
+    data_prefix=dict(img='images/'),
+    test_mode=True,
+    pipeline=val_pipeline,
+)
+
+
+
 # data loaders
 train_dataloader = dict(
-    batch_size=64,
-    num_workers=2,
-    persistent_workers=True, # 一直让dataset对象在内存中
+    # batch_size=64,
+    # num_workers=2,
+
+    batch_size=8,
+    num_workers=0,
+
+    # persistent_workers=True, # keep the data in memory all the time, need the num_workers > 0
+    persistent_workers=False,
+
     sampler=dict(type='DefaultSampler', shuffle=True),
+
+    dataset = dataset_all
 
     # dataset=dict(
     #     type='Face300VWDataset',
@@ -197,34 +247,33 @@ train_dataloader = dict(
     #     pipeline=train_pipeline,
     # )
 
-    dataset=dict(
-        type='Face300WDataset',
-        data_root='/home/xyli/data/300vw',
-        data_mode='topdown',
-        ann_file='annotations/train.json',
-        data_prefix=dict(img='images/'),
-        pipeline=train_pipeline,
-    )
+    # dataset=dict(
+    #     type='Face300WDataset',
+    #     data_root='/home/xyli/data/300vw',
+    #     data_mode='topdown',
+    #     ann_file='annotations/train.json',
+    #     data_prefix=dict(img='images/'),
+    #     pipeline=train_pipeline,
+    # )
 
 )
 
 # 用300w的验证集验证
 val_dataloader = dict(
-    batch_size=32,
-    num_workers=2,
-    persistent_workers=True,
+    # batch_size=32,
+    # num_workers=2,
+
+    batch_size=8,
+    num_workers=0,
+
+    # persistent_workers=True, # need the num_workers > 0
+    persistent_workers=False,
+
     drop_last=False,
     sampler=dict(type='DefaultSampler', shuffle=False, round_up=False),
+    dataset = dataset_vali
+)
 
-    dataset=dict(
-        type='Face300WDataset',
-        data_root='/home/xyli/data/300w',
-        data_mode='topdown',
-        ann_file='annotations/face_landmarks_300w_valid.json',
-        data_prefix=dict(img='images/'),
-        test_mode=True,
-        pipeline=val_pipeline,
-    ))
 test_dataloader = val_dataloader
 
 # evaluators
