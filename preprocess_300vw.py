@@ -11,10 +11,8 @@ from meta300vw import dataset_info # 文件名如果是300vw.py则无法导入�
 class Preprocess300vw:
     def __init__(self):
         # In Linux:
-        # # 要转换的300vw数据集主目录
-        # self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
-        # # 转换后的主目录
-        # self.processed_dir = 'E:/mmpose/data/300vw'
+        # self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14' # 要转换的300vw数据集主目录
+        # self.processed_dir = '/home/xyli/data/300vw' # 转换后的主目录
 
         # In Windows:
         self.original_dir = 'E:/mmpose/data/300VW_Dataset_2015_12_14'
