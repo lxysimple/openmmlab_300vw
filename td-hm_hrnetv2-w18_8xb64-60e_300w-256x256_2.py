@@ -3,38 +3,58 @@ _base_ = ["/home/xyli/mmpose/configs/_base_/default_runtime.py"]
 
 
 # runtime
-train_cfg = dict(max_epochs=60, val_interval=10)
+train_cfg = dict(max_epochs=60, val_interval=1)
+
+
+# my optimizer
+# optim_wrapper = dict(
+#     optimizer=dict(
+#         type='Adam',
+#         lr=2e-5, # 2e-5最合适
+#     ),
+#     paramwise_cfg=dict(
+#         custom_keys={
+#             # 0最合适
+#             'backbone.conv1': dict(lr_mult=0),
+#             'backbone.bn1': dict(lr_mult=0),
+#             'backbone.bn2': dict(lr_mult=0),
+#             'backbone.layer1': dict(lr_mult=0),
+
+#         }
+#     )
+# )
+
+# my learning policy
+# param_scheduler = [
+#     # dict(
+#     #     type='LinearLR', begin=0, end=500, start_factor=0.0001,
+#     #     by_epoch=False),  # warm-up
+
+#     # lr=lr*0.1, at each epoch in [40,55]
+#     dict(
+#         type='MultiStepLR',
+#         begin=0,
+#         end=60,
+#         milestones=[40, 55],
+#         gamma=0.1,
+#         by_epoch=True)
+# ]
 
 
 # optimizer
-optim_wrapper = dict(
-    optimizer=dict(
-        type='Adam',
-        lr=2e-5, # 2e-5最合适
-    ),
-    paramwise_cfg=dict(
-        custom_keys={
-            # 0最合适
-            'backbone.conv1': dict(lr_mult=0),
-            'backbone.bn1': dict(lr_mult=0),
-            'backbone.bn2': dict(lr_mult=0),
-            'backbone.layer1': dict(lr_mult=0),
-
-        }
-    )
-)
-
-# optimizer
-# optim_wrapper = dict(optimizer=dict(
-#     type='Adam',
-#     lr=2e-3, # 0.002
-# ))
+optim_wrapper = dict(optimizer=dict(
+    type='Adam',
+    lr=2e-3, # 0.002
+))
 
 # learning policy
 param_scheduler = [
-    # dict(
-    #     type='LinearLR', begin=0, end=500, start_factor=0.0001,
-    #     by_epoch=False),  # warm-up
+    # lr=lr+b, at each iter in [0,500]; lr=2e-3 at iter=500
+    dict(
+        type='LinearLR', begin=0, end=500, start_factor=0.001,
+        by_epoch=False),  # warm-up
+
+    # lr=lr*0.1, at each epoch in [40,55]
     dict(
         type='MultiStepLR',
         begin=0,
@@ -43,6 +63,10 @@ param_scheduler = [
         gamma=0.1,
         by_epoch=True)
 ]
+
+
+
+
 
 # automatically scaling LR based on the actual training batch size
 auto_scale_lr = dict(base_batch_size=512)
@@ -118,14 +142,12 @@ model = dict(
         # 源码：mmpose/mmpose/models/heads/heatmap_heads/heatmap_head.py
         type='HeatmapHead',
         in_channels=270, # 就是18+36+72+144
-        # out_channels=68, # 每个通道对应68个关键点
         out_channels=68, # 每个通道对应68个关键点
         deconv_out_channels=None,
-        # conv_out_channels=(270, ), # 从源码中可知，每个中间层输出c=270
         conv_out_channels=(270, ), # 从源码中可知，每个中间层输出c=270
         conv_kernel_sizes=(1, ), 
-        # loss=dict(type='KeypointMSELoss', use_target_weight=True),
-        loss=dict(type='KeypointMSELoss', use_target_weight=False),
+        loss=dict(type='KeypointMSELoss', use_target_weight=True),
+        # loss=dict(type='KeypointMSELoss', use_target_weight=False),
         decoder=codec), # 生成热图
     test_cfg=dict(
         flip_test=True,
@@ -144,7 +166,7 @@ train_pipeline = [
     dict(type='LoadImage'),
     dict(type='GetBBoxCenterScale'), # 这里要标准化bbox(x,y,w,h)
 
-    # # 做了变换可能适应于困难样本，但在普通验证集上效果不好
+    # 做了变换可能适应于困难样本，但在普通验证集上效果不好
     dict(type='RandomFlip', direction='horizontal'), # 这里要知道图片宽、高
     dict(
         type='RandomBBoxTransform',
@@ -165,9 +187,9 @@ val_pipeline = [
 
 # data loaders
 train_dataloader = dict(
-    batch_size=16,
-    num_workers=0,
-    # persistent_workers=True, # 一直让dataset对象在内存中
+    batch_size=64,
+    num_workers=2,
+    persistent_workers=True, # 一直让dataset对象在内存中
     sampler=dict(type='DefaultSampler', shuffle=True),
     # dataset=dict(
     #     type=dataset_type,
@@ -188,6 +210,7 @@ train_dataloader = dict(
     dataset=dict(
         type='Face300WDataset',
         data_root='/home/xyli/data/300vw',
+        data_mode='topdown',
         ann_file='annotations/train.json',
         data_prefix=dict(img='images/'),
         pipeline=train_pipeline,
@@ -197,11 +220,12 @@ train_dataloader = dict(
 
 # 用300w的验证集验证
 val_dataloader = dict(
-    batch_size=8,
-    num_workers=0,
-    # persistent_workers=True,
+    batch_size=32,
+    num_workers=2,
+    persistent_workers=True,
     drop_last=False,
     sampler=dict(type='DefaultSampler', shuffle=False, round_up=False),
+    
     dataset=dict(
         type='Face300WDataset',
         data_root='/home/xyli/data/300w',
