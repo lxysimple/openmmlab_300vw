@@ -65,9 +65,6 @@ param_scheduler = [
 ]
 
 
-
-
-
 # automatically scaling LR based on the actual training batch size
 auto_scale_lr = dict(base_batch_size=512)
 
@@ -191,14 +188,7 @@ train_dataloader = dict(
     num_workers=2,
     persistent_workers=True, # 一直让dataset对象在内存中
     sampler=dict(type='DefaultSampler', shuffle=True),
-    # dataset=dict(
-    #     type=dataset_type,
-    #     data_root=data_root,
-    #     data_mode=data_mode,
-    #     ann_file='annotations/face_landmarks_300w_train.json',
-    #     data_prefix=dict(img='images/'),
-    #     pipeline=train_pipeline,
-    # )
+
     # dataset=dict(
     #     type='Face300VWDataset',
     #     data_root='E:/mmpose/data/300vw',
@@ -225,12 +215,11 @@ val_dataloader = dict(
     persistent_workers=True,
     drop_last=False,
     sampler=dict(type='DefaultSampler', shuffle=False, round_up=False),
-    
+
     dataset=dict(
         type='Face300WDataset',
         data_root='/home/xyli/data/300w',
         data_mode='topdown',
-        # ann_file='annotations/face_landmarks_300w_valid.json',
         ann_file='annotations/face_landmarks_300w_valid.json',
         data_prefix=dict(img='images/'),
         test_mode=True,
