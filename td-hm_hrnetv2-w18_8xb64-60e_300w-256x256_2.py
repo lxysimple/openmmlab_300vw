@@ -234,8 +234,11 @@ dataset_vali = dict(
 
 # data loaders
 train_dataloader = dict(
-    batch_size=64,
+    batch_size=32,
     num_workers=2,
+
+    # batch_size=64,
+    # num_workers=2,
 
     # batch_size=8,
     # num_workers=0,
@@ -269,8 +272,11 @@ train_dataloader = dict(
 
 # 用300w的验证集验证
 val_dataloader = dict(
-    batch_size=32,
-    num_workers=2,
+    batch_size=16,
+    num_workers=2,               
+
+    # batch_size=32,
+    # num_workers=2,
 
     # batch_size=8,
     # num_workers=0,
