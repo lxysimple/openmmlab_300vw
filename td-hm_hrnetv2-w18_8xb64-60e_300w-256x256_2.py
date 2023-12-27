@@ -234,18 +234,18 @@ dataset_vali = dict(
 
 # data loaders
 train_dataloader = dict(
-    batch_size=32,
-    num_workers=2,
-
-    # batch_size=64,
+    # batch_size=32,
     # num_workers=2,
+
+    batch_size=64,
+    num_workers=2,
 
     # batch_size=8,
     # num_workers=0,
 
     # If it is true, GPU will be "out of memory".
-    # persistent_workers=True, # keep the data in memory all the time, need the num_workers > 0
-    persistent_workers=False,
+    persistent_workers=True, # keep the data in memory all the time, need the num_workers > 0
+    # persistent_workers=False,
 
     sampler=dict(type='DefaultSampler', shuffle=True),
 
@@ -272,17 +272,17 @@ train_dataloader = dict(
 
 # 用300w的验证集验证
 val_dataloader = dict(
-    batch_size=16,
-    num_workers=2,               
+    # batch_size=16,
+    # num_workers=2,               
 
-    # batch_size=32,
-    # num_workers=2,
+    batch_size=32,
+    num_workers=2,
 
     # batch_size=8,
     # num_workers=0,
 
-    # persistent_workers=True, # need the num_workers > 0
-    persistent_workers=False,
+    persistent_workers=True, # need the num_workers > 0
+    # persistent_workers=False,
 
     drop_last=False,
     sampler=dict(type='DefaultSampler', shuffle=False, round_up=False),
