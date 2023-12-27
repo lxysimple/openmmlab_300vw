@@ -237,11 +237,11 @@ train_dataloader = dict(
     # batch_size=32,
     # num_workers=2,
 
-    # batch_size=64,
-    # num_workers=2,
-
-    batch_size=8,
+    batch_size=64,
     num_workers=2,
+
+    # batch_size=8,
+    # num_workers=2,
 
     # If it is true, GPU will be "out of memory".
     persistent_workers=True, # keep the data in memory all the time, need the num_workers > 0
@@ -275,11 +275,11 @@ val_dataloader = dict(
     # batch_size=16,
     # num_workers=2,               
 
-    # batch_size=32,
-    # num_workers=2,
-
-    batch_size=8,
+    batch_size=32,
     num_workers=2,
+
+    # batch_size=8,
+    # num_workers=2,
 
     persistent_workers=True, # need the num_workers > 0
     # persistent_workers=False,
