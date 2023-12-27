@@ -1,5 +1,5 @@
-# _base_ = ["/home/xyli/mmpose/configs/_base_/default_runtime.py"]
-_base_ = ["E:\\mmpose\\mmpose\\configs\\_base_\\default_runtime.py"]
+_base_ = ["/home/xyli/mmpose/configs/_base_/default_runtime.py"]
+# _base_ = ["E:\\mmpose\\mmpose\\configs\\_base_\\default_runtime.py"]
 
 
 # runtime
@@ -80,8 +80,8 @@ codec = dict(
 
 # model settings
 # resume = True # 提供的权重中无训练状态
-# load_from = '/home/xyli/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth'
-load_from = 'E:/mmpose/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth'
+load_from = '/home/xyli/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth'
+# load_from = 'E:/mmpose/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth'
 
 model = dict(
     type='TopdownPoseEstimator',
@@ -184,11 +184,14 @@ val_pipeline = [
 ]
 
 
-# In Windows
+
 # 300w dataset
 dataset_300w =dict(
     type='Face300WDataset',
-    data_root='E:/mmpose/data/300w/',
+
+    # data_root='E:/mmpose/data/300w/',
+    data_root='/home/xyli/data/300w',
+
     data_mode='topdown',
     ann_file='annotations/face_landmarks_300w_train.json',
     data_prefix=dict(img='images/'),
@@ -197,7 +200,10 @@ dataset_300w =dict(
 # 300vw dataset
 dataset_300vw =dict(
     type='Face300WDataset',
-    data_root='E:/mmpose/data/300vw/',
+
+    # data_root='E:/mmpose/data/300vw/',
+    data_root='/home/xyli/data/300vw',
+    
     data_mode='topdown',
     ann_file='annotations/train.json',
     data_prefix=dict(img='images/'),
@@ -213,8 +219,10 @@ dataset_all = dict(
 # validation in 300w
 dataset_vali = dict(
     type='Face300WDataset',
-    # data_root='/home/xyli/data/300w',
-    data_root='E:/mmpose/data/300w',
+
+    data_root='/home/xyli/data/300w',
+    # data_root='E:/mmpose/data/300w',
+
     data_mode='topdown',
     ann_file='annotations/face_landmarks_300w_valid.json',
     data_prefix=dict(img='images/'),
