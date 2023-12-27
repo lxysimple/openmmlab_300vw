@@ -11,12 +11,12 @@ from meta300vw import dataset_info # 文件名如果是300vw.py则无法导入�
 class Preprocess300vw:
     def __init__(self):
         # In Linux:
-        # self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14' # 要转换的300vw数据集主目录
-        # self.processed_dir = '/home/xyli/data/300vw' # 转换后的主目录
+        self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14' # 要转换的300vw数据集主目录
+        self.processed_dir = '/home/xyli/data/300vw' # 转换后的主目录
 
         # In Windows:
-        self.original_dir = 'E:/mmpose/data/300VW_Dataset_2015_12_14'
-        self.processed_dir = 'E:/mmpose/data/300vw'
+        # self.original_dir = 'E:/mmpose/data/300VW_Dataset_2015_12_14'
+        # self.processed_dir = 'E:/mmpose/data/300vw'
 
         # The broken frames in test dataset
         self.broken_frames = {
@@ -72,8 +72,8 @@ class Preprocess300vw:
         self.videos_part = ['540'] # 测试时数据搞小点
 
         # Downsample FPS to `1 / sample_rate`. Default: 5.
-        # self.sample_rate = 5 # 约等于1fps
-        self.sample_rate = 1 # all the frames
+        self.sample_rate = 5 # 约等于1fps
+        # self.sample_rate = 1 # all the frames
 
     # 对数据集中所有视频转换成多张图片
     # 其中self.sample_rate可控制转换率，其越小，单个视频转换的图片数量越多
@@ -303,14 +303,14 @@ if __name__ == '__main__':
     convert300vw = Preprocess300vw()
 
     # All the data
-    # convert300vw.convert_jpg(convert300vw.videos_train)
-    # convert300vw.convert_annot(convert300vw.videos_train,'train.json', 
-    #                            '/home/xyli/data/300vw/images')
+    convert300vw.convert_jpg(convert300vw.videos_train)
+    convert300vw.convert_annot(convert300vw.videos_train,'train.json', 
+                               '/home/xyli/data/300vw/images')
 
     # A bit of data to test
-    convert300vw.convert_jpg(convert300vw.videos_part)
-    convert300vw.convert_annot(convert300vw.videos_part,'train.json', 
-                               'E:\\mmpose\\data\\300vw\\images')
+    # convert300vw.convert_jpg(convert300vw.videos_part)
+    # convert300vw.convert_annot(convert300vw.videos_part,'train.json', 
+    #                            'E:\\mmpose\\data\\300vw\\images')
 
 
 
