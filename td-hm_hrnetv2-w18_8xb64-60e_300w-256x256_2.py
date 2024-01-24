@@ -80,8 +80,8 @@ codec = dict(
 
 # model settings
 # resume = True # 提供的权重中无训练状态
-load_from = '/home/xyli/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth'
-# load_from = 'E:/mmpose/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth'
+# load_from = '/home/xyli/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth' # ubuntu
+# load_from = 'E:/mmpose/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth' # windows
 
 model = dict(
     type='TopdownPoseEstimator',
@@ -249,7 +249,8 @@ train_dataloader = dict(
 
     sampler=dict(type='DefaultSampler', shuffle=True),
 
-    dataset = dataset_all
+    # dataset = dataset_all # 300vw + 300w
+    dataset = dataset_300w # 300vw
 
     # dataset=dict(
     #     type='Face300VWDataset',
