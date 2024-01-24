@@ -1,5 +1,11 @@
-_base_ = ["/home/xyli/mmpose/configs/_base_/default_runtime.py"]
-# _base_ = ["E:\\mmpose\\mmpose\\configs\\_base_\\default_runtime.py"]
+# _base_ = ["/home/xyli/mmpose/configs/_base_/default_runtime.py"]
+_base_ = ["E:\\mmpose\\mmpose\\configs\\_base_\\default_runtime.py"]
+
+data_root_300w='E:/mmpose/data/300w/'
+data_root_300vw='E:/mmpose/data/300vw/'
+
+# data_root_300w='/home/xyli/data/300w'
+# data_root_300vw='/home/xyli/data/300vw'
 
 
 # runtime
@@ -189,8 +195,7 @@ val_pipeline = [
 dataset_300w =dict(
     type='Face300WDataset',
 
-    # data_root='E:/mmpose/data/300w/',
-    data_root='/home/xyli/data/300w',
+    data_root = data_root_300w,
 
     data_mode='topdown',
     ann_file='annotations/face_landmarks_300w_train.json',
@@ -201,8 +206,7 @@ dataset_300w =dict(
 dataset_300vw =dict(
     type='Face300WDataset',
 
-    # data_root='E:/mmpose/data/300vw/',
-    data_root='/home/xyli/data/300vw',
+    data_root = data_root_300vw,
     
     data_mode='topdown',
     ann_file='annotations/train.json',
@@ -220,8 +224,7 @@ dataset_all = dict(
 dataset_vali = dict(
     type='Face300WDataset',
 
-    data_root='/home/xyli/data/300w',
-    # data_root='E:/mmpose/data/300w',
+    data_root=data_root_300w,
 
     data_mode='topdown',
     ann_file='annotations/face_landmarks_300w_valid.json',
@@ -249,8 +252,8 @@ train_dataloader = dict(
 
     sampler=dict(type='DefaultSampler', shuffle=True),
 
-    dataset = dataset_all # 300vw + 300w
-    # dataset = dataset_300w # 300w
+    # dataset = dataset_all # 300vw + 300w
+    dataset = dataset_300w # 300w
     # dataset = dataset_300vw # 300w
 
     # dataset=dict(

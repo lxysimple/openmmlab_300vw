@@ -204,7 +204,7 @@ class Preprocess300vw:
                             keypoints3.append(1)
                     annotation['keypoints'] = keypoints3
                     
-                    # 计算左上坐标、宽、高
+                     # 计算左上坐标、宽、高，无需计算bbox，因为Face300WDataset中会用scale+center求出bbox
                     keypoints_x = []
                     keypoints_y = []
                     for j in range(68):
@@ -218,7 +218,10 @@ class Preprocess300vw:
                     y_high = max(keypoints_y) 
                     w = x_right - x_left 
                     h = y_high - y_low 
-                    annotation['bbox'] = [x_left, y_high, w, h]
+                    # annotation['bbox'] = [x_left, y_high, w, h]
+                    scale = max(w+5 , h+5)
+                    scale = scale / 200.0
+                    annotation['scale'] = scale
 
                     # # 以人脸框做上角为原点计算xy
                     # keypoints3 = []
@@ -252,9 +255,6 @@ class Preprocess300vw:
 
                     json_data['images'].append(image)
                     json_data['annotations'].append(annotation)
-
-                    # 对人脸框进行一个fun(bbox, 0.8, 200)一个神秘的缩放，反正scale=0.8时框几乎不变
-                    annotation['scale'] = 0.8
 
                 id += 1
                 i += 1
