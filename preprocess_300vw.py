@@ -128,7 +128,7 @@ class Preprocess300vw:
                 'annotations': [ # 所有目标的列表
                                     # {
                                     #     'segmentation': [],
-                                    #     'num_keypoints': 10,
+                                    #     'num_keypoints': 68,
                                     #     'iscrowd': 0,
                                     #     'category_id': 1,
 
@@ -171,7 +171,7 @@ class Preprocess300vw:
                 if i % self.sample_rate == 0: # 在这里控制转化率
                     annotation = {
                         'segmentation': [],
-                        'num_keypoints': 10,
+                        'num_keypoints': 68,
                         'iscrowd': 0,
                         'category_id': 1,
                     }
@@ -221,7 +221,7 @@ class Preprocess300vw:
 
                     annotation['bbox'] = [x_left, y_high, x_right, y_low]
 
-                    scale = max(w, h) + 60 # 300w should be about 60
+                    scale = max(w, h) + 20 # 300w should be about 60
                     scale = scale / 200.0
                     annotation['scale'] = scale
 
