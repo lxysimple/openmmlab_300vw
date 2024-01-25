@@ -218,10 +218,12 @@ class Preprocess300vw:
                     y_high = max(keypoints_y) 
                     w = x_right - x_left 
                     h = y_high - y_low 
-                    # annotation['bbox'] = [x_left, y_high, w, h]
-                    # scale = max(w+5 , h+5)
-                    # scale = scale / 200.0
-                    # annotation['scale'] = scale
+
+                    annotation['bbox'] = [x_left, y_high, x_right, y_low]
+
+                    scale = max(w, h)
+                    scale = scale / 200.0
+                    annotation['scale'] = scale
 
                     # # 以人脸框做上角为原点计算xy
                     # keypoints3 = []
@@ -242,23 +244,24 @@ class Preprocess300vw:
                     annotation['area'] = w*h
                     
                     # 计算center
-                    # center = [
-                    #     (x_left + x_right)/2,
-                    #     (y_low + y_high)/2
-                    # ]
-                    center = [np.mean(keypoints_x), np.mean(keypoints_y)]
-                    annotation['center'] = center
-                    print("x_left, x_right: ", x_left, x_right)
-                    print("center[0]: ", center[0])
-                    print("y_low, y_high: ", y_low, y_high)
-                    print("center[1]: ", center[1])
+                    center = [
+                        (x_left + x_right)/2,
+                        (y_low + y_high)/2
+                    ]
 
-                    max_x = max(x_right-center[0], center[0]-x_left)
-                    max_y = max(y_high-center[1], center[1]-y_low)
-                    scale = max(max_x, max_y)*2 + 5
-                    scale = scale / 200.0
-                    annotation['scale'] = scale
-                    print("scale: ", scale)
+                    # center = [np.mean(keypoints_x), np.mean(keypoints_y)]
+                    # annotation['center'] = center
+                    # print("x_left, x_right: ", x_left, x_right)
+                    # print("center[0]: ", center[0])
+                    # print("y_low, y_high: ", y_low, y_high)
+                    # print("center[1]: ", center[1])
+
+                    # max_x = max(x_right-center[0], center[0]-x_left)
+                    # max_y = max(y_high-center[1], center[1]-y_low)
+                    # scale = max(max_x, max_y)*2 + 5
+                    # scale = scale / 200.0
+                    # annotation['scale'] = scale
+                    # print("scale: ", scale)
 
                     # 添加image_id与id
                     image['id'] = id
