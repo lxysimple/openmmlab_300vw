@@ -242,10 +242,11 @@ class Preprocess300vw:
                     annotation['area'] = w*h
                     
                     # 计算center
-                    center = [
-                        (x_left + x_right)/2,
-                        (y_low + y_high)/2
-                    ]
+                    # center = [
+                    #     (x_left + x_right)/2,
+                    #     (y_low + y_high)/2
+                    # ]
+                    center = [np.mean(keypoints_x), np.mean(keypoints_y)]
                     annotation['center'] = center
 
                     # 添加image_id与id
