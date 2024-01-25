@@ -248,6 +248,7 @@ class Preprocess300vw:
                         (x_left + x_right)/2,
                         (y_low + y_high)/2
                     ]
+                    annotation['center'] = center
 
                     # center = [np.mean(keypoints_x), np.mean(keypoints_y)]
                     # annotation['center'] = center
