@@ -219,9 +219,9 @@ class Preprocess300vw:
                     w = x_right - x_left 
                     h = y_high - y_low 
                     # annotation['bbox'] = [x_left, y_high, w, h]
-                    scale = max(w+5 , h+5)
-                    scale = scale / 200.0
-                    annotation['scale'] = scale
+                    # scale = max(w+5 , h+5)
+                    # scale = scale / 200.0
+                    # annotation['scale'] = scale
 
                     # # 以人脸框做上角为原点计算xy
                     # keypoints3 = []
@@ -248,6 +248,12 @@ class Preprocess300vw:
                     # ]
                     center = [np.mean(keypoints_x), np.mean(keypoints_y)]
                     annotation['center'] = center
+
+                    max_x = max(x_right-center[0], center[0]-x_left)
+                    max_y = max(y_high-center[1], center[1]-y_low)
+                    scale = max(max_x, max_y)*2
+                    scale = scale / 200.0
+                    annotation['scale'] = scale
 
                     # 添加image_id与id
                     image['id'] = id
