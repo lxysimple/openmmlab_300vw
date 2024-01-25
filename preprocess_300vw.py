@@ -221,7 +221,7 @@ class Preprocess300vw:
 
                     annotation['bbox'] = [x_left, y_high, x_right, y_low]
 
-                    scale = max(w, h) + 20
+                    scale = max(w, h) + 60 # 300w should be about 60
                     scale = scale / 200.0
                     annotation['scale'] = scale
 
