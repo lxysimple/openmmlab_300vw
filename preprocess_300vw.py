@@ -251,7 +251,7 @@ class Preprocess300vw:
 
                     max_x = max(x_right-center[0], center[0]-x_left)
                     max_y = max(y_high-center[1], center[1]-y_low)
-                    scale = max(max_x, max_y)*2
+                    scale = max(max_x, max_y)*2 + 5
                     scale = scale / 200.0
                     annotation['scale'] = scale
 
