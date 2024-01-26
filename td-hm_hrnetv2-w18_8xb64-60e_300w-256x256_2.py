@@ -50,7 +50,7 @@ train_cfg = dict(max_epochs=60, val_interval=1)
 optim_wrapper = dict(optimizer=dict(
     type='Adam',
     # lr=2e-3, # 0.002
-    lr=2e-3, # 0.002
+    lr=2e-4, # 0.002
 ))
 
 # learning policy
