@@ -50,16 +50,16 @@ train_cfg = dict(max_epochs=60, val_interval=1)
 optim_wrapper = dict(optimizer=dict(
     type='Adam',
 
-    # lr=2e-3, # 0.002
-    lr=2e-4, # 0.002
+    lr=2e-3, # 0.002
+    # lr=2e-4, # 0.002
 ))
 
 # learning policy
 param_scheduler = [
     # lr=lr+b, at each iter in [0,500]; lr=2e-3 at iter=500
-    # dict(
-    #     type='LinearLR', begin=0, end=500, start_factor=0.001,
-    #     by_epoch=False),  # warm-up
+    dict(
+        type='LinearLR', begin=0, end=500, start_factor=0.001,
+        by_epoch=False),  # warm-up
 
     # lr=lr*0.1, at each epoch in [40,55]
     dict(
