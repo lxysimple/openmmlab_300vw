@@ -50,7 +50,7 @@ train_cfg = dict(max_epochs=60, val_interval=1)
 optim_wrapper = dict(optimizer=dict(
     type='Adam',
     # lr=2e-3, # 0.002
-    lr=2e-5, # 0.002
+    lr=2e-3, # 0.002
 ))
 
 # learning policy
@@ -228,10 +228,10 @@ dataset_vali = dict(
     data_root=data_root_300w,
 
     data_mode='topdown',
-    # ann_file='annotations/face_landmarks_300w_valid.json',
+    ann_file='annotations/face_landmarks_300w_valid.json', # all the validation data
     # ann_file='annotations/face_landmarks_300w_valid_challenge.json',
     # ann_file='annotations/face_landmarks_300w_valid_common.json',
-    ann_file='annotations/face_landmarks_300w_test.json', # no Test data in server.
+    # ann_file='annotations/face_landmarks_300w_test.json', # no Test data in server.
 
     data_prefix=dict(img='images/'),
     test_mode=True,
