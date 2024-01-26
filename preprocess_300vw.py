@@ -224,9 +224,7 @@ class Preprocess300vw:
 
                     scale = max(w, h) / 200.0
                     scale = scale 
-
-                    # 向上取整
-                    scale = math.ceil(scale)
+                    scale = math.ceil(scale) # 向上取整
 
                     annotation['scale'] = scale
 
