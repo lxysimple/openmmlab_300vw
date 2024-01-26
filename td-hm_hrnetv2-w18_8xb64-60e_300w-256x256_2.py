@@ -228,7 +228,9 @@ dataset_vali = dict(
     data_root=data_root_300w,
 
     data_mode='topdown',
-    ann_file='annotations/face_landmarks_300w_valid.json',
+    # ann_file='annotations/face_landmarks_300w_valid.json',
+    ann_file='annotations/face_landmarks_300w_valid_challenge.json',
+
     data_prefix=dict(img='images/'),
     test_mode=True,
     pipeline=val_pipeline,
