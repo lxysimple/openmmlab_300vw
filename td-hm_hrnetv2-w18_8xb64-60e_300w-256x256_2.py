@@ -50,16 +50,16 @@ train_cfg = dict(max_epochs=60, val_interval=1)
 optim_wrapper = dict(optimizer=dict(
     type='Adam',
 
-    # lr=2e-3, # 0.002
-    lr=2e-5, # 0.002
+    lr=2e-3, # 0.002
+    # lr=2e-5, # 0.002
 ))
 
 # learning policy
 param_scheduler = [
     # lr=lr+b, at each iter in [0,500]; lr=2e-3 at iter=500
-    # dict(
-    #     type='LinearLR', begin=0, end=500, start_factor=0.001,
-    #     by_epoch=False),  # warm-up
+    dict(
+        type='LinearLR', begin=0, end=500, start_factor=0.001,
+        by_epoch=False),  # warm-up
 
     # lr=lr*0.1, at each epoch in [40,55]
     dict(
@@ -90,7 +90,7 @@ codec = dict(
 # resume = True # 提供的权重中无训练状态
 # load_from = '/home/xyli/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth' # ubuntu
 # load_from = 'E:/mmpose/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth' # windows
-load_from = '/home/xyli/openmmlab_300vw/work_dirs/td-hm_hrnetv2-w18_8xb64-60e_300w-256x256_2/best_NME_epoch_58.pth' # ubuntu
+# load_from = '/home/xyli/openmmlab_300vw/work_dirs/td-hm_hrnetv2-w18_8xb64-60e_300w-256x256_2/best_NME_epoch_58.pth' # ubuntu
 
 model = dict(
     type='TopdownPoseEstimator',
@@ -178,8 +178,8 @@ train_pipeline = [
         type='RandomBBoxTransform',
         shift_prob=0,
         rotate_factor=60,
-        scale_factor=(0.75, 1.25),
-        # scale_factor=(0.25, 4.0),
+        # scale_factor=(0.75, 1.25),
+        scale_factor=(0.5, 1.25),
     
     ), # 这里可视化发现框+关键点变换后都蛮准的
 
