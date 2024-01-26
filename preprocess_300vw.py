@@ -6,6 +6,7 @@ import numpy as np
 import json
 from PIL import Image
 from meta300vw import dataset_info # 文件名如果是300vw.py则无法导入，因为不支持数字开头的变量
+import math
 
 # test
 class Preprocess300vw:
@@ -221,8 +222,12 @@ class Preprocess300vw:
 
                     annotation['bbox'] = [x_left, y_high, x_right, y_low]
 
-                    scale = max(w, h) + 20 # 300w should be about 60
-                    scale = scale / 200.0
+                    scale = max(w, h) / 200.0
+                    scale = scale 
+
+                    # 向上取整
+                    scale = math.ceil(scale)
+
                     annotation['scale'] = scale
 
                     # # 以人脸框做上角为原点计算xy
