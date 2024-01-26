@@ -49,16 +49,16 @@ train_cfg = dict(max_epochs=60, val_interval=1)
 # optimizer
 optim_wrapper = dict(optimizer=dict(
     type='Adam',
-    # lr=2e-3, # 0.002
-    lr=2e-6, # 0.002
+    lr=2e-3, # 0.002
+    # lr=2e-6, # 0.002
 ))
 
 # learning policy
 param_scheduler = [
     # lr=lr+b, at each iter in [0,500]; lr=2e-3 at iter=500
-    # dict(
-    #     type='LinearLR', begin=0, end=500, start_factor=0.001,
-    #     by_epoch=False),  # warm-up
+    dict(
+        type='LinearLR', begin=0, end=500, start_factor=0.001,
+        by_epoch=False),  # warm-up
 
     # lr=lr*0.1, at each epoch in [40,55]
     dict(
@@ -259,9 +259,9 @@ train_dataloader = dict(
 
     sampler=dict(type='DefaultSampler', shuffle=True),
 
-    dataset = dataset_all # 300vw + 300w
+    # dataset = dataset_all # 300vw + 300w
     # dataset = dataset_300w # 300w
-    # dataset = dataset_300vw # 300vw
+    dataset = dataset_300vw # 300vw
 
     # dataset=dict(
     #     type='Face300VWDataset',
