@@ -223,7 +223,6 @@ class Preprocess300vw:
                     annotation['bbox'] = [x_left, y_high, x_right, y_low]
 
                     scale = max(w, h) / 200.0
-                    scale = scale 
                     scale = math.ceil(scale) # 向上取整
 
                     annotation['scale'] = scale
