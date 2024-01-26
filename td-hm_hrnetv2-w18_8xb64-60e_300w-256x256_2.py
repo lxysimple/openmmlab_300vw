@@ -176,8 +176,8 @@ train_pipeline = [
         type='RandomBBoxTransform',
         shift_prob=0,
         rotate_factor=60,
-        # scale_factor=(0.75, 1.25),
-        scale_factor=(0.25, 4.0),
+        scale_factor=(0.75, 1.25),
+        # scale_factor=(0.25, 4.0),
     
     ), # 这里可视化发现框+关键点变换后都蛮准的
 
