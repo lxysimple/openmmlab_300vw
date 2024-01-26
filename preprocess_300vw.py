@@ -103,6 +103,22 @@ class Preprocess300vw:
                     dest = join(dest_path, imgname)
                     if not os.path.exists(dest_path): # 需要先有目录，之后才能创建图片类型文件
                         os.makedirs(dest_path)
+
+
+                    from PIL import Image, ImageEnhance
+                    # 将NumPy数组转换为PIL图像对象
+                    img = Image.fromarray(img)
+                    # 增强对比度
+                    contrast = ImageEnhance.Contrast(img)
+                    img = contrast.enhance(1.4)
+                    # 设置增强因子
+                    enhancer = ImageEnhance.Sharpness(img)
+                    factor = 1.4
+                    # 增强图片
+                    img = enhancer.enhance(factor)
+                    # 将PIL图像对象转换为NumPy数组
+                    img = np.array(img)
+                    
                     cv2.imwrite(dest, img)
 
                     if i == frame_count: # 如果读到最后1帧，则退出
