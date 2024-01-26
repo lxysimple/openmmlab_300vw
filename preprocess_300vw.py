@@ -12,12 +12,12 @@ import math
 class Preprocess300vw:
     def __init__(self):
         # In Linux:
-        # self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14' # 要转换的300vw数据集主目录
-        # self.processed_dir = '/home/xyli/data/300vw' # 转换后的主目录
+        self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14' # 要转换的300vw数据集主目录
+        self.processed_dir = '/home/xyli/data/300vw' # 转换后的主目录
 
         # In Windows:
-        self.original_dir = 'E:/mmpose/data/300VW_Dataset_2015_12_14'
-        self.processed_dir = 'E:/mmpose/data/300vw'
+        # self.original_dir = 'E:/mmpose/data/300VW_Dataset_2015_12_14'
+        # self.processed_dir = 'E:/mmpose/data/300vw'
 
         # The broken frames in test dataset
         self.broken_frames = {
@@ -322,14 +322,14 @@ if __name__ == '__main__':
     convert300vw = Preprocess300vw()
 
     # # All the data
-    # convert300vw.convert_jpg(convert300vw.videos_train)
-    # convert300vw.convert_annot(convert300vw.videos_train,'train.json', 
-    #                            '/home/xyli/data/300vw/images')
+    convert300vw.convert_jpg(convert300vw.videos_train)
+    convert300vw.convert_annot(convert300vw.videos_train,'train.json', 
+                               '/home/xyli/data/300vw/images')
 
     # A bit of data to test
-    convert300vw.convert_jpg(convert300vw.videos_part)
-    convert300vw.convert_annot(convert300vw.videos_part,'train.json', 
-                               'E:\\mmpose\\data\\300vw\\images')
+    # convert300vw.convert_jpg(convert300vw.videos_part)
+    # convert300vw.convert_annot(convert300vw.videos_part,'train.json', 
+    #                            'E:\\mmpose\\data\\300vw\\images')
 
 
 
