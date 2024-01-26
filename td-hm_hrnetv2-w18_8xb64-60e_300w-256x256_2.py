@@ -152,7 +152,6 @@ model = dict(
         conv_out_channels=(270, ), # 从源码中可知，每个中间层输出c=270
         conv_kernel_sizes=(1, ), 
         loss=dict(type='KeypointMSELoss', use_target_weight=True),
-        # loss=dict(type='KeypointMSELoss', use_target_weight=False),
         decoder=codec), # 生成热图
     test_cfg=dict(
         flip_test=True,
