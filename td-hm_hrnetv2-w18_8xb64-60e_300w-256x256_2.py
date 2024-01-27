@@ -133,11 +133,11 @@ model = dict(
                 multiscale_output=True),
             # 自定义上采样算法
             upsample=dict(mode='bilinear', align_corners=False)),
-            
-            # # 预训练参数，只加载backbone权重用于迁移学习
-            # init_cfg=dict(
-            #     # type='Pretrained', checkpoint='open-mmlab://msra/hrnetv2_w18'),
-            #     type='Pretrained', checkpoint='E:\\mmpose\\checkpoint\\hrnetv2_w18_wflw_256x256_dark-3f8e0c2c_20210125.pth'),
+
+            # 预训练参数，只加载backbone权重用于迁移学习
+            init_cfg=dict(
+                # type='Pretrained', checkpoint='open-mmlab://msra/hrnetv2_w18'),
+                type='Pretrained', checkpoint='/home/xyli/openmmlab_300vw/work_dirs_300vw_v2/td-hm_hrnetv2-w18_8xb64-60e_300w-256x256_2/best_NME_epoch_53.pth'),
     ),
     neck=dict(
         # 就是将各分支的feature map上采样融合到branch1分支中
