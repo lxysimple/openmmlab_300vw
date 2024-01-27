@@ -8,7 +8,7 @@ data_root_300vw='/home/xyli/data/300vw'
 
 
 # runtime
-train_cfg = dict(max_epochs=60, val_interval=1)
+train_cfg = dict(max_epochs=80, val_interval=1)
 
 
 # my optimizer
@@ -50,8 +50,8 @@ train_cfg = dict(max_epochs=60, val_interval=1)
 optim_wrapper = dict(optimizer=dict(
     type='Adam',
 
-    # lr=2e-3, # 0.002
-    lr=1e-2, 
+    lr=2e-3, # 0.002
+    # lr=1e-2, 
 ))
 
 # learning policy
@@ -69,9 +69,10 @@ param_scheduler = [
     dict(
         type='MultiStepLR',
         begin=0,
-        end=60,
-        milestones=[40, 55],
-        # milestones=[20, 40],
+        # end=60,
+        end=80,
+        # milestones=[40, 55],
+        milestones=[50, 75],
         gamma=0.1,
         by_epoch=True)
 ]
