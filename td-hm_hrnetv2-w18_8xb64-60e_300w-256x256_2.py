@@ -142,6 +142,7 @@ model = dict(
 
             # 预训练参数，只加载backbone权重用于迁移学习
             init_cfg=dict(
+                # 这个预训练权重可能更新了，原本的策略模型还是没完全收敛
                 type='Pretrained', checkpoint='open-mmlab://msra/hrnetv2_w18',
                 # type='Pretrained', checkpoint='/home/xyli/openmmlab_300vw/work_dirs_300vw_v2/td-hm_hrnetv2-w18_8xb64-60e_300w-256x256_2/best_NME_epoch_53.pth'
             ),
