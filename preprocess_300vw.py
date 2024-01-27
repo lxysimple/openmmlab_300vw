@@ -76,7 +76,7 @@ class Preprocess300vw:
         # 30  -> 3142
         # 90  -> 1032
         # 270 -> 328 
-        # 1000 -> ? 
+        # 1000 -> 63 
         self.sample_rate = 1000 
         # self.sample_rate = 1 # all the frames
 
