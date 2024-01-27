@@ -50,8 +50,8 @@ train_cfg = dict(max_epochs=60, val_interval=1)
 optim_wrapper = dict(optimizer=dict(
     type='Adam',
 
-    lr=2e-3, # 0.002
-    # lr=2e-4, # 0.002
+    # lr=2e-3, # 0.002
+    lr=1e-2, 
 ))
 
 # learning policy
@@ -262,8 +262,8 @@ train_dataloader = dict(
 
     sampler=dict(type='DefaultSampler', shuffle=True),
 
-    dataset = dataset_all # 300vw + 300w
-    # dataset = dataset_300w # 300w
+    # dataset = dataset_all # 300vw + 300w
+    dataset = dataset_300w # 300w
     # dataset = dataset_300vw # 300vw
 
     # dataset=dict(
