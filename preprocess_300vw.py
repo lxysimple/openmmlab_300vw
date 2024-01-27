@@ -223,7 +223,7 @@ class Preprocess300vw:
 
                     # annotation['bbox'] = [x_left, y_high, x_right, y_low]
 
-                    scale = math.ceil(max(w,h))/200 * 1.5
+                    scale = math.ceil(max(w,h))/200
                     annotation['scale'] = scale
 
                     # # 以人脸框做上角为原点计算xy
