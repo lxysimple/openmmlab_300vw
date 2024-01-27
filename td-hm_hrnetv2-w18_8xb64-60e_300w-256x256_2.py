@@ -50,8 +50,8 @@ train_cfg = dict(max_epochs=80, val_interval=1)
 optim_wrapper = dict(optimizer=dict(
     type='Adam',
 
-    lr=2e-3, # 0.002
-    # lr=1e-2, 
+    # lr=2e-3, # 0.002
+    lr=2e-5, 
 ))
 
 # learning policy
@@ -96,7 +96,7 @@ codec = dict(
 # resume = True # 是否基于上次训练状态开始
 # load_from = '/home/xyli/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth' # ubuntu
 # load_from = 'E:/mmpose/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth' # windows
-# load_from = '/home/xyli/openmmlab_300vw/work_dirs_300vw/td-hm_hrnetv2-w18_8xb64-60e_300w-256x256_2/best_NME_epoch_35.pth' # ubuntu
+load_from = '/home/xyli/openmmlab_300vw/work_dirs/td-hm_hrnetv2-w18_8xb64-60e_300w-256x256_2/best_NME_epoch_57.pth' # ubuntu
 
 model = dict(
     type='TopdownPoseEstimator',
