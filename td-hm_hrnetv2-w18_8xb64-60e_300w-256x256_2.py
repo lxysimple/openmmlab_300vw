@@ -60,7 +60,7 @@ param_scheduler = [
     dict(
         # type='LinearLR', begin=0, end=500, start_factor=0.001,
 
-        # mmpose is 1 GPU, but I have 8 GUPs
+        # mmpose has 1 GPU, but I have 8 GUPs
         type='LinearLR', begin=0, end=60, start_factor=0.001,  
         by_epoch=False
     ),  # warm-up
