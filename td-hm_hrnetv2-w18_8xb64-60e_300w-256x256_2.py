@@ -248,9 +248,9 @@ train_dataloader = dict(
 
     sampler=dict(type='DefaultSampler', shuffle=True),
 
-    # dataset = dataset_all # 300vw + 300w
+    dataset = dataset_all # 300vw + 300w
     # dataset = dataset_300w # 300w
-    dataset = dataset_300vw # 300vw
+    # dataset = dataset_300vw # 300vw
 
     # dataset=dict(
     #     type='Face300VWDataset',
