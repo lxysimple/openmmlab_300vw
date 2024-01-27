@@ -132,8 +132,9 @@ model = dict(
                 num_channels=(18, 36, 72, 144), # 最后一个分支融合了前3个通道信息，而且不同分支特征图的shape不同
                 multiscale_output=True),
             # 自定义上采样算法
-            upsample=dict(mode='bilinear', align_corners=False))
-            # ,
+            upsample=dict(mode='bilinear', align_corners=False)),
+            
+            # # 预训练参数，只加载backbone权重用于迁移学习
             # init_cfg=dict(
             #     # type='Pretrained', checkpoint='open-mmlab://msra/hrnetv2_w18'),
             #     type='Pretrained', checkpoint='E:\\mmpose\\checkpoint\\hrnetv2_w18_wflw_256x256_dark-3f8e0c2c_20210125.pth'),
