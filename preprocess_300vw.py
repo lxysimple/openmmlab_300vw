@@ -75,7 +75,7 @@ class Preprocess300vw:
         # Downsample FPS to `1 / sample_rate`. Default: 5.
         # 30  -> 3142
         # 90  -> 1032
-        # 270 -> 
+        # 270 -> 328
         self.sample_rate = 270 
         # self.sample_rate = 1 # all the frames
 
