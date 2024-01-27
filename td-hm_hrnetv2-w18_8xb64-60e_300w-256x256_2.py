@@ -57,9 +57,13 @@ optim_wrapper = dict(optimizer=dict(
 # learning policy
 param_scheduler = [
     # lr=lr+b, at each iter in [0,500]; lr=2e-3 at iter=500
-    # dict(
-    #     type='LinearLR', begin=0, end=500, start_factor=0.001,
-    #     by_epoch=False),  # warm-up
+    dict(
+        # type='LinearLR', begin=0, end=500, start_factor=0.001,
+
+        # mmpose is 1 GPU, but I have 8 GUPs
+        type='LinearLR', begin=0, end=60, start_factor=0.001,  
+        by_epoch=False
+    ),  # warm-up
 
     # lr=lr*0.1, at each epoch in [40,55]
     dict(
