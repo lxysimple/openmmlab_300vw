@@ -87,6 +87,7 @@ codec = dict(
     sigma=1.5)
 
 # model settings
+# 这里应该是加载所有模块的权重
 # resume = True # 是否基于上次训练状态开始
 # load_from = '/home/xyli/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth' # ubuntu
 # load_from = 'E:/mmpose/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth' # windows
