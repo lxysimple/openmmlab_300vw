@@ -136,9 +136,10 @@ model = dict(
             upsample=dict(mode='bilinear', align_corners=False)),
 
             # 预训练参数，只加载backbone权重用于迁移学习
-            init_cfg=dict(
-                # type='Pretrained', checkpoint='open-mmlab://msra/hrnetv2_w18'),
-                type='Pretrained', checkpoint='/home/xyli/openmmlab_300vw/work_dirs_300vw_v2/td-hm_hrnetv2-w18_8xb64-60e_300w-256x256_2/best_NME_epoch_53.pth'),
+            # init_cfg=dict(
+            #     # type='Pretrained', checkpoint='open-mmlab://msra/hrnetv2_w18'),
+            #     type='Pretrained', checkpoint='/home/xyli/openmmlab_300vw/work_dirs_300vw_v2/td-hm_hrnetv2-w18_8xb64-60e_300w-256x256_2/best_NME_epoch_53.pth'
+            # ),
     ),
     neck=dict(
         # 就是将各分支的feature map上采样融合到branch1分支中
@@ -247,14 +248,9 @@ dataset_vali = dict(
 
 # data loaders
 train_dataloader = dict(
-    # batch_size=32,
-    # num_workers=2,
 
     batch_size=64,
     num_workers=2,
-
-    # batch_size=8,
-    # num_workers=2,
 
     # If it is true, GPU will be "out of memory".
     persistent_workers=True, # keep the data in memory all the time, need the num_workers > 0
@@ -262,8 +258,8 @@ train_dataloader = dict(
 
     sampler=dict(type='DefaultSampler', shuffle=True),
 
-    # dataset = dataset_all # 300vw + 300w
-    dataset = dataset_300w # 300w
+    dataset = dataset_all # 300vw + 300w
+    # dataset = dataset_300w # 300w
     # dataset = dataset_300vw # 300vw
 
     # dataset=dict(
@@ -287,14 +283,9 @@ train_dataloader = dict(
 
 # 用300w的验证集验证
 val_dataloader = dict(
-    # batch_size=16,
-    # num_workers=2,               
-
+              
     batch_size=32,
     num_workers=2,
-
-    # batch_size=8,
-    # num_workers=2,
 
     persistent_workers=True, # need the num_workers > 0
     # persistent_workers=False,
