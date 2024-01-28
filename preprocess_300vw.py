@@ -74,12 +74,12 @@ class Preprocess300vw:
 
         # Downsample FPS to `1 / sample_rate`. Default: 5.
         # 30    -> 3142
-        # 45    -> 2087
+        # 60    ->
         # 90    -> 1032
         # 140   -> 654
         # 270   -> 328 
         # 1000  -> 63 
-        self.sample_rate = 140 
+        self.sample_rate = 60 
         # self.sample_rate = 1 # all the frames
 
     # 对数据集中所有视频转换成多张图片
