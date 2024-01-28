@@ -73,11 +73,12 @@ class Preprocess300vw:
         self.videos_part = ['540'] # 测试时数据搞小点
 
         # Downsample FPS to `1 / sample_rate`. Default: 5.
-        # 30  -> 3142
-        # 90  -> 1032
-        # 270 -> 328 
-        # 1000 -> 63 
-        self.sample_rate = 90 
+        # 30    -> 3142
+        # 45    -> ?
+        # 90    -> 1032
+        # 270   -> 328 
+        # 1000  -> 63 
+        self.sample_rate = 45 
         # self.sample_rate = 1 # all the frames
 
     # 对数据集中所有视频转换成多张图片
