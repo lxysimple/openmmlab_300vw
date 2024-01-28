@@ -224,8 +224,8 @@ dataset_vali = dict(
     data_root=data_root_300w,
     data_mode='topdown',
 
-    # ann_file='annotations/face_landmarks_300w_valid.json', # all the validation data
-    ann_file='annotations/face_landmarks_300w_valid_challenge.json',
+    ann_file='annotations/face_landmarks_300w_valid.json', # all the validation data
+    # ann_file='annotations/face_landmarks_300w_valid_challenge.json',
     # ann_file='annotations/face_landmarks_300w_valid_common.json',
     # ann_file='annotations/face_landmarks_300w_test.json', # no Test data in server.
 
