@@ -77,7 +77,7 @@ class Preprocess300vw:
         # 90  -> 1032
         # 270 -> 328 
         # 1000 -> 63 
-        self.sample_rate = 270 
+        self.sample_rate = 1000 
         # self.sample_rate = 1 # all the frames
 
     # 对数据集中所有视频转换成多张图片
