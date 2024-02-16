@@ -154,8 +154,9 @@ class Preprocess300vw:
                     # # 或者显示图像
                     # image.show()
 
-                    # 创建一个边长为 side 的正方形 NumPy 数组，填充值为 0
-                    image = np.zeros((side, side))
+
+                    # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
+                    image = np.zeros((side, side, 3), dtype=np.uint8)
 
                     from show_edge_api import preprocess
                     preprocess(image, [points], save_path)
