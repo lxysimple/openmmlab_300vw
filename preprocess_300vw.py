@@ -162,7 +162,7 @@ class Preprocess300vw:
 
 
                     # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
-                    image = np.zeros((side, side, 3), dtype=np.uint8)
+                    image = np.zeros((256, 256, 3), dtype=np.uint8)
 
                     # # 将所有像素设置为蓝色
                     # image[:,:,0] = 0   # 将红色通道值设为0
