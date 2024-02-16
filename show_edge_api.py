@@ -16,7 +16,7 @@ def preprocess(image, keypoints):
     show(image, keypoints)
 
 
-def show(image, keypoints, bbox):
+def show(image, keypoints):
     """
         image，是numpy数组
         keypoints，是mumpy数组，[[[1,2],[3,4],...]]，shape=(1,68,2)
