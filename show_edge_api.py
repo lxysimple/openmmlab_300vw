@@ -72,7 +72,7 @@ def show(image, keypoints):
                     
     }
 
-    gt_pose_data_sample.set_dataset_meta(dataset_meta)
+    pose_local_visualizer.set_dataset_meta(dataset_meta)
     
     gt_pose_data_sample.gt_instances = gt_instances 
     
