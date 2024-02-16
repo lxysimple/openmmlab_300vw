@@ -120,6 +120,9 @@ class Preprocess300vw:
 
                     side = max(w,h) + 40
                     
+                    from IPython import embed
+                    embed()
+
                     # 左下角留20像素边缘
                     for i in range(68):
                         keypoints_x[i] = keypoints_x[i] - x_left + 20
