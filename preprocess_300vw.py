@@ -166,6 +166,8 @@ class Preprocess300vw:
                     from show_edge_api import preprocess
                     preprocess(image, np.array([points]), save_path)
 
+            print(f'文件夹 "{annot_path}" 已经转换完毕. ')
+            
         return 
 
 
