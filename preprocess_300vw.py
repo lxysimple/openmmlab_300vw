@@ -118,9 +118,9 @@ class Preprocess300vw:
                     w = x_right - x_left 
                     h = y_high - y_low 
 
-                    side = float(max(w,h)) + 40
+                    side = int(max(w,h)) + 40
                     
-                    scale = 256 / side
+                    scale = 256 / float(side)
 
 
                     # from IPython import embed
