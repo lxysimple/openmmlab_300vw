@@ -129,11 +129,11 @@ class Preprocess300vw:
                         keypoints_y[i] = keypoints_y[i] - y_low + 20
 
                     
-                    # 创建一个空白的灰度图像，大小为 sidexside 像素
-                    image = Image.new("L", (side, side), color=255)  # 使用 "L" 表示灰度图像，初始颜色为白色
+                    # # 创建一个空白的灰度图像，大小为 sidexside 像素
+                    # image = Image.new("L", (side, side), color=255)  # 使用 "L" 表示灰度图像，初始颜色为白色
 
-                    # 获取一个绘图对象
-                    draw = ImageDraw.Draw(image)
+                    # # 获取一个绘图对象
+                    # draw = ImageDraw.Draw(image)
 
                     # 假设这是你的 68 个坐标
                     points = [[keypoints_x[i], keypoints_y[i]] for i in range(68)]
@@ -147,12 +147,15 @@ class Preprocess300vw:
                     if not os.path.exists(edge_dir):
                         os.makedirs(edge_dir)
 
-                    # 保存图像
-                    save_path = f'{edge_dir}/{annot[:-4]}.png'
-                    image.save(save_path)
+                    # # 保存图像
+                    # save_path = f'{edge_dir}/{annot[:-4]}.png'
+                    # image.save(save_path)
 
                     # # 或者显示图像
                     # image.show()
+
+                    # 创建一个边长为 side 的正方形 NumPy 数组，填充值为 0
+                    image = np.zeros((side, side))
 
                     from show_edge_api import preprocess
                     preprocess(image, [points], save_path)
