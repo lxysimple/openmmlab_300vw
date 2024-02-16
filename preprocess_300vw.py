@@ -121,8 +121,9 @@ class Preprocess300vw:
                     side = max(w,h) + 40
                     
                     # 左下角留20像素边缘
-                    keypoints_x = keypoints_x - x_left + 20
-                    keypoints_y = keypoints_y - y_low + 20
+                    for i in range(68):
+                        keypoints_x[i] = keypoints_x[i] - x_left + 20
+                        keypoints_y[i] = keypoints_y[i] - y_low + 20
 
                     
                     # 创建一个空白的灰度图像，大小为 sidexside 像素
