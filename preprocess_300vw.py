@@ -142,8 +142,13 @@ class Preprocess300vw:
                     for point in points:
                         draw.point(point, fill=0)  # 使用黑色填充点
 
+                    # 创建注解文件的目录（没有该目录，无法创建注解文件）
+                    edge_dir = self.edges_dir + f"/{video_id}"
+                    if not os.path.exists(edge_dir):
+                        os.makedirs(file_dir)
+
                     # 保存图像
-                    image.save(self.edges_dir + f"/{video_id}/{annot[:-4]}.png")
+                    image.save(f'{edge_dir}/{annot[:-4]}.png')
 
                     # # 或者显示图像
                     # image.show()
