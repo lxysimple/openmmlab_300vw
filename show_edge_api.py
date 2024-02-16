@@ -25,8 +25,10 @@ def show(image, keypoints, save_path):
     pose_local_visualizer = PoseLocalVisualizer(
                                 line_width = 2,
                                 radius=0, 
-                                kpt_color = 'yellow',
-                                link_color = 'yellow'
+                                # kpt_color = 'yellow',
+                                # link_color = 'yellow'
+                                kpt_color = 'white',
+                                link_color = 'white'
                             )
 
     # PoseDataSample存的是所有目标关键点信息

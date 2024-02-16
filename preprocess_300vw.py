@@ -158,10 +158,10 @@ class Preprocess300vw:
                     # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
                     image = np.zeros((side, side, 3), dtype=np.uint8)
 
-                    # 将所有像素设置为蓝色
-                    image[:,:,0] = 0   # 将红色通道值设为0
-                    image[:,:,1] = 0   # 将绿色通道值设为0
-                    image[:,:,2] = 80 # 将蓝色通道值设为255
+                    # # 将所有像素设置为蓝色
+                    # image[:,:,0] = 0   # 将红色通道值设为0
+                    # image[:,:,1] = 0   # 将绿色通道值设为0
+                    # image[:,:,2] = 80 # 将蓝色通道值设为255
 
                     from show_edge_api import preprocess
                     preprocess(image, np.array([points]), save_path)
