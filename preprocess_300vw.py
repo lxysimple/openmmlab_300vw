@@ -136,11 +136,11 @@ class Preprocess300vw:
                     draw = ImageDraw.Draw(image)
 
                     # 假设这是你的 68 个坐标
-                    points = [(keypoints_x[i], keypoints_y[i]) for i in range(68)]
-
-                    # 绘制每个点
-                    for point in points:
-                        draw.point(point, fill=0)  # 使用黑色填充点
+                    points = [[keypoints_x[i], keypoints_y[i]] for i in range(68)]
+                    
+                    # # 绘制每个点
+                    # for point in points:
+                    #     draw.point(point, fill=0)  # 使用黑色填充点
 
                     # 创建注解文件的目录（没有该目录，无法创建注解文件）
                     edge_dir = self.edges_dir + f"/{video_id}"
@@ -148,11 +148,14 @@ class Preprocess300vw:
                         os.makedirs(edge_dir)
 
                     # 保存图像
-                    image.save(f'{edge_dir}/{annot[:-4]}.png')
+                    save_path = f'{edge_dir}/{annot[:-4]}.png'
+                    image.save(save_path)
 
                     # # 或者显示图像
                     # image.show()
 
+                    from .show_face_api import preprocess
+                    preprocess(save_path, [points])
 
         return 
 
