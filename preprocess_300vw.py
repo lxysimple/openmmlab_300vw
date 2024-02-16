@@ -161,7 +161,7 @@ class Preprocess300vw:
                     # 将所有像素设置为蓝色
                     image[:,:,0] = 0   # 将红色通道值设为0
                     image[:,:,1] = 0   # 将绿色通道值设为0
-                    image[:,:,2] = 128 # 将蓝色通道值设为255
+                    image[:,:,2] = 80 # 将蓝色通道值设为255
 
                     from show_edge_api import preprocess
                     preprocess(image, np.array([points]), save_path)
