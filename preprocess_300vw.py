@@ -167,7 +167,7 @@ class Preprocess300vw:
                     preprocess(image, np.array([points]), save_path)
 
             print(f'文件夹 "{annot_path}" 已经转换完毕. ')
-            
+
         return 
 
 
@@ -429,6 +429,6 @@ if __name__ == '__main__':
     #                            'E:\\mmpose\\data\\300vw\\images')
 
 
-    convert300vw.make_edges(convert300vw.videos_test_3[0:2])
+    convert300vw.make_edges(convert300vw.videos_train)
 
 
