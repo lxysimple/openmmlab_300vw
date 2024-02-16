@@ -11,12 +11,12 @@ from PIL import Image
     from show_edge_api import preprocess
     preprocess(results['img'], results['keypoints'])
 """
-def preprocess(image, keypoints):
+def preprocess(image, keypoints, save_path):
 
-    show(image, keypoints)
+    show(image, keypoints, save_path)
 
 
-def show(image, keypoints):
+def show(image, keypoints, save_path):
     """
         image，是numpy数组
         keypoints，是mumpy数组，[[[1,2],[3,4],...]]，shape=(1,68,2)
@@ -80,6 +80,6 @@ def show(image, keypoints):
     # 传入图片、标签、预测、配置，开始画图
     pose_local_visualizer.add_datasample('image', image,
                             gt_pose_data_sample,
-                            out_file= image,
+                            out_file= save_path,
                             show=True,
                             draw_bbox = True )

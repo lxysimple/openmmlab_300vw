@@ -155,7 +155,7 @@ class Preprocess300vw:
                     # image.show()
 
                     from show_edge_api import preprocess
-                    preprocess(save_path, [points])
+                    preprocess(image, [points], save_path)
 
         return 
 
