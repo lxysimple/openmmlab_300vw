@@ -145,7 +145,7 @@ class Preprocess300vw:
                     # 创建注解文件的目录（没有该目录，无法创建注解文件）
                     edge_dir = self.edges_dir + f"/{video_id}"
                     if not os.path.exists(edge_dir):
-                        os.makedirs(file_dir)
+                        os.makedirs(edge_dir)
 
                     # 保存图像
                     image.save(f'{edge_dir}/{annot[:-4]}.png')
