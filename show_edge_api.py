@@ -24,8 +24,8 @@ def show(image, keypoints, save_path):
     """
     pose_local_visualizer = PoseLocalVisualizer(
                                 radius=1, 
-                                kpt_color = 'write',
-                                link_color = 'write'
+                                kpt_color = 'white',
+                                link_color = 'white'
                             )
 
     # PoseDataSample存的是所有目标关键点信息
