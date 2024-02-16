@@ -105,7 +105,7 @@ class Preprocess300vw:
                      # 计算左上坐标、宽、高，无需计算bbox，因为Face300WDataset中会用scale+center求出bbox
                     keypoints_x = []
                     keypoints_y = []
-                    for j in range(68):
+                    for j in range(68*2):
                         if j%2 == 0:
                             keypoints_x.append(keypoints[j])
                         else:
