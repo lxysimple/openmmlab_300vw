@@ -81,5 +81,5 @@ def show(image, keypoints, save_path):
     pose_local_visualizer.add_datasample('image', image,
                             gt_pose_data_sample,
                             out_file= save_path,
-                            show=True,
+                            show=False,
                             draw_bbox = True )
