@@ -148,7 +148,7 @@ class Preprocess300vw:
                         os.makedirs(edge_dir)
 
                     # # 保存图像
-                    # save_path = f'{edge_dir}/{annot[:-4]}.png'
+                    save_path = f'{edge_dir}/{annot[:-4]}.png'
                     # image.save(save_path)
 
                     # # 或者显示图像
