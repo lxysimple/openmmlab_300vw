@@ -79,7 +79,7 @@ class Preprocess300vw:
         # 140   -> 654
         # 270   -> 328 
         # 1000  -> 63 
-        self.sample_rate = 60 
+        self.sample_rate = 1 
         # self.sample_rate = 1 # all the frames
 
     # 对数据集中所有视频转换成多张图片
@@ -325,9 +325,11 @@ class Preprocess300vw:
 if __name__ == '__main__':
     convert300vw = Preprocess300vw()
 
-    # # All the data
-    convert300vw.convert_jpg(convert300vw.videos_train)
-    convert300vw.convert_annot(convert300vw.videos_train,'train.json', 
+    # All the data
+    # videos_test_3
+    # videos_train
+    convert300vw.convert_jpg(convert300vw.videos_test_3)
+    convert300vw.convert_annot(convert300vw.videos_test_3,'train.json', 
                                '/home/xyli/data/300vw/images')
 
     # A bit of data to test
