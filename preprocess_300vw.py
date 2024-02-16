@@ -137,7 +137,7 @@ class Preprocess300vw:
 
                     # 假设这是你的 68 个坐标
                     points = [[keypoints_x[i], keypoints_y[i]] for i in range(68)]
-                    
+
                     # # 绘制每个点
                     # for point in points:
                     #     draw.point(point, fill=0)  # 使用黑色填充点
@@ -154,7 +154,7 @@ class Preprocess300vw:
                     # # 或者显示图像
                     # image.show()
 
-                    from .show_face_api import preprocess
+                    from show_face_api import preprocess
                     preprocess(save_path, [points])
 
         return 
