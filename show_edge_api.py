@@ -23,7 +23,8 @@ def show(image, keypoints, save_path):
         bbox，是mumpy数组，[[30,30, 300, 300]]，shape=(1,4)
     """
     pose_local_visualizer = PoseLocalVisualizer(
-                                radius=1, 
+                                line_width = 4,
+                                radius=4, 
                                 kpt_color = 'white',
                                 link_color = 'white'
                             )
