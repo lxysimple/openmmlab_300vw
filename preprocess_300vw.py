@@ -82,6 +82,20 @@ class Preprocess300vw:
         self.sample_rate = 1 
         # self.sample_rate = 1 # all the frames
 
+    def make_edges(self, dataset):
+        for video_id in dataset: # 遍历不同数据集所包含的各视频所在目录
+            annot_path = join(self.original_dir, video_id, 'annot')
+            annots = os.listdir(annot_path)
+            annots.sort() # 服务器上这个列表默认是乱的，无语
+            for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
+                print(annot)
+
+
+        return 
+
+
+
+
     # 对数据集中所有视频转换成多张图片
     # 其中self.sample_rate可控制转换率，其越小，单个视频转换的图片数量越多
     def convert_jpg(self, videos):
@@ -328,8 +342,8 @@ if __name__ == '__main__':
     # All the data
     # videos_test_3
     # videos_train
-    convert300vw.convert_jpg(convert300vw.videos_test_3)
-    convert300vw.convert_annot(convert300vw.videos_test_3,'train.json', 
+    # convert300vw.convert_jpg(convert300vw.videos_test_3)
+    # convert300vw.convert_annot(convert300vw.videos_test_3,'train.json', 
                                '/home/xyli/data/300vw/images')
 
     # A bit of data to test
@@ -337,5 +351,7 @@ if __name__ == '__main__':
     # convert300vw.convert_annot(convert300vw.videos_part,'train.json', 
     #                            'E:\\mmpose\\data\\300vw\\images')
 
+
+    make_edges(self.videos_test_3)
 
 
