@@ -118,15 +118,15 @@ class Preprocess300vw:
                     w = x_right - x_left 
                     h = y_high - y_low 
 
-                    side = max(w,h) + 40
+                    side = int(max(w,h)) + 40
                     
                     # from IPython import embed
                     # embed()
 
                     # 左下角留20像素边缘
                     for i in range(68):
-                        keypoints_x[i] = int(keypoints_x[i] - x_left + 20)
-                        keypoints_y[i] = int(keypoints_y[i] - y_low + 20)
+                        keypoints_x[i] = keypoints_x[i] - x_left + 20
+                        keypoints_y[i] = keypoints_y[i] - y_low + 20
 
                     
                     # 创建一个空白的灰度图像，大小为 sidexside 像素
