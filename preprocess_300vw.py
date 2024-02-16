@@ -352,6 +352,6 @@ if __name__ == '__main__':
     #                            'E:\\mmpose\\data\\300vw\\images')
 
 
-    convert300vw.make_edges(self.videos_test_3)
+    convert300vw.make_edges(convert300vw.videos_test_3)
 
 
