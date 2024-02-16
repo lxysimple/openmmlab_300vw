@@ -344,7 +344,7 @@ if __name__ == '__main__':
     # videos_train
     # convert300vw.convert_jpg(convert300vw.videos_test_3)
     # convert300vw.convert_annot(convert300vw.videos_test_3,'train.json', 
-                               '/home/xyli/data/300vw/images')
+                            #    '/home/xyli/data/300vw/images')
 
     # A bit of data to test
     # convert300vw.convert_jpg(convert300vw.videos_part)
