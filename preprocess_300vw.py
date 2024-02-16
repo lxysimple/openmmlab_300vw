@@ -88,8 +88,38 @@ class Preprocess300vw:
             annots = os.listdir(annot_path)
             annots.sort() # 服务器上这个列表默认是乱的，无语
             for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
-                print(annot)
+                
+                # 找到1个帧注解中的关键点坐标
+                    annot_file = join(annot_path, annot)
+                    keypoints = self._keypoint_from_pts_(annot_file)
+                    # 每个关键点坐标为x,y,c，c就是置信度，一般为1
+                    # 为什么加置信度，因为之前代码有置信度，我用的是之前的代码，省事
+                    keypoints3 = []
+                    for kp_i in range(1,68*2+1):
+                        keypoints3.append(keypoints[kp_i-1])
+                        if kp_i%2==0:
+                            keypoints3.append(1)
+                    annotation['keypoints'] = keypoints3
+                    
+                     # 计算左上坐标、宽、高，无需计算bbox，因为Face300WDataset中会用scale+center求出bbox
+                    keypoints_x = []
+                    keypoints_y = []
+                    for j in range(68):
+                        if j%2 == 0:
+                            keypoints_x.append(keypoints[j])
+                        else:
+                            keypoints_y.append(keypoints[j])
+                    x_left = min(keypoints_x)  
+                    x_right = max(keypoints_x) 
+                    y_low = min(keypoints_y) 
+                    y_high = max(keypoints_y) 
+                    w = x_right - x_left 
+                    h = y_high - y_low 
 
+                    # annotation['bbox'] = [x_left, y_high, x_right, y_low]
+
+                    scale = math.ceil(max(w,h))/200
+                    annotation['scale'] = scale
 
         return 
 
