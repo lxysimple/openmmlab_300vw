@@ -118,8 +118,11 @@ class Preprocess300vw:
                     w = x_right - x_left 
                     h = y_high - y_low 
 
-                    side = int(max(w,h)) + 40
+                    side = float(max(w,h)) + 40
                     
+                    scale = 256 / side
+
+
                     # from IPython import embed
                     # embed()
 
@@ -127,7 +130,10 @@ class Preprocess300vw:
                     for i in range(68):
                         keypoints_x[i] = keypoints_x[i] - x_left + 20
                         keypoints_y[i] = keypoints_y[i] - y_low + 20
-
+                
+                    for i in range(68):
+                        keypoints_x[i] = int(scale * keypoints_x[i])
+                        keypoints_y[i] = int(scale * keypoints_y[i]) 
                     
                     # # 创建一个空白的灰度图像，大小为 sidexside 像素
                     # image = Image.new("L", (side, side), color=255)  # 使用 "L" 表示灰度图像，初始颜色为白色
