@@ -7,6 +7,7 @@ import json
 from PIL import Image
 from meta300vw import dataset_info # 文件名如果是300vw.py则无法导入，因为不支持数字开头的变量
 import math
+from PIL import Image, ImageDraw
 
 # test
 class Preprocess300vw:
@@ -14,6 +15,7 @@ class Preprocess300vw:
         # In Linux:
         self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14' # 要转换的300vw数据集主目录
         self.processed_dir = '/home/xyli/data/300vw' # 转换后的主目录
+        self.edges_dir = '/home/xyli/data/300vw/edges'
 
         # In Windows:
         # self.original_dir = 'E:/mmpose/data/300VW_Dataset_2015_12_14'
@@ -109,6 +111,7 @@ class Preprocess300vw:
                             keypoints_x.append(keypoints[j])
                         else:
                             keypoints_y.append(keypoints[j])
+                                  
                     x_left = min(keypoints_x)  
                     x_right = max(keypoints_x) 
                     y_low = min(keypoints_y) 
@@ -116,10 +119,32 @@ class Preprocess300vw:
                     w = x_right - x_left 
                     h = y_high - y_low 
 
-                    # annotation['bbox'] = [x_left, y_high, x_right, y_low]
+                    side = max(w,h) + 40
+                    
+                    # 左下角留20像素边缘
+                    keypoints_x = keypoints_x - x_left + 20
+                    keypoints_y = keypoints_y - y_low + 20
 
-                    scale = math.ceil(max(w,h))/200
-                    annotation['scale'] = scale
+                    
+                    # 创建一个空白的灰度图像，大小为 sidexside 像素
+                    image = Image.new("L", (side, side), color=255)  # 使用 "L" 表示灰度图像，初始颜色为白色
+
+                    # 获取一个绘图对象
+                    draw = ImageDraw.Draw(image)
+
+                    # 假设这是你的 68 个坐标
+                    points = [(keypoints_x[i], keypoints_y[i]) for i in range(68)]
+
+                    # 绘制每个点
+                    for point in points:
+                        draw.point(point, fill=0)  # 使用黑色填充点
+
+                    # 保存图像
+                    image.save(self.edges_dir + f"/{video_id}/{annot[:-4]}.png")
+
+                    # 或者显示图像
+                    image.show()
+
 
         return 
 
