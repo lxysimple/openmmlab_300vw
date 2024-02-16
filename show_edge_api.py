@@ -80,6 +80,7 @@ def show(image, keypoints, save_path):
     # 传入图片、标签、预测、配置，开始画图
     pose_local_visualizer.add_datasample('image', image,
                             gt_pose_data_sample,
-                            out_file= save_path,
-                            show=False,
+                            out_file = save_path,
+                            draw_pred = False
+                            show = False,
                             draw_bbox = True )
