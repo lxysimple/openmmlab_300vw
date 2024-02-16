@@ -159,7 +159,7 @@ class Preprocess300vw:
                     image = np.zeros((side, side, 3), dtype=np.uint8)
 
                     from show_edge_api import preprocess
-                    preprocess(image, [points], save_path)
+                    preprocess(image, np.array([points]), save_path)
 
         return 
 
