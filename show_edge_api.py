@@ -8,7 +8,7 @@ from PIL import Image
 
 """
     直接调用以下代码即可
-    from .show_face_api import preprocess
+    from show_edge_api import preprocess
     preprocess(results['img'], results['keypoints'])
 """
 def preprocess(image, keypoints):

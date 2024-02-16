@@ -154,7 +154,7 @@ class Preprocess300vw:
                     # # 或者显示图像
                     # image.show()
 
-                    from show_face_api import preprocess
+                    from show_edge_api import preprocess
                     preprocess(save_path, [points])
 
         return 
