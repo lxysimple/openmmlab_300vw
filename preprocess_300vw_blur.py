@@ -74,7 +74,7 @@ class Preprocess300vw:
             }
             image = {}
 
-            path_list = string.split('/')
+            path_list = path.split('/')
             image['file_name'] = path_list[1] 
 
             # 添加图片宽、高
