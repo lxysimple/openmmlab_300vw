@@ -232,7 +232,9 @@ dataset_vali = dict(
     # ann_file='annotations/face_landmarks_300w_test.json', # no Test data in server.
     ann_file='annotations/face_landmarks_300w_valid_common.json',
 
-    data_prefix=dict(img='images/'),
+    # data_prefix=dict(img='images/'),
+    data_prefix=dict(img='Blurred-300VW/'),
+
     test_mode=True,
     pipeline=val_pipeline,
 )
