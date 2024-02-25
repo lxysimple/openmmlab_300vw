@@ -14,7 +14,7 @@ class Preprocess300vw:
     def __init__(self):
         # In Linux:
         self.original_dir = '/home/xyli/data/Blurred-300VW' 
-        
+
         # self.processed_file = '/home/xyli/data/annotations/300VW_blur_label_list_256_train_mmpose.txt' # 转换后的主目录
         # self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_train.txt'
 
@@ -114,6 +114,10 @@ class Preprocess300vw:
 
             json_data['images'].append(image)
             json_data['annotations'].append(annotation)
+
+            print(image)
+            print(annotation)
+            input('暂停...')
 
             id += 1
 
