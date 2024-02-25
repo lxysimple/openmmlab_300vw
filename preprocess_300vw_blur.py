@@ -230,7 +230,7 @@ class Preprocess300vw:
                 strings = line.split()
         
                 # 检查是否有 69 个字符串
-                if len(strings) != 69:
+                if len(strings) != 68*2+1:
                     print("Error: 每一行应该有 69 个字符串")
                     continue
                 
