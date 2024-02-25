@@ -251,19 +251,11 @@ class Preprocess300vw:
 if __name__ == '__main__':
     convert300vw = Preprocess300vw()
 
-    # All the data
-    # videos_test_3
-    # videos_train
-    # convert300vw.convert_jpg(convert300vw.videos_test_3)
-    # convert300vw.convert_annot(convert300vw.videos_test_3,'train.json', 
-                            #    '/home/xyli/data/300vw/images')
 
-    # A bit of data to test
-    # convert300vw.convert_jpg(convert300vw.videos_part)
-    # convert300vw.convert_annot(convert300vw.videos_part,'train.json', 
-    #                            'E:\\mmpose\\data\\300vw\\images')
+    outputs = convert300vw._keypoints_path_from_txt_()
+    print(outputs[0])
+    print(outputs[1])
 
 
-    convert300vw.make_edges(convert300vw.videos_train)
 
 
