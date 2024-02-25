@@ -241,6 +241,7 @@ class Preprocess300vw:
                 keypoints = list(map(float, keypoints))
                 path = strings[68]
 
+                anno_1pic = {}
                 anno_1pic['keypoints'] = keypoints
                 anno_1pic['path'] = path
 
