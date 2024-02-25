@@ -182,7 +182,7 @@ if __name__ == '__main__':
     # print(outputs[0]['keypoints'])
     # print(outputs[0]['path'])
 
-    convert300vw.convert_annot(outputs)
+    convert300vw.convert_annot(outputs) # 大约30s
 
 
 
