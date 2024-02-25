@@ -20,7 +20,7 @@ class Preprocess300vw:
 
     
     # 该函数应该在convert_jpg后执行
-    def convert_annot(self, dataset, filename, dataroot):
+    def convert_annot(self, dataset):
 
         json_data = { 
                 'images': [ 
@@ -183,6 +183,7 @@ if __name__ == '__main__':
     # print(outputs[0]['keypoints'])
     # print(outputs[0]['path'])
 
+    convert_annot(outputs)
 
 
 
