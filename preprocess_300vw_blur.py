@@ -77,8 +77,8 @@ class Preprocess300vw:
             }
             image = {}
 
-            path_list = path.split('/')
-            image['file_name'] = path_list[1] 
+            # path_list = path.split('/')
+            image['file_name'] = path
 
             # 添加图片宽、高
             image['height'] = 256
@@ -114,10 +114,6 @@ class Preprocess300vw:
 
             json_data['images'].append(image)
             json_data['annotations'].append(annotation)
-
-            print(image)
-            print(annotation)
-            input('暂停...')
 
             id += 1
 
