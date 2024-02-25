@@ -254,7 +254,7 @@ if __name__ == '__main__':
 
 
     outputs = convert300vw._keypoints_path_from_txt_()
-    print('len(outputs[0]): ', len(outputs[0]))
+    print('len(outputs[0][0]): ', len(outputs[0][0]))
     print(outputs[0])
     print(outputs[1])
 
