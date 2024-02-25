@@ -115,8 +115,7 @@ class Preprocess300vw:
             id += 1
 
         # 创建注解文件
-        filename = join(file_dir, self.processed_file)
-        with open(filename, 'w') as json_file:
+        with open(self.processed_file, 'w') as json_file:
             json.dump(json_data, json_file, indent=4)
 
         return
