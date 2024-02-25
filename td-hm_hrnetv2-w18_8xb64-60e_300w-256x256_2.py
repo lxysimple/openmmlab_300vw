@@ -3,8 +3,10 @@
 # data_root_300vw='E:/mmpose/data/300vw/'
 
 _base_ = ["/home/xyli/mmpose/configs/_base_/default_runtime.py"]
+
 data_root_300w='/home/xyli/data/300w'
-data_root_300vw='/home/xyli/data/300vw'
+# data_root_300vw='/home/xyli/data/300vw'
+data_root_300vw_blur='/home/xyli/data'
 
 
 # runtime
@@ -79,8 +81,7 @@ codec = dict(
 # resume = True # 是否基于上次训练状态开始
 # load_from = '/home/xyli/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth' # ubuntu
 # load_from = 'E:/mmpose/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth' # windows
-# load_from = '/home/xyli/openmmlab_300vw/work_dirs/td-hm_hrnetv2-w18_8xb64-60e_300w-256x256_2/best_NME_epoch_57.pth' # ubuntu
-
+load_from = '/home/xyli/openmmlab_300vw/work_dirs_300w+300vw_1032/td-hm_hrnetv2-w18_8xb64-60e_300w-256x256_2/best_NME_epoch_61.pth' # ubuntu
 model = dict(
     type='TopdownPoseEstimator',
     data_preprocessor=dict(
@@ -221,13 +222,15 @@ dataset_all = dict(
 # validation in 300w
 dataset_vali = dict(
     type='Face300WDataset',
-    data_root=data_root_300w,
+    # data_root=data_root_300w,
+    data_root=data_root_300vw_blur,
     data_mode='topdown',
 
     # ann_file='annotations/face_landmarks_300w_valid.json', # all the validation data
     # ann_file='annotations/face_landmarks_300w_valid_challenge.json',
-    ann_file='annotations/face_landmarks_300w_valid_common.json',
+    # ann_file='annotations/face_landmarks_300w_valid_common.json',
     # ann_file='annotations/face_landmarks_300w_test.json', # no Test data in server.
+    ann_file='annotations/face_landmarks_300w_valid_common.json',
 
     data_prefix=dict(img='images/'),
     test_mode=True,
