@@ -16,7 +16,9 @@ class Preprocess300vw:
         self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14' # 要转换的300vw数据集主目录
         self.processed_dir = '/home/xyli/data/300vw' # 转换后的主目录
         self.edges_dir = '/home/xyli/data/300vw/edges'
-        self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_test.txt'
+
+        self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_train.txt'
+        # self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_test.txt'
 
         # In Windows:
         # self.original_dir = 'E:/mmpose/data/300VW_Dataset_2015_12_14'
