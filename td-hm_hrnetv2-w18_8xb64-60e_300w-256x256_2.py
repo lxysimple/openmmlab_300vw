@@ -5,7 +5,7 @@
 _base_ = ["/home/xyli/mmpose/configs/_base_/default_runtime.py"]
 
 data_root_300w='/home/xyli/data/300w'
-# data_root_300vw='/home/xyli/data/300vw'
+data_root_300vw='/home/xyli/data/300vw'
 data_root_300vw_blur='/home/xyli/data'
 
 
