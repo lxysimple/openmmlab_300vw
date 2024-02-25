@@ -237,11 +237,11 @@ class Preprocess300vw:
                 keypoints = []
                 path = ''
 
-                keypoints = strings[0:68]
+                keypoints = strings[0:68*2]
                 keypoints = list(map(float, keypoints))
-                path = strings[68]
+                path = strings[68*2]
 
-                anno_1pic = {}
+                anno_1pic = {} 
                 anno_1pic['keypoints'] = keypoints
                 anno_1pic['path'] = path
 
@@ -254,6 +254,7 @@ if __name__ == '__main__':
 
 
     outputs = convert300vw._keypoints_path_from_txt_()
+    print('len(outputs[0]): ', len(outputs[0]))
     print(outputs[0])
     print(outputs[1])
 
