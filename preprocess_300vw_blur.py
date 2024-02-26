@@ -126,7 +126,7 @@ class Preprocess300vw:
     
     def _keypoints_path_from_txt_(self):
         """
-        提取一个.txt中，114个视频，所有的帧
+        提取一个.txt，114个视频，所有的帧
 
         return:
             [
