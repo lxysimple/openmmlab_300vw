@@ -233,7 +233,7 @@ class Preprocess300vw:
                                     )   
                                 )
                 # 放大图片至 256x256 大小
-                resized_image = image.resize((256, 256))
+                resized_image = image.resize((320, 320))
 
                  # 创建注解文件的目录（没有该目录，无法创建注解文件）
                 edge_dir = self.edges_dir + f"/{video_id}"
