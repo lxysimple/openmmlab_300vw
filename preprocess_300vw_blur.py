@@ -182,8 +182,8 @@ class Preprocess300vw:
                 # 做一个小样本测试
                 if path[0:3] == '015':
                     break
-                if path[0:3] == '001':
-                    break 
+                if path[0:3] == '001': # 忽略001序列
+                    continue 
 
                 outputs.append(anno_1pic)
 
