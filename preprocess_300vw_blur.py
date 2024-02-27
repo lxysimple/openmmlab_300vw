@@ -184,6 +184,8 @@ class Preprocess300vw:
                 # 做一个小样本测试
                 if path[0:3] == '015':
                     break
+                print(path[0:3])
+                input('please wait..')
 
         # 去掉最后一个序列的最后2帧
         return outputs[:-2]
