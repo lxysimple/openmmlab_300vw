@@ -179,91 +179,93 @@ class Preprocess300vw:
 
     def make_256pic(self, dataset):
         for video_id in dataset: # 遍历不同数据集所包含的各视频所在目录
+            
             annot_path = join(self.original_dir, video_id, 'annot')
+
             annots = os.listdir(annot_path)
             annots.sort() # 服务器上这个列表默认是乱的，无语
             for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
                 
                 # 找到1个帧注解中的关键点坐标
-                    annot_file = join(annot_path, annot)
-                    keypoints = self._keypoint_from_pts_(annot_file)
-                    # 每个关键点坐标为x,y,c，c就是置信度，一般为1
-                    # 为什么加置信度，因为之前代码有置信度，我用的是之前的代码，省事
-                    keypoints3 = []
-                    for kp_i in range(1,68*2+1):
-                        keypoints3.append(keypoints[kp_i-1])
-                        if kp_i%2==0:
-                            keypoints3.append(1)
-                    
-                     # 计算左上坐标、宽、高，无需计算bbox，因为Face300WDataset中会用scale+center求出bbox
-                    keypoints_x = []
-                    keypoints_y = []
-                    for j in range(68*2):
-                        if j%2 == 0:
-                            keypoints_x.append(keypoints[j])
-                        else:
-                            keypoints_y.append(keypoints[j])
-                                  
-                    x_left = min(keypoints_x)  
-                    x_right = max(keypoints_x) 
-                    y_low = min(keypoints_y) 
-                    y_high = max(keypoints_y) 
-                    w = x_right - x_left 
-                    h = y_high - y_low 
-
-                    side = int(max(w,h)) + 40
-                    
-                    scale = 256 / float(side)
-
-
-                    # from IPython import embed
-                    # embed()
-
-                    # 左下角留20像素边缘
-                    for i in range(68):
-                        keypoints_x[i] = keypoints_x[i] - x_left + 20
-                        keypoints_y[i] = keypoints_y[i] - y_low + 20
+                annot_file = join(annot_path, annot)
+                keypoints = self._keypoint_from_pts_(annot_file)
+                # 每个关键点坐标为x,y,c，c就是置信度，一般为1
+                # 为什么加置信度，因为之前代码有置信度，我用的是之前的代码，省事
+                keypoints3 = []
+                for kp_i in range(1,68*2+1):
+                    keypoints3.append(keypoints[kp_i-1])
+                    if kp_i%2==0:
+                        keypoints3.append(1)
                 
-                    for i in range(68):
-                        keypoints_x[i] = int(scale * keypoints_x[i])
-                        keypoints_y[i] = int(scale * keypoints_y[i]) 
-                    
-                    # # 创建一个空白的灰度图像，大小为 sidexside 像素
-                    # image = Image.new("L", (side, side), color=255)  # 使用 "L" 表示灰度图像，初始颜色为白色
+                    # 计算左上坐标、宽、高，无需计算bbox，因为Face300WDataset中会用scale+center求出bbox
+                keypoints_x = []
+                keypoints_y = []
+                for j in range(68*2):
+                    if j%2 == 0:
+                        keypoints_x.append(keypoints[j])
+                    else:
+                        keypoints_y.append(keypoints[j])
+                                
+                x_left = min(keypoints_x)  
+                x_right = max(keypoints_x) 
+                y_low = min(keypoints_y) 
+                y_high = max(keypoints_y) 
+                w = x_right - x_left 
+                h = y_high - y_low 
 
-                    # # 获取一个绘图对象
-                    # draw = ImageDraw.Draw(image)
-
-                    # 假设这是你的 68 个坐标
-                    points = [[keypoints_x[i], keypoints_y[i]] for i in range(68)]
-
-                    # # 绘制每个点
-                    # for point in points:
-                    #     draw.point(point, fill=0)  # 使用黑色填充点
-
-                    # 创建注解文件的目录（没有该目录，无法创建注解文件）
-                    edge_dir = self.edges_dir + f"/{video_id}"
-                    if not os.path.exists(edge_dir):
-                        os.makedirs(edge_dir)
-
-                    # # 保存图像
-                    save_path = f'{edge_dir}/{annot[:-4]}.png'
-                    # image.save(save_path)
-
-                    # # 或者显示图像
-                    # image.show()
+                side = int(max(w,h)) + 40
+                
+                scale = 256 / float(side)
 
 
-                    # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
-                    image = np.zeros((256, 256, 3), dtype=np.uint8)
+                # from IPython import embed
+                # embed()
 
-                    # # 将所有像素设置为蓝色
-                    # image[:,:,0] = 0   # 将红色通道值设为0
-                    # image[:,:,1] = 0   # 将绿色通道值设为0
-                    # image[:,:,2] = 80 # 将蓝色通道值设为255
+                # 左下角留20像素边缘
+                for i in range(68):
+                    keypoints_x[i] = keypoints_x[i] - x_left + 20
+                    keypoints_y[i] = keypoints_y[i] - y_low + 20
+            
+                for i in range(68):
+                    keypoints_x[i] = int(scale * keypoints_x[i])
+                    keypoints_y[i] = int(scale * keypoints_y[i]) 
+                
+                # # 创建一个空白的灰度图像，大小为 sidexside 像素
+                # image = Image.new("L", (side, side), color=255)  # 使用 "L" 表示灰度图像，初始颜色为白色
 
-                    from show_edge_api import preprocess
-                    preprocess(image, np.array([points]), save_path)
+                # # 获取一个绘图对象
+                # draw = ImageDraw.Draw(image)
+
+                # 假设这是你的 68 个坐标
+                points = [[keypoints_x[i], keypoints_y[i]] for i in range(68)]
+
+                # # 绘制每个点
+                # for point in points:
+                #     draw.point(point, fill=0)  # 使用黑色填充点
+
+                # 创建注解文件的目录（没有该目录，无法创建注解文件）
+                edge_dir = self.edges_dir + f"/{video_id}"
+                if not os.path.exists(edge_dir):
+                    os.makedirs(edge_dir)
+
+                # # 保存图像
+                save_path = f'{edge_dir}/{annot[:-4]}.png'
+                # image.save(save_path)
+
+                # # 或者显示图像
+                # image.show()
+
+
+                # 创建一个边长为 side、具有3个通道的彩色图像的 NumPy 数组，填充值为 
+                image = np.zeros((256, 256, 3), dtype=np.uint8)
+
+                # # 将所有像素设置为蓝色
+                # image[:,:,0] = 0   # 将红色通道值设为0
+                # image[:,:,1] = 0   # 将绿色通道值设为0
+                # image[:,:,2] = 80 # 将蓝色通道值设为255
+
+                from show_edge_api import preprocess
+                preprocess(image, np.array([points]), save_path)
 
             print(f'文件夹 "{annot_path}" 已经转换完毕. ')
 
@@ -519,9 +521,9 @@ if __name__ == '__main__':
     # All the data
     # videos_test_3
     # videos_train
-    convert300vw.convert_jpg(convert300vw.videos_part)
-    convert300vw.convert_annot(convert300vw.videos_part,'train.json', 
-                               '/home/xyli/data/300vw/images')
+    # convert300vw.convert_jpg(convert300vw.videos_part)
+    # convert300vw.convert_annot(convert300vw.videos_part,'train.json', 
+    #                            '/home/xyli/data/300vw/images')
 
     # A bit of data to test
     # convert300vw.convert_jpg(convert300vw.videos_part)
@@ -529,6 +531,6 @@ if __name__ == '__main__':
     #                            'E:\\mmpose\\data\\300vw\\images')
 
 
-    # convert300vw.make_edges(convert300vw.videos_train)
+    convert300vw.make_edges(convert300vw.videos_part)
 
 
