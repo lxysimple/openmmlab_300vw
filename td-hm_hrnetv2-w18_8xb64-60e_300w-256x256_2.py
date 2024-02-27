@@ -242,7 +242,9 @@ dataset_vali = dict(
 
     # data_prefix=dict(img='images/'),
     # data_prefix=dict(img='Blurred-300VW/'),
-    data_prefix=dict(img='ESTRNN/2024_02_27_08_41_41_ESTRNN_300vw/300vw_ESTRNN_test/'),
+    # data_prefix=dict(img='ESTRNN/2024_02_27_08_41_41_ESTRNN_300vw/300vw_ESTRNN_test/'),
+    data_prefix=dict(img='ESTRNN/2024_02_27_14_58_03_ESTRNN_300vw/300vw_ESTRNN_test/'),
+    
 
     test_mode=True,
     pipeline=val_pipeline,
