@@ -127,11 +127,9 @@ class Preprocess300vw:
                     scale = 256 / float(side)
                     # 左下角留20像素边缘
                     for i in range(68):
-                        # keypoints_x[i] = keypoints_x[i] - x_left + 20
-                        # keypoints_y[i] = keypoints_y[i] - y_low + 20
+                        keypoints_x[i] = keypoints_x[i] - x_left + 20
+                        keypoints_y[i] = keypoints_y[i] - y_low + 20
 
-                        keypoints_x[i] = keypoints_x[i] - x_left + 10
-                        keypoints_y[i] = keypoints_y[i] - y_low + 10
                     for i in range(68):
                         keypoints_x[i] = int(scale * keypoints_x[i])
                         keypoints_y[i] = int(scale * keypoints_y[i]) 
@@ -531,6 +529,7 @@ if __name__ == '__main__':
     #                            'E:\\mmpose\\data\\300vw\\images')
 
 
-    convert300vw.make_edges(convert300vw.videos_part)
+    # convert300vw.make_edges(convert300vw.videos_part)
+    convert300vw.make_256pic(convert300vw.videos_part)
 
 
