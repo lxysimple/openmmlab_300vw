@@ -179,12 +179,13 @@ class Preprocess300vw:
                 if int(path[4:-4]) == 2 and len(outputs)!=0:
                     outputs = outputs[:-2]
 
-                outputs.append(anno_1pic)
-
                 # 做一个小样本测试
                 if path[0:3] == '015':
                     break
+                if path[0:3] == '001':
+                    break 
 
+                outputs.append(anno_1pic)
 
         # 去掉最后一个序列的最后2帧
         return outputs[:-2]
