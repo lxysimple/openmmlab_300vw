@@ -221,11 +221,12 @@ dataset_all = dict(
 )
 
 # validation in 300w
-dataset_vali = dict(
+dataset_vali = dict( 
     type='Face300WDataset',
     # data_root=data_root_300w,
     # data_root=data_root_300vw_blur,
-    data_root=data_root_300vw_deblur
+    data_root=data_root_300vw_deblur,
+    
     data_mode='topdown',
 
     # ann_file='annotations/face_landmarks_300w_valid.json', # all the validation data
@@ -236,7 +237,7 @@ dataset_vali = dict(
     # ann_file='annotations/300VW_blur_label_list_256_test_mmpose.json',
     # ann_file='annotations/300VW_blur_label_list_256_train_mmpose.json',
     # ann_file='annotations/300VW_blur_label_list_256_train_mmpose.json',
-    ann_file='data/annotations/300VW_blur_label_list_256_train_mmpose.json',
+    ann_file='data/annotations/300VW_blur_label_list_256_train_mmpose.json', 
 
     # data_prefix=dict(img='images/'),
     # data_prefix=dict(img='Blurred-300VW/'),
