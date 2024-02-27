@@ -221,7 +221,7 @@ class Preprocess300vw:
                 import statistics
                 # 使用 statistics.mean() 计算列表的均值
                 mean_x = statistics.mean(keypoints_x) - 10
-                mean_y = statistics.mean(keypoints_y) - 10
+                mean_y = statistics.mean(keypoints_y) 
                 # mean_x = (x_left + x_right)/2
                 # mean_y = (y_low + y_high)/2
 
