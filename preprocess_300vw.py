@@ -214,7 +214,8 @@ class Preprocess300vw:
                 w = x_right - x_left 
                 h = y_high - y_low 
 
-                side = int(max(w,h)) 
+                # side = int(max(w,h)) 
+                side = 256
                 
                 import statistics
                 # 使用 statistics.mean() 计算列表的均值
