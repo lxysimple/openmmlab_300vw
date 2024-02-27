@@ -16,11 +16,11 @@ class Preprocess300vw:
         self.original_dir = '/home/xyli/data/Blurred-300VW'
 
 
-        self.processed_file = '/home/xyli/data/annotations/300VW_blur_label_list_256_train_mmpose.json' # 转换后的主目录
-        self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_train.txt'
+        # self.processed_file = '/home/xyli/data/annotations/300VW_blur_label_list_256_train_mmpose.json' # 转换后的主目录
+        # self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_train.txt'
 
-        # self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_test.txt'
-        # self.processed_file = '/home/xyli/data/annotations/300VW_blur_label_list_256_test_mmpose.json' # 转换后的主目录
+        self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_test.txt'
+        self.processed_file = '/home/xyli/data/annotations/300VW_blur_label_list_256_test_mmpose.json' # 转换后的主目录
 
     
     # 该函数应该在convert_jpg后执行
