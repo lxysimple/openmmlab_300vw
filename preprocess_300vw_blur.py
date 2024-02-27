@@ -68,7 +68,7 @@ class Preprocess300vw:
             if id<=2:
                 id = id + 1
                 continue
-            if id>=len(dataset)-2: 
+            if id>=len(dataset)-3: 
                 break
 
             keypoints = pic['keypoints']
