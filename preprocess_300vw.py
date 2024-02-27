@@ -214,15 +214,14 @@ class Preprocess300vw:
                 w = x_right - x_left 
                 h = y_high - y_low 
 
-                # side = int(max(w,h)) 
-                side = 256
+                side = int(max(w,h)) 
+                
                 
                 import statistics
                 # 使用 statistics.mean() 计算列表的均值
                 mean_x = statistics.mean(keypoints_x)
                 mean_y = statistics.mean(keypoints_y)
-                x = mean_x - 0.5*side
-                y = mean_y - 0.5*side
+
                 from PIL import Image
                 image = Image.open(pic_file)
                 cropped_image = image.crop(
@@ -233,7 +232,9 @@ class Preprocess300vw:
                                         mean_y + 0.5*side,
                                     )   
                                 )
-                
+                # 放大图片至 256x256 大小
+                resized_image = image.resize((256, 256))
+
                  # 创建注解文件的目录（没有该目录，无法创建注解文件）
                 edge_dir = self.edges_dir + f"/{video_id}"
                 if not os.path.exists(edge_dir):
