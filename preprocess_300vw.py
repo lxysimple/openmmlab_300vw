@@ -214,7 +214,7 @@ class Preprocess300vw:
                 w = x_right - x_left 
                 h = y_high - y_low 
 
-                side = int(max(w,h))*2 
+                side = int(max(w,h))*1.6 
                 
                 
                 import statistics
