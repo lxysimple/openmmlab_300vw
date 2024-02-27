@@ -226,10 +226,10 @@ class Preprocess300vw:
                 image = Image.open(pic_file)
                 cropped_image = image.crop(
                                     (
-                                        mean_x - 0.5*side -20, 
-                                        mean_y - 0.5*side -20, 
-                                        mean_x + 0.5*side +20,
-                                        mean_y + 0.5*side +20,
+                                        mean_x - 0.5*side -10, 
+                                        mean_y - 0.5*side -10, 
+                                        mean_x + 0.5*side +10,
+                                        mean_y + 0.5*side +10,
                                     )   
                                 )
                 
