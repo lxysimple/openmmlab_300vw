@@ -131,7 +131,7 @@ class Preprocess300vw:
                         # keypoints_y[i] = keypoints_y[i] - y_low + 20
 
                         keypoints_x[i] = keypoints_x[i] - x_left + 10
-                        keypoints_y[i] = keypoints_y[i] - y_low + 20
+                        keypoints_y[i] = keypoints_y[i] - y_low + 10
                     for i in range(68):
                         keypoints_x[i] = int(scale * keypoints_x[i])
                         keypoints_y[i] = int(scale * keypoints_y[i]) 
