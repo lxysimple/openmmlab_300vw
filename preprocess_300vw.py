@@ -249,7 +249,7 @@ class Preprocess300vw:
                     os.makedirs(edge_dir)
 
                 # 保存图像,若是n.jpg，就保存为n-3.jpg
-                save_path = f'{edge_dir}/{id:06}.jpg'
+                save_path = f'{edge_dir}/{id}.jpg'
                 cropped_image.save(save_path)
 
                 # from IPython import embed
