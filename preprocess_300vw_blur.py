@@ -65,13 +65,6 @@ class Preprocess300vw:
         id = 0 
         for pic in dataset: 
 
-            # 去模糊模型生成的结果总是少4帧
-            if id<=2:
-                id = id + 1
-                continue
-            if id>=len(dataset)-3: 
-                break
-
             keypoints = pic['keypoints']
             path = pic['path'] # 相对路径
             pic_path = join(self.original_dir, path) # 该帧的绝对路径
