@@ -168,6 +168,13 @@ class Preprocess300vw:
                 keypoints = list(map(float, keypoints))
                 path = strings[68*2]
 
+                # 做一个小样本测试
+                if path[0:3] == '015':
+                    break
+                if path[0:3] == '001': # 忽略001序列
+                    continue 
+                
+
                 anno_1pic = {} 
                 anno_1pic['keypoints'] = keypoints
                 anno_1pic['path'] = path
@@ -178,12 +185,6 @@ class Preprocess300vw:
                 # 丢弃每个序列前2帧    
                 if int(path[4:-4]) == 2 and len(outputs)!=0:
                     outputs = outputs[:-2]
-
-                # 做一个小样本测试
-                if path[0:3] == '015':
-                    break
-                if path[0:3] == '001': # 忽略001序列
-                    continue 
 
                 outputs.append(anno_1pic)
 
