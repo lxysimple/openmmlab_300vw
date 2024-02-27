@@ -16,11 +16,11 @@ class Preprocess300vw:
         self.original_dir = '/home/xyli/data/Blurred-300VW'
 
 
-        # self.processed_file = '/home/xyli/data/annotations/300VW_blur_label_list_256_train_mmpose.json' # 转换后的主目录
-        # self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_train.txt'
+        self.processed_file = '/home/xyli/data/annotations/300VW_blur_label_list_256_train_mmpose.json' # 转换后的主目录
+        self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_train.txt'
 
-        self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_test.txt'
-        self.processed_file = '/home/xyli/data/annotations/300VW_blur_label_list_256_test_mmpose.json' # 转换后的主目录
+        # self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_test.txt'
+        # self.processed_file = '/home/xyli/data/annotations/300VW_blur_label_list_256_test_mmpose.json' # 转换后的主目录
 
     
     # 该函数应该在convert_jpg后执行
@@ -184,8 +184,7 @@ class Preprocess300vw:
                 # 做一个小样本测试
                 if path[0:3] == '015':
                     break
-                print(path[0:3])
-                input('please wait..')
+
 
         # 去掉最后一个序列的最后2帧
         return outputs[:-2]
