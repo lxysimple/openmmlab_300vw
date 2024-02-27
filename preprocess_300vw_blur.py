@@ -68,8 +68,8 @@ class Preprocess300vw:
             keypoints = pic['keypoints']
             path = pic['path'] # 相对路径
             pic_path = join(self.original_dir, path) # 该帧的绝对路径
-
-
+ 
+ 
             annotation = {
                 'segmentation': [],
                 'num_keypoints': 68,
@@ -171,6 +171,10 @@ class Preprocess300vw:
                 anno_1pic = {} 
                 anno_1pic['keypoints'] = keypoints
                 anno_1pic['path'] = path
+
+                # 丢弃每个序列最后2帧
+                if int(path[4:-4]) == 0 and len(outputs)!=0:
+                    outputs = outputs[:-2]
 
                 outputs.append(anno_1pic)
 
