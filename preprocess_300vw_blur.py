@@ -181,6 +181,10 @@ class Preprocess300vw:
 
                 outputs.append(anno_1pic)
 
+                # 做一个小样本测试
+                if int(path[4:-4])<=15:
+                    break
+
         # 去掉最后一个序列的最后2帧
         return outputs[:-2]
 
