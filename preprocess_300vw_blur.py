@@ -175,6 +175,9 @@ class Preprocess300vw:
                 # 丢弃每个序列最后2帧
                 if int(path[4:-4]) == 0 and len(outputs)!=0:
                     outputs = outputs[:-2]
+                # 丢弃每个序列前2帧    
+                if int(path[4:-4]) == 2 and len(outputs)!=0:
+                    outputs = outputs[:-2]
 
                 outputs.append(anno_1pic)
 
