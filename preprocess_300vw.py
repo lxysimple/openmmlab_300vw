@@ -254,7 +254,7 @@ class Preprocess300vw:
 
                 # from IPython import embed
                 # embed()
-
+                id = id + 1
             print(f'文件夹 "{annot_path}" 已经转换完毕. ')
 
         return
