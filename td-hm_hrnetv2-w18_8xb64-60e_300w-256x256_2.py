@@ -7,6 +7,7 @@ _base_ = ["/home/xyli/mmpose/configs/_base_/default_runtime.py"]
 data_root_300w='/home/xyli/data/300w'
 data_root_300vw='/home/xyli/data/300vw'
 data_root_300vw_blur='/home/xyli/data'
+data_root_300vw_deblur='/home/xyli'
 
 
 # runtime
@@ -223,7 +224,8 @@ dataset_all = dict(
 dataset_vali = dict(
     type='Face300WDataset',
     # data_root=data_root_300w,
-    data_root=data_root_300vw_blur,
+    # data_root=data_root_300vw_blur,
+    data_root=data_root_300vw_deblur
     data_mode='topdown',
 
     # ann_file='annotations/face_landmarks_300w_valid.json', # all the validation data
@@ -232,10 +234,13 @@ dataset_vali = dict(
     # ann_file='annotations/face_landmarks_300w_test.json', # no Test data in server.
 
     # ann_file='annotations/300VW_blur_label_list_256_test_mmpose.json',
-    ann_file='annotations/300VW_blur_label_list_256_train_mmpose.json',
+    # ann_file='annotations/300VW_blur_label_list_256_train_mmpose.json',
+    # ann_file='annotations/300VW_blur_label_list_256_train_mmpose.json',
+    ann_file='data/annotations/300VW_blur_label_list_256_train_mmpose.json',
 
     # data_prefix=dict(img='images/'),
-    data_prefix=dict(img='Blurred-300VW/'),
+    # data_prefix=dict(img='Blurred-300VW/'),
+    data_prefix=dict(img='ESTRNN/2024_02_27_08_41_41_ESTRNN_300vw/300vw_ESTRNN_test/'),
 
     test_mode=True,
     pipeline=val_pipeline,
