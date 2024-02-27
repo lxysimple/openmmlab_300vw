@@ -120,7 +120,7 @@ class Preprocess300vw:
                     h = y_high - y_low 
 
                     # side = int(max(w,h)) + 40
-                    side = int(max(w,h)) 
+                    side = int(max(w,h)) + 40
                     
                     scale = 256 / float(side)
 
@@ -130,8 +130,10 @@ class Preprocess300vw:
 
                     # 左下角留20像素边缘
                     for i in range(68):
-                        keypoints_x[i] = keypoints_x[i] - x_left + 20
-                        keypoints_y[i] = keypoints_y[i] - y_low + 20
+                        # keypoints_x[i] = keypoints_x[i] - x_left + 20
+                        # keypoints_y[i] = keypoints_y[i] - y_low + 20
+                        keypoints_x[i] = keypoints_x[i] - x_left 
+                        keypoints_y[i] = keypoints_y[i] - y_low 
                 
                     for i in range(68):
                         keypoints_x[i] = int(scale * keypoints_x[i])
