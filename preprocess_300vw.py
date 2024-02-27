@@ -214,7 +214,8 @@ class Preprocess300vw:
                 w = x_right - x_left 
                 h = y_high - y_low 
 
-                side = int(max(w,h))*1.5
+                # side = int(max(w,h))*1.5
+                side = 256
                 
                 
                 import statistics
@@ -226,8 +227,8 @@ class Preprocess300vw:
                 image = Image.open(pic_file)
                 cropped_image = image.crop(
                                     (
-                                        mean_x - 0.5*side -10, 
-                                        mean_y - 0.5*side -10, 
+                                        mean_x - 0.5*side , 
+                                        mean_y - 0.5*side , 
                                         mean_x + 0.5*side ,
                                         mean_y + 0.5*side ,
                                     )   
