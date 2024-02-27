@@ -183,7 +183,11 @@ class Preprocess300vw:
 
             annots = os.listdir(annot_path)
             annots.sort() # 服务器上这个列表默认是乱的，无语
+            id = 0
             for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
+                
+                if int(annot[:-4])<3: # 丢弃序号1，2两帧
+                    continue 
                 
                 # 找到1个帧注解中的关键点坐标
                 annot_file = join(annot_path, annot)
@@ -244,8 +248,8 @@ class Preprocess300vw:
                 if not os.path.exists(edge_dir):
                     os.makedirs(edge_dir)
 
-                # # 保存图像
-                save_path = f'{edge_dir}/{annot[:-4]}.png'
+                # 保存图像,若是n.jpg，就保存为n-3.jpg
+                save_path = f'{edge_dir}/{id:06}.jpg'
                 cropped_image.save(save_path)
 
                 # from IPython import embed
