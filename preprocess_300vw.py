@@ -214,7 +214,7 @@ class Preprocess300vw:
                 w = x_right - x_left 
                 h = y_high - y_low 
 
-                side = int(max(w,h))*1.5 
+                side = int(max(w,h))*2 
                 
                 
                 import statistics
@@ -232,8 +232,8 @@ class Preprocess300vw:
                                         mean_y + 0.5*side,
                                     )   
                                 )
-                # 放大图片至 256x256 大小
-                resized_image = image.resize((512, 512))
+                
+                
 
                  # 创建注解文件的目录（没有该目录，无法创建注解文件）
                 edge_dir = self.edges_dir + f"/{video_id}"
