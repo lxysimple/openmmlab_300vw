@@ -313,8 +313,10 @@ class Preprocess300vw:
     def convert_1video(self):
 
 
-        video_path = '/home/xyli/data/vid.avi_blurry.mp4'
-        dest_path = '/home/xyli/data/traindata/002/Blur/png'
+        # video_path = '/home/xyli/data/vid.avi_blurry.mp4'
+        # dest_path = '/home/xyli/data/traindata/002/Blur/png'
+        video_path = '/home/xyli/data/vid.avi_sharp.mp4'
+        dest_path = '/home/xyli/data/traindata/002/Sharp/png'
 
         cap = cv2.VideoCapture(video_path)
         frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) # 获取视频的总帧数
