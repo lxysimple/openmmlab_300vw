@@ -323,16 +323,11 @@ class Preprocess300vw:
             success, img = cap.read() # 读取视频的下一帧
             if not success: # 如果读一个帧失败了，则退出读取该视频帧过程，换到其它视频
                 break
-                
-            # if this frame is broken, skip it.
-            if video in self.broken_frames and i in self.broken_frames[video]:
-                i += 1
-                continue
-                
+                     
             if i % self.sample_rate == 0: # 用这种方式控制视频转化率
                 # f是格式化字符串，d表示i是整数，06代表占6个格子多余填充0
                 imgname = f'{i:06d}.jpg' # 要高精度的化.png最好
-                
+
                 dest = join(dest_path, imgname)
                 if not os.path.exists(dest_path): # 需要先有目录，之后才能创建图片类型文件
                     os.makedirs(dest_path)
