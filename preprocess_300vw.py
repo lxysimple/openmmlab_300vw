@@ -385,8 +385,12 @@ class Preprocess300vw:
                     # print(annot,i,)
 
                     # 找到1个帧注解所对应图片的路径
-                    pic_name = os.path.splitext(annot)[0] + ".jpg"
-                    pic_path = join(video_id, pic_name)
+                    # pic_name = os.path.splitext(annot)[0] + ".jpg"
+                    # pic_path = join(video_id, pic_name)
+
+                    pic_name = i + ".png"
+                    pic_path = '/home/xyli/data/002/Sharp'
+
                     image['file_name'] = pic_path
 
                     # 添加图片宽、高
