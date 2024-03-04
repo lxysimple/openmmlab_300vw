@@ -387,7 +387,6 @@ class Preprocess300vw:
                     # 找到1个帧注解所对应图片的路径
                     # pic_name = os.path.splitext(annot)[0] + ".jpg"
                     # pic_path = join(video_id, pic_name)
-
                     pic_name = str(i) + ".png"
                     pic_path = join('/home/xyli/data/002/Sharp', pic_name)
 
