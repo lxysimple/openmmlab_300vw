@@ -73,7 +73,7 @@ class Preprocess300vw:
                                                         and i not in self.videos_test_2 
                                                         and i not in self.videos_test_3]
         
-        self.videos_part = ['002', '003', '004', '007', '009', '010', '011', '013'] # 测试时数据搞小点
+        self.videos_part = ['002'] # 测试时数据搞小点
 
         # Downsample FPS to `1 / sample_rate`. Default: 5.
         # 30    -> 3142
@@ -178,8 +178,10 @@ class Preprocess300vw:
     def make_256pic(self, dataset):
         for video_id in dataset: # 遍历不同数据集所包含的各视频所在目录
             
-            annot_path = join(self.original_dir, video_id, 'annot')
-            pic_path = join('/home/xyli/data/300vw/images', video_id)
+            # annot_path = join(self.original_dir, video_id, 'annot')
+            # pic_path = join('/home/xyli/data/300vw/images', video_id)
+            annot_path = '/home/lxy/桌面/annot'
+            pic_path = '/home/lxy/桌面/Sharp'
 
             annots = os.listdir(annot_path)
             annots.sort() # 服务器上这个列表默认是乱的，无语
