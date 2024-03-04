@@ -182,6 +182,7 @@ class Preprocess300vw:
             # pic_path = join('/home/xyli/data/300vw/images', video_id)
             annot_path = '/home/lxy/桌面/annot'
             pic_path = '/home/lxy/桌面/Sharp'
+            save_path = '/home/lxy/桌面/Sharp256'
 
             annots = os.listdir(annot_path)
             annots.sort() # 服务器上这个列表默认是乱的，无语
@@ -246,7 +247,8 @@ class Preprocess300vw:
                 
 
                  # 创建注解文件的目录（没有该目录，无法创建注解文件）
-                edge_dir = self.edges_dir + f"/{video_id}"
+                # edge_dir = self.edges_dir + f"/{video_id}"
+                edge_dir = save_path
                 if not os.path.exists(edge_dir):
                     os.makedirs(edge_dir)
 
