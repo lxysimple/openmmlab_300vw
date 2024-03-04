@@ -359,6 +359,13 @@ class Preprocess300vw:
             annots.sort() # 服务器上这个列表默认是乱的，无语
             for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
 
+                # 做小数据测试：2~100个帧
+                if int(annot.split('.')[0]) == 1:
+                    i += 1
+                    continue
+                if int(annot.split('.')[0]) > 100:
+                    break
+
                 
                 # if this frame is broken, skip it.
                 # '000001.pts' -> '000001' -> 1
