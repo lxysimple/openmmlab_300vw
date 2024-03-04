@@ -314,6 +314,8 @@ class Preprocess300vw:
 
 
         video_path = '/home/xyli/data/vid.avi_blurry.mp4'
+        dest_path = '/home/xyli/data/002blur'
+
         cap = cv2.VideoCapture(video_path)
         frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) # 获取视频的总帧数
         i = 2 # start from 2.
@@ -330,8 +332,7 @@ class Preprocess300vw:
             if i % self.sample_rate == 0: # 用这种方式控制视频转化率
                 # f是格式化字符串，d表示i是整数，06代表占6个格子多余填充0
                 imgname = f'{i:06d}.jpg' # 要高精度的化.png最好
-
-                dest_path = join(self.processed_dir, 'images', video)
+                
                 dest = join(dest_path, imgname)
                 if not os.path.exists(dest_path): # 需要先有目录，之后才能创建图片类型文件
                     os.makedirs(dest_path)
