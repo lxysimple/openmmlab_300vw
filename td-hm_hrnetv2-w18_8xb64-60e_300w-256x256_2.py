@@ -224,8 +224,9 @@ dataset_all = dict(
 dataset_vali = dict( 
     type='Face300WDataset',
     # data_root=data_root_300w,
-    # data_root=data_root_300vw_blur,
-    data_root=data_root_300vw_deblur,
+    # data_root=data_root_300vw,
+    data_root=data_root_300vw_blur,
+    # data_root=data_root_300vw_deblur,
     
     data_mode='topdown',
 
