@@ -318,7 +318,7 @@ class Preprocess300vw:
 
         cap = cv2.VideoCapture(video_path)
         frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) # 获取视频的总帧数
-        i = 2 # start from 2.
+        i = 1 # start from 2.
         while True:
             success, img = cap.read() # 读取视频的下一帧
             if not success: # 如果读一个帧失败了，则退出读取该视频帧过程，换到其它视频
@@ -326,7 +326,7 @@ class Preprocess300vw:
             
             if i % self.sample_rate == 0: # 用这种方式控制视频转化率
                 # f是格式化字符串，d表示i是整数，06代表占6个格子多余填充0
-                imgname = f'{i:06d}.jpg' # 要高精度的化.png最好
+                imgname = f'{i+1:06d}.jpg' # 要高精度的化.png最好
 
                 dest = join(dest_path, imgname)
                 if not os.path.exists(dest_path): # 需要先有目录，之后才能创建图片类型文件
