@@ -544,7 +544,7 @@ if __name__ == '__main__':
     # convert300vw.make_256pic(convert300vw.videos_part)
 
     convert300vw.convert_annot(convert300vw.videos_part,'train.json',  
-                               '/home/xyli/data/002/Sharp/images')
+                               '/home/xyli/data/002/Sharp')
 
 
 
