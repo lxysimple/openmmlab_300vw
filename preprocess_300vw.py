@@ -388,7 +388,7 @@ class Preprocess300vw:
                     # pic_name = os.path.splitext(annot)[0] + ".jpg"
                     # pic_path = join(video_id, pic_name)
 
-                    pic_name = i + ".png"
+                    pic_name = str(i) + ".png"
                     pic_path = '/home/xyli/data/002/Sharp'
 
                     image['file_name'] = pic_path
