@@ -389,7 +389,7 @@ class Preprocess300vw:
                     # pic_path = join(video_id, pic_name)
 
                     pic_name = str(i) + ".png"
-                    pic_path = '/home/xyli/data/002/Sharp'
+                    pic_path = join('/home/xyli/data/002/Sharp', pic_name)
 
                     image['file_name'] = pic_path
 
