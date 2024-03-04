@@ -310,10 +310,10 @@ class Preprocess300vw:
     
 
     # 将一个video转化为2~len(video)的多帧
-    def convert_1video(self, videos):
+    def convert_1video(self):
 
 
-        video_path = join(self.original_dir, video, 'vid.avi')
+        video_path = '/home/xyli/data/vid.avi_blurry.mp4'
         cap = cv2.VideoCapture(video_path)
         frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) # 获取视频的总帧数
         i = 2 # start from 2.
@@ -579,8 +579,10 @@ if __name__ == '__main__':
 
     # convert300vw.make_256pic(convert300vw.videos_part)
 
-    convert300vw.convert_annot(convert300vw.videos_part,'train.json',  
-                               '/home/xyli/data/002/Blur')
+    # convert300vw.convert_annot(convert300vw.videos_part,'train.json',  
+    #                            '/home/xyli/data/002/Blur')
 
+
+    convert_1video()
 
 
