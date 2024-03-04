@@ -242,7 +242,7 @@ dataset_vali = dict(
     # ann_file='data/annotations/300VW_blur_label_list_256_test_mmpose.json',
 
     # data_prefix=dict(img='images/'),
-    data_prefix=dict(img='002/Sharp/'),
+    data_prefix=dict(img='002/Blur/'),
     # data_prefix=dict(img='ESTRNN/2024_02_27_08_41_41_ESTRNN_300vw/300vw_ESTRNN_test/'),
     # data_prefix=dict(img='ESTRNN/2024_02_27_14_58_03_ESTRNN_300vw/300vw_ESTRNN_test/'),
     
