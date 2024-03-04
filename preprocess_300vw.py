@@ -189,13 +189,15 @@ class Preprocess300vw:
             id = 0
             for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
                 
-                if int(annot[:-4])<3: # 丢弃序号1，2两帧
+                if int(annot[:-4])==1: # 丢弃第一帧
+                    continue 
+                if int(annot[:-4])==len(annots): # 丢弃最后一帧
                     continue 
                 
                 # 找到1个帧注解中的关键点坐标
                 annot_file = join(annot_path, annot)
                 # pic_file = join(pic_path, annot[:-4]+'.jpg') 
-                pic_file = join(pic_path, str(int(annot[:-4]))+'.jpg') 
+                pic_file = join(pic_path, str(int(annot[:-4]))+'.png') 
 
                 keypoints = self._keypoint_from_pts_(annot_file)
                 # 每个关键点坐标为x,y,c，c就是置信度，一般为1
