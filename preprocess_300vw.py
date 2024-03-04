@@ -194,7 +194,8 @@ class Preprocess300vw:
                 
                 # 找到1个帧注解中的关键点坐标
                 annot_file = join(annot_path, annot)
-                pic_file = join(pic_path, annot[:-4]+'.jpg') 
+                # pic_file = join(pic_path, annot[:-4]+'.jpg') 
+                pic_file = join(pic_path, int(annot[:-4])+'.jpg') 
 
                 keypoints = self._keypoint_from_pts_(annot_file)
                 # 每个关键点坐标为x,y,c，c就是置信度，一般为1
