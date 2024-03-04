@@ -190,8 +190,10 @@ class Preprocess300vw:
             for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
                 
                 if int(annot[:-4])==1: # 丢弃第一帧
+                    id = id + 1
                     continue 
                 if int(annot[:-4])==len(annots): # 丢弃最后一帧
+                    id = id + 1
                     continue 
                 
                 # 找到1个帧注解中的关键点坐标
@@ -256,8 +258,8 @@ class Preprocess300vw:
                     os.makedirs(edge_dir)
 
                 # 保存图像,若是n.jpg，就保存为n-3.jpg
-                save_path = f'{edge_dir}/{id}.jpg'
-                cropped_image.save(save_path)
+                save_pic = f'{edge_dir}/{id}.jpg'
+                cropped_image.save(save_pic)
 
                 # from IPython import embed
                 # embed()
