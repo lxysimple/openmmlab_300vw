@@ -313,14 +313,17 @@ class Preprocess300vw:
     def convert_1video(self):
 
 
-        video_path = '/home/xyli/data/vid.avi_blurry.mp4'
-        dest_path = '/home/xyli/data/BSD/BSD_2ms16ms/train/002/Blur/RGB'
+        # video_path = '/home/xyli/data/vid.avi_blurry.mp4'
+        # dest_path = '/home/xyli/data/BSD/BSD_2ms16ms/train/002/Blur/RGB'
         # video_path = '/home/xyli/data/vid.avi_sharp.mp4'
         # dest_path = '/home/xyli/data/BSD/BSD_2ms16ms/train/002/Sharp/RGB'
 
+        video_path = '/home/xyli/data/vid.avi_blurry_valid.mp4'
+        dest_path = '/home/xyli/data/BSD/BSD_2ms16ms/valid/002/Blur/RGB'
+
         cap = cv2.VideoCapture(video_path)
         frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) # 获取视频的总帧数
-        i = 1 # start from 2.
+        i = 1 
         while True:
             success, img = cap.read() # 读取视频的下一帧
             if not success: # 如果读一个帧失败了，则退出读取该视频帧过程，换到其它视频
