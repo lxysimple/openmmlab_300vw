@@ -243,9 +243,10 @@ dataset_vali = dict(
 
     # data_prefix=dict(img='images/'),
     # data_prefix=dict(img='ESTRNN/2024_03_05_15_03_49_ESTRNN_300vw/300vw_ESTRNN_test/546/'),
-    data_prefix=dict(img='ESTRNN/2024_03_05_15_04_37_ESTRNN_300vw/300vw_ESTRNN_test/546/'),
+    # data_prefix=dict(img='ESTRNN/2024_03_05_15_04_37_ESTRNN_300vw/300vw_ESTRNN_test/546/'),
 
-    # data_prefix=dict(img='ESTRNN/2024_02_27_08_41_41_ESTRNN_300vw/300vw_ESTRNN_test/'),
+    data_prefix=dict(img='data/546/Blur/'),
+
     # data_prefix=dict(img='ESTRNN/2024_02_27_14_58_03_ESTRNN_300vw/300vw_ESTRNN_test/'),
     
 
