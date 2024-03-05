@@ -73,7 +73,7 @@ class Preprocess300vw:
                                                         and i not in self.videos_test_2 
                                                         and i not in self.videos_test_3]
         
-        self.videos_part = ['002'] # 测试时数据搞小点
+        self.videos_part = ['546'] # 测试时数据搞小点
 
         # Downsample FPS to `1 / sample_rate`. Default: 5.
         # 30    -> 3142
@@ -586,10 +586,10 @@ if __name__ == '__main__':
 
     # convert300vw.make_256pic(convert300vw.videos_part)
 
-    # convert300vw.convert_annot(convert300vw.videos_part,'train.json',  
-    #                            '/home/xyli/data/002/Blur')
+    convert300vw.convert_annot(convert300vw.videos_part,'train.json',  
+                               '/home/xyli/data/002/annot')
 
 
-    convert300vw.convert_1video()
+    # convert300vw.convert_1video()
 
 
