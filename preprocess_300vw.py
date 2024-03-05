@@ -430,7 +430,7 @@ class Preprocess300vw:
                     # 找到1个帧注解所对应图片的路径
                     # pic_name = os.path.splitext(annot)[0] + ".jpg"
                     # pic_path = join(video_id, pic_name)
-                    pic_name = f"{str(i)}:08" + ".png"
+                    pic_name = f"{str(i):08}" + ".png"
                     pic_path = pic_name
 
                     image['file_name'] = pic_path
