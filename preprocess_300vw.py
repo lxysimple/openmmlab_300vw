@@ -319,10 +319,10 @@ class Preprocess300vw:
         # video_path = '/home/xyli/data/vid.avi_sharp.mp4'
         # dest_path = '/home/xyli/data/BSD/BSD_2ms16ms/train/002/Sharp/RGB'
 
-        video_path = '/home/xyli/data/vid.avi_blurry_valid.mp4'
-        dest_path = '/home/xyli/data/546/Blur'
-        # video_path = '/home/xyli/data/vid.avi_sharp_valid.mp4'
-        # dest_path = '/home/xyli/data/546/Sharp'
+        # video_path = '/home/xyli/data/vid.avi_blurry_valid.mp4'
+        # dest_path = '/home/xyli/data/546/Blur'
+        video_path = '/home/xyli/data/vid.avi_sharp_valid.mp4'
+        dest_path = '/home/xyli/data/546/Sharp'
 
         cap = cv2.VideoCapture(video_path)
         frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)) # 获取视频的总帧数
