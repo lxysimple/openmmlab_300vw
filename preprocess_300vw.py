@@ -332,7 +332,7 @@ class Preprocess300vw:
             if not success: # 如果读一个帧失败了，则退出读取该视频帧过程，换到其它视频
                 break
             
-            if i+1>100:
+            if i+1>150: 
                 break
             
             if i % self.sample_rate == 0: # 用这种方式控制视频转化率
