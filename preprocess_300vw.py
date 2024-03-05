@@ -310,6 +310,7 @@ class Preprocess300vw:
     
 
     # 将一个video转化为2~len(video)的多帧
+    # 目前只转化1~99帧，序号为2~100
     def convert_1video(self):
 
 
@@ -329,6 +330,9 @@ class Preprocess300vw:
         while True:
             success, img = cap.read() # 读取视频的下一帧
             if not success: # 如果读一个帧失败了，则退出读取该视频帧过程，换到其它视频
+                break
+            
+            if i+1>100:
                 break
             
             if i % self.sample_rate == 0: # 用这种方式控制视频转化率
