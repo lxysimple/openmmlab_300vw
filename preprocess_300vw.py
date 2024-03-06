@@ -359,7 +359,7 @@ class Preprocess300vw:
         return 
     
     # 该函数应该在convert_jpg后执行
-    def convert_annot(self, dataset, filename, dataroot):
+    def convert_annot(self, dataset):
         self.original_dir = '/home/xyli/data/dest'
         self.processed_dir = '/home/xyli/data/300vw/annotations'
         filename = 'train.json'
@@ -583,8 +583,7 @@ if __name__ == '__main__':
     # videos_test_3
     # videos_train
     # convert300vw.convert_jpg(convert300vw.videos_part)
-    convert300vw.convert_annot(convert300vw.videos_part,'train.json', 
-                               '/home/xyli/data/300vw/images')
+    convert300vw.convert_annot(convert300vw.videos_part)
 
     # A bit of data to test
     # convert300vw.convert_jpg(convert300vw.videos_part)
