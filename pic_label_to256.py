@@ -81,6 +81,8 @@ def chage_annot_with_crop(anont_path, res_path, max_edge, midx, midy):
         max_edge: crop时的边长
         midx, midy: crop时的左上坐标
     """
+    left_x = midx - 0.5*max_edge
+    top_y = midy - 0.5*max_edge
 
     with open(anont_path, 'r') as f:
         lines = f.readlines()
@@ -96,9 +98,10 @@ def chage_annot_with_crop(anont_path, res_path, max_edge, midx, midy):
 
         for point in points:
             x, y = point.strip().split()
-            # 调整点坐标
-            x_new = str(float(x) + 1000)
-            y_new = str(float(y) + 1000)
+            # 相对坐标就是crop后的绝对坐标
+            x_new = str(float(x) - left_x)
+            y_new = str(float(y) - top_y)
+
             # 写入新的点坐标
             f.write(f'{x_new} {y_new}\n')
 
