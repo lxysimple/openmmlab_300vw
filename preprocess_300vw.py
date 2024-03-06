@@ -485,21 +485,6 @@ class Preprocess300vw:
                     scale = 256.0/200
                     annotation['scale'] = scale
 
-                    # # 以人脸框做上角为原点计算xy
-                    # keypoints3 = []
-                    # for kp_i in range(1,68*2+1):
-                    #     if kp_i%2 == 1:
-                    #         keypoints[kp_i-1] -= x_left
-                    #     else:
-                    #         keypoints[kp_i-1] -= y_low
-
-                    #     keypoints3.append(keypoints[kp_i-1])
-                    #     if kp_i%2==0:
-                    #         keypoints3.append(1)
-                    # annotation['keypoints'] = keypoints3
-
-
-
                     # 计算人脸面积
                     annotation['area'] = w*h
                     
@@ -514,20 +499,6 @@ class Preprocess300vw:
                     ]
 
                     annotation['center'] = center
-
-                    # center = [np.mean(keypoints_x), np.mean(keypoints_y)]
-                    # annotation['center'] = center
-                    # print("x_left, x_right: ", x_left, x_right)
-                    # print("center[0]: ", center[0])
-                    # print("y_low, y_high: ", y_low, y_high)
-                    # print("center[1]: ", center[1])
-
-                    # max_x = max(x_right-center[0], center[0]-x_left)
-                    # max_y = max(y_high-center[1], center[1]-y_low)
-                    # scale = max(max_x, max_y)*2 + 5
-                    # scale = scale / 200.0
-                    # annotation['scale'] = scale
-                    # print("scale: ", scale)
 
                     # 添加image_id与id
                     image['id'] = id
