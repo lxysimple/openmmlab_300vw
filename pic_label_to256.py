@@ -130,7 +130,39 @@ def crop_image(apic_path, res_path, max_edge, x_left, y_low):
 
     return 
 
+def resize256(apic_path, annot_path, pic_res_dir, annot_res_dir, max_edge):
+    """
+    args:
+        apic_path: 要resize的某个帧地址
+        annot_path: 其对应annot地址
+        pic_res_dir: 输出的图片存放目录
+        annot_res_dir: 修改后注解存放目录
+        max_edge: 图片的边长
+    """
+    with open(anont_path, 'r') as f:
+        lines = f.readlines()
+    # 处理第一部分，不改变（版本号和点的数量）
+    header = lines[:3]
+    points = lines[3:71]
+    end = lines[71]
 
+    annot_name = anont_path[-6:]
+    res_path_file = join(res_path, annot_name)
+    with open(res_path_file, 'w') as f:
+        f.writelines(header)
+
+        for point in points:
+            x, y = point.strip().split()
+            # 相对坐标就是crop后的绝对坐标
+            x_new = str(float(x) - x_left)
+            y_new = str(float(y) - y_low)
+
+            # 写入新的点坐标
+            f.write(f'{x_new} {y_new}\n')
+
+        f.write(end)
+
+    return 
 
 
 if __name__ == '__main__':
