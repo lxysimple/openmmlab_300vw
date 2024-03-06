@@ -82,7 +82,7 @@ def chage_annot_with_crop(anont_path, res_path, max_edge, midx, midy):
         midx, midy: crop时的左上坐标
     """
 
-    with open(input_file, 'r') as f:
+    with open(anont_path, 'r') as f:
         lines = f.readlines()
     # 处理第一部分，不改变（版本号和点的数量）
     header = lines[:3]
