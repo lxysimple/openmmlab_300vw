@@ -44,3 +44,9 @@ def find_edge(avideo_annots_path):
         print(annot)
 
     return 
+
+
+
+if __name__ == '__main__':
+    
+    find_edge('/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot')
