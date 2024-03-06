@@ -440,7 +440,7 @@ class Preprocess300vw:
                     # pic_name = os.path.splitext(annot)[0] + ".jpg"
                     # pic_path = join(video_id, pic_name)
                     pic_name = f"{i:08d}.png" 
-                    pic_path = pic_name
+                    pic_path = join(video_id, 'resize_pic', pic_name)
 
                     image['file_name'] = pic_path
 
