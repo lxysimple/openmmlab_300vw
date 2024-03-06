@@ -234,13 +234,20 @@ def test1():
 
 def testall():
     videos = ['001', '002', '003', '004', '007']
-    pic_300vw_dir = '/home/lxy/桌面/dest'
-    annot_300vw_dir = '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14'
+    # windows
+    # pic_300vw_dir = '/home/lxy/桌面/dest'
+    # annot_300vw_dir = '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14'
+
+    # linux
+    pic_300vw_dir = '/home/xyli/data/dest'
+    annot_300vw_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
 
     # dest/[001,002,...]/crop_pic
     # dest/[001,002,...]/crop_annot
-    data300vw_dir_res = '/home/lxy/桌面/dest/' 
-
+    # dest/[001,002,...]/resize_pic
+    # dest/[001,002,...]/resize_annot
+    # data300vw_dir_res = '/home/lxy/桌面/dest/' 
+    data300vw_dir_res = pic_300vw_dir 
 
     for video in videos: # 遍历 [001,002,...]
         # 待转化数据路径
@@ -297,7 +304,7 @@ def testall():
                 resize_annot,
                 max_edge+40
             )  
-            
+
         print(f'{video}转化结束！')
 
 if __name__ == '__main__':
