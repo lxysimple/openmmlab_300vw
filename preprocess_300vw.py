@@ -372,7 +372,7 @@ class Preprocess300vw:
 
         id = 1
         for i in self.videos_train:
-            print(f'{i}',end=' ')
+            print(f"\'{i}\'",end=' ')
             if id%10==0:
                 print()
             id = id+1
