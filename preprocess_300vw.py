@@ -273,7 +273,7 @@ class Preprocess300vw:
     # 其中self.sample_rate可控制转换率，其越小，单个视频转换的图片数量越多
     def convert_jpg(self, videos):
         self.original_dir = '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14'
-        self.processed_dir = ''
+        self.processed_dir = '/home/lxy/桌面/dest'
 
         for video in videos:
             video_path = join(self.original_dir, video, 'vid.avi')
