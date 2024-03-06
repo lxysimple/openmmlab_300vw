@@ -92,7 +92,6 @@ def chage_annot_with_crop(anont_path, res_path, max_edge, midx, midy):
     annot_name = anont_path[-6:]
     res_path_file = join(res_path, annot_name)
     with open(res_path_file, 'w') as f:
-        # 写入头部信息
         f.writelines(header)
 
         for point in points:
