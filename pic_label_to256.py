@@ -205,5 +205,5 @@ if __name__ == '__main__':
         '/home/lxy/桌面/annot/000001.pts',
         '/home/lxy/桌面/pic256/',
         '/home/lxy/桌面/annot256',
-        max_edge
+        max_edge+40
     )   
