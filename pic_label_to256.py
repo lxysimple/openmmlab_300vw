@@ -245,8 +245,8 @@ def testall():
         
         pngs = os.listdir(pngs_dir)
         for png in pngs:
-            max_edge = find_edge(annots_dir)
-            x_left, y_low = findxy(annots_dir)
+            # max_edge = find_edge(annots_dir)
+            # x_left, y_low = findxy(annots_dir)
             print(png) 
             # crop_image( 
             #     '/home/lxy/桌面/00000001.png', 
