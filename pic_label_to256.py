@@ -68,9 +68,9 @@ def find_edge(avideo_annots_path):
         edge = max(w, h)
         max_edge = max(max_edge, edge)
 
-    return max_edge, x_left, y_high
+    return max_edge, x_left, y_low
 
-def chage_annot_with_crop(anont_path, res_path, max_edge, x_left, y_high):
+def chage_annot_with_crop(anont_path, res_path, max_edge, x_left, y_low):
     """
     args: 
         anont_path: 要变化注解文件的路径, .../000001.pts
@@ -95,7 +95,7 @@ def chage_annot_with_crop(anont_path, res_path, max_edge, x_left, y_high):
             x, y = point.strip().split()
             # 相对坐标就是crop后的绝对坐标
             x_new = str(float(x) - x_left)
-            y_new = str(float(y) - y_high)
+            y_new = str(float(y) - y_low)
 
             # 写入新的点坐标
             f.write(f'{x_new} {y_new}\n')
@@ -104,7 +104,7 @@ def chage_annot_with_crop(anont_path, res_path, max_edge, x_left, y_high):
 
     return 
 
-def crop_image(apic_path, res_path, max_edge, x_left, y_high):
+def crop_image(apic_path, res_path, max_edge, x_left, y_low):
     """
     args:
         apic_path: 一个要被裁剪的图片路径, 要求图片命名形式为{:08d}.png
@@ -115,9 +115,9 @@ def crop_image(apic_path, res_path, max_edge, x_left, y_high):
     cropped_image = image.crop(
                         (
                             x_left - 20 , 
-                            y_high - 20 , 
+                            y_low - 20 , 
                             x_left + max_edge + 40 ,
-                            y_high + max_edge + 40 ,
+                            y_low + max_edge + 40 ,
                         )   
                     )
     # 创建注解文件的目录（没有该目录，无法创建注解文件）
@@ -135,14 +135,14 @@ def crop_image(apic_path, res_path, max_edge, x_left, y_high):
 
 if __name__ == '__main__':
 
-    max_edge, x_left, y_high= find_edge('/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot')
+    max_edge, x_left, y_low= find_edge('/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot')
     print('max_edge: ', max_edge)
     
-    crop_image('/home/lxy/桌面/00000001.png', '/home/lxy/桌面/', max_edge, x_left, y_high)
+    crop_image('/home/lxy/桌面/00000001.png', '/home/lxy/桌面/', max_edge, x_left, y_low)
     chage_annot_with_crop(
         '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot/000001.pts',
         '/home/lxy/桌面/annot',
-        max_edge+40, x_left-20, y_high-20
+        max_edge+40, x_left-20, y_low-20
     )
 
 
