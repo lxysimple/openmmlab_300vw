@@ -440,13 +440,13 @@ class Preprocess300vw:
                     # pic_name = os.path.splitext(annot)[0] + ".jpg"
                     # pic_path = join(video_id, pic_name)
                     pic_name = f"{i:08d}.png" 
-                    pic_path = join(video_id, 'resize_pic', pic_name)
+                    pic_path_rel = join(video_id, 'resize_pic', pic_name)
 
-                    image['file_name'] = pic_path
+                    image['file_name'] = pic_path_rel
 
                     # 添加图片宽、高
                     # pic_path = join(dataroot, pic_path)
-                    pic_path = join(self.original_dir, video_id, 'resize_pic', pic_path)
+                    pic_path = join(self.original_dir, video_id, 'resize_pic', pic_name)
 
                     image_pic = Image.open(pic_path) # 打开图片
                     pic_width, pic_height = image_pic.size
