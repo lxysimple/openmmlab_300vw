@@ -360,6 +360,9 @@ class Preprocess300vw:
     
     # 该函数应该在convert_jpg后执行
     def convert_annot(self, dataset, filename, dataroot):
+        self.original_dir = '/home/xyli/data/dest'
+        self.processed_dir = '/home/xyli/data/300vw/annotations'
+
 
         json_data = { 
                 'images': [ 
@@ -399,7 +402,8 @@ class Preprocess300vw:
 
         id = 0 
         for video_id in dataset: # 遍历不同数据集所包含的各视频所在目录
-            annot_path = join(self.original_dir, video_id, 'annot')
+            # annot_path = join(self.original_dir, video_id, 'annot')
+            annot_path = join(self.original_dir, video_id, 'resize_annot')
 
             i = 1
             annots = os.listdir(annot_path)
@@ -414,11 +418,11 @@ class Preprocess300vw:
                     break
 
                 
-                # if this frame is broken, skip it.
-                # '000001.pts' -> '000001' -> 1
-                if video_id in self.broken_frames and int(annot.split('.')[0]) in self.broken_frames[video_id]:
-                    i += 1
-                    continue
+                # # if this frame is broken, skip it.
+                # # '000001.pts' -> '000001' -> 1
+                # if video_id in self.broken_frames and int(annot.split('.')[0]) in self.broken_frames[video_id]:
+                #     i += 1
+                #     continue
 
                 if i % self.sample_rate == 0: # 在这里控制转化率
                     annotation = {
@@ -531,7 +535,7 @@ class Preprocess300vw:
             print(f'文件夹 "{annot_path}" 已经转换完毕. ')
 
         # 创建注解文件的目录（没有该目录，无法创建注解文件）
-        file_dir = join(self.processed_dir, 'annotations')
+        file_dir = self.processed_dir
         if not os.path.exists(file_dir):
             os.makedirs(file_dir)
 
@@ -575,9 +579,9 @@ if __name__ == '__main__':
     # All the data
     # videos_test_3
     # videos_train
-    convert300vw.convert_jpg(convert300vw.videos_part)
-    # convert300vw.convert_annot(convert300vw.videos_part,'train.json', 
-    #                            '/home/xyli/data/300vw/images')
+    # convert300vw.convert_jpg(convert300vw.videos_part)
+    convert300vw.convert_annot(convert300vw.videos_part,'train.json', 
+                               '/home/xyli/data/300vw/images')
 
     # A bit of data to test
     # convert300vw.convert_jpg(convert300vw.videos_part)
