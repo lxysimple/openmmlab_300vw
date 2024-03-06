@@ -537,7 +537,7 @@ class Preprocess300vw:
             json.dump(json_data, json_file, indent=4)
 
         return 
-
+ 
     # 从一个.pts格式文件中提取68个关键点到列表中，并返回该列表
     def _keypoint_from_pts_(self,file_path):
         # 创建一个列表来存储关键点坐标
