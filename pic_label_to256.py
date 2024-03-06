@@ -103,7 +103,7 @@ def chage_annot_with_crop(anont_path, res_path, max_edge, midx, midy):
             f.write(f'{x_new} {y_new}\n')
 
         f.write(end)
-        
+
     return 
 
 def crop_image(apic_path, res_path, max_edge, midx, midy):
@@ -138,6 +138,11 @@ def crop_image(apic_path, res_path, max_edge, midx, midy):
 if __name__ == '__main__':
 
     # max_edge = find_edge('/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot')
-    crop_image('/home/lxy/桌面/00000001.png', '/home/lxy/桌面/', 150, 0, 0)
+    # crop_image('/home/lxy/桌面/00000001.png', '/home/lxy/桌面/', 150, 0, 0)
+    chage_annot_with_crop(
+        '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot/000001.pts',
+        '/home/lxy/桌面/annot',
+        1,2,3
+    )
 
 
