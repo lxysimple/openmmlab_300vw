@@ -152,7 +152,7 @@ def resize256(apic_path, annot_path, pic_res_dir, annot_res_dir, max_edge):
     end = lines[71]
 
     annot_name = annot_path[-10:]
-    res_path_file = join(pic_res_dir, annot_name)
+    res_path_file = join(annot_res_dir, annot_name)
     with open(res_path_file, 'w') as f:
         f.writelines(header)
 
