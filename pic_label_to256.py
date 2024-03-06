@@ -247,10 +247,10 @@ def testall():
         pngs_dir = join(pic_300vw_dir, video, 'images')
         annots_dir = join(annot_300vw_dir, video, 'annot')
         # 转化结果路径
-        crop_pic = join(annot_300vw_dir, video, 'crop_pic')
-        crop_annot = join(annot_300vw_dir, video, 'crop_annot')
-        resize_pic = join(annot_300vw_dir, video, 'resize_pic')
-        resize_annot = join(annot_300vw_dir, video, 'resize_annot')
+        crop_pic = join(data300vw_dir_res, video, 'crop_pic')
+        crop_annot = join(data300vw_dir_res, video, 'crop_annot')
+        resize_pic = join(data300vw_dir_res, video, 'resize_pic')
+        resize_annot = join(data300vw_dir_res, video, 'resize_annot')
 
 
         # 如果转化结果路径不存在, 则创建
