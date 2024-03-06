@@ -94,11 +94,8 @@ def crop_image(apic_path, res_path, max_edge, midx, midy):
         os.makedirs(res_path)
 
     file_name = apic_path[-12:]
-
-    print(file_name)
-    # # 保存图像,若是n.jpg，就保存为n-3.jpg
-    # save_pic = f'{edge_dir}/{id}.jpg'
-    # cropped_image.save(save_pic)
+    save_path = join(res_path, file_name)
+    cropped_image.save(save_path)
 
 if __name__ == '__main__':
 
