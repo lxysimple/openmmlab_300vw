@@ -11,6 +11,7 @@ def frames_1video(frames_dir, res_dir):
     """
     # 求得帧集
     frames_list = os.listdir(frames_dir)
+    frames_list.sort()
 
     # 定义视频文件名和分辨率
     output_video = join(res_dir, 'vid.avi')
