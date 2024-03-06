@@ -200,7 +200,7 @@ if __name__ == '__main__':
         max_edge+40, x_left-20, y_low-20
     )
 
-    resize256(
-        '/home/lxy/桌面/pic256/00000001.png',
+    # resize256(
+    #     '/home/lxy/桌面/pic256/00000001.png',
 
-    )
+    # )
