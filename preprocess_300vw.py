@@ -362,7 +362,8 @@ class Preprocess300vw:
     def convert_annot(self, dataset, filename, dataroot):
         self.original_dir = '/home/xyli/data/dest'
         self.processed_dir = '/home/xyli/data/300vw/annotations'
-
+        filename = 'train.json'
+        dataroot = '/home/xyli/data/300vw/images'
 
         json_data = { 
                 'images': [ 
@@ -444,7 +445,9 @@ class Preprocess300vw:
                     image['file_name'] = pic_path
 
                     # 添加图片宽、高
-                    pic_path = join(dataroot, pic_path)
+                    # pic_path = join(dataroot, pic_path)
+                    pic_path = join(self.original_dir, 'resize_pic', pic_path)
+
                     image_pic = Image.open(pic_path) # 打开图片
                     pic_width, pic_height = image_pic.size
                     image['height'] = pic_height
