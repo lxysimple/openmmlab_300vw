@@ -263,7 +263,7 @@ def testall():
         if not os.path.exists(resize_annot):
             os.makedirs(resize_annot)
 
-        
+        max_edge = find_edge(annots_dir)
         pngs = os.listdir(pngs_dir) 
         for png in pngs: # 遍历 001中的[00000001.png, ...]
             # 某个帧 某个帧注解 路径
@@ -271,7 +271,6 @@ def testall():
             annot_path = join(annots_dir, png[-10:-4]+'.pts')
 
             # 从注解中提取信息
-            max_edge = find_edge(annot_path)
             x_left, y_low = findxy(annot_path)
  
             crop_image( 
