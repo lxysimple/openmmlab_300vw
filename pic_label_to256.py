@@ -1,5 +1,6 @@
 import os
 from os.path import join
+from PIL import Image
 
 def _keypoint_from_pts_(file_path):
     """
@@ -38,7 +39,8 @@ def find_edge(avideo_annots_path):
     args:
         一个视频对应所有帧的注解目录
     return:
-        这些注解中,求得最大边长并返回
+        max_edge: 这些注解中,求得最大边长并返回
+        midx, midy: 中心点x y坐标
     """
     annots = os.listdir(avideo_annots_path)
     annots.sort() # 服务器上这个列表默认是乱的，无语
@@ -66,9 +68,37 @@ def find_edge(avideo_annots_path):
         edge = max(w, h)
         max_edge = max(max_edge, edge)
 
-    return max_edge
+        midx = (x_left + x_right)/2,
+        midy = (y_low + y_high)/2
 
+    return max_edge, midx, midy
 
+def crop_image(apic_path, res_path, max_edge, midx, midy):
+    """
+    args:
+        apic_path: 一个要被裁剪的图片路径, 要求图片命名形式为{:08d}.png
+        res_path: 裁剪后结果图所放置的路径
+        max_edge: 图片将要被裁剪边的长度
+    """
+    
+    image = Image.open(apic_path)
+    cropped_image = image.crop(
+                        (
+                            midx - 20 , 
+                            midy - 20 , 
+                            midx + max_edge + 40 ,
+                            midy + max_edge + 40 ,
+                        )   
+                    )
+    # 创建注解文件的目录（没有该目录，无法创建注解文件）
+    # edge_dir = self.edges_dir + f"/{video_id}"
+    edge_dir = save_path
+    if not os.path.exists(edge_dir):
+        os.makedirs(edge_dir)
+
+    # 保存图像,若是n.jpg，就保存为n-3.jpg
+    save_pic = f'{edge_dir}/{id}.jpg'
+    cropped_image.save(save_pic)
 
 if __name__ == '__main__':
 
