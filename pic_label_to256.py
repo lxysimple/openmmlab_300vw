@@ -259,7 +259,6 @@ def testall():
         resize_pic = join(data300vw_dir_res, video, 'resize_pic')
         resize_annot = join(data300vw_dir_res, video, 'resize_annot')
 
-
         # 如果转化结果路径不存在, 则创建
         if not os.path.exists(crop_pic):
             os.makedirs(crop_pic)
