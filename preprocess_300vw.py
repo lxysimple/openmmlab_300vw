@@ -481,9 +481,8 @@ class Preprocess300vw:
                     w = x_right - x_left 
                     h = y_high - y_low 
 
-                    # annotation['bbox'] = [x_left, y_high, x_right, y_low]
-
-                    scale = math.ceil(max(w,h))/200
+                    # scale = math.ceil(max(w,h))/200
+                    scale = 256.0/200
                     annotation['scale'] = scale
 
                     # # 以人脸框做上角为原点计算xy
@@ -505,10 +504,15 @@ class Preprocess300vw:
                     annotation['area'] = w*h
                     
                     # 计算center
+                    # center = [
+                    #     (x_left + x_right)/2,
+                    #     (y_low + y_high)/2
+                    # ]
                     center = [
-                        (x_left + x_right)/2,
-                        (y_low + y_high)/2
+                        128,
+                        128
                     ]
+
                     annotation['center'] = center
 
                     # center = [np.mean(keypoints_x), np.mean(keypoints_y)]
