@@ -459,13 +459,13 @@ class Preprocess300vw:
                     # pic_name = os.path.splitext(annot)[0] + ".jpg"
                     # pic_path = join(video_id, pic_name)
                     pic_name = f"{i:08d}.png" 
-                    pic_path_rel = join(video_id, 'resize_pic', pic_name)
+                    pic_path_rel = join(video_id, 'blur', pic_name)
 
                     image['file_name'] = pic_path_rel
 
                     # 添加图片宽、高
                     # pic_path = join(dataroot, pic_path)
-                    pic_path = join(self.original_dir, video_id, 'resize_pic', pic_name)
+                    pic_path = join(self.original_dir, video_id, 'blur', pic_name)
 
                     image_pic = Image.open(pic_path) # 打开图片
                     pic_width, pic_height = image_pic.size
@@ -572,7 +572,7 @@ if __name__ == '__main__':
     # videos_test_3
     # videos_train
     # convert300vw.convert_jpg(convert300vw.videos_part)
-    # convert300vw.convert_annot(convert300vw.videos_part)
+    convert300vw.convert_annot(convert300vw.videos_part)
 
     # A bit of data to test
     # convert300vw.convert_jpg(convert300vw.videos_part)
@@ -585,10 +585,8 @@ if __name__ == '__main__':
 
     # convert300vw.make_256pic(convert300vw.videos_part)
 
-    # convert300vw.convert_annot(convert300vw.videos_part,'train.json',  
-    #                            '/home/xyli/data/546/Blur')
 
 
-    convert300vw.convert_1video()
+    # convert300vw.convert_1video()
 
 
