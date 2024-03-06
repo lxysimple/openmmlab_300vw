@@ -69,9 +69,9 @@ class Preprocess300vw:
         self.videos_test_3 = ['410', '411', '516', '517', '526', '528', '529', '530', '531', '533', 
                               '557', '558', '559', '562']
 
-        self.videos_train = [ i for i in self.videos_all if i not in self.videos_test_1 
-                                                        and i not in self.videos_test_2 
-                                                        and i not in self.videos_test_3]
+        # self.videos_train = [ i for i in self.videos_all if i not in self.videos_test_1 
+        #                                                 and i not in self.videos_test_2 
+        #                                                 and i not in self.videos_test_3]
         self.videos_train = [
             '001' '002' '003' '004' '007' '009' '010' '011' '013' '015' 
             '016' '017' '018' '019' '020' '022' '025' '027' '028' '029' 
