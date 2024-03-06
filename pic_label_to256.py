@@ -75,7 +75,7 @@ def findxy(avideo_annot_path):
     args:
         avideo_annot_path: 某个帧注解的路径, .../000001.pts
     """
-    keypoints = _keypoint_from_pts_(annot_path)
+    keypoints = _keypoint_from_pts_(avideo_annot_path)
 
     keypoints_x = [] 
     keypoints_y = []
