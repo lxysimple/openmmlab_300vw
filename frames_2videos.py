@@ -13,7 +13,7 @@ def frames_1video(frames_dir, res_dir):
     frames_list = os.listdir(frames_dir)
 
     # 定义视频文件名和分辨率
-    output_video = 'vid.avi'
+    output_video = join(res_dir, 'vid.avi')
     frame_width = 256
     frame_height = 256
 
@@ -30,6 +30,8 @@ def frames_1video(frames_dir, res_dir):
 
     # 释放资源
     out.release()
+
+    print(f'已处理{frames_dir}!')
 
 if __name__ == '__main__':
     frames_1video(
