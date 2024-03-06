@@ -73,7 +73,7 @@ class Preprocess300vw:
                                                         and i not in self.videos_test_2 
                                                         and i not in self.videos_test_3]
         
-        self.videos_part = ['001', '002', '003', '004', '007'] # 测试时数据搞小点
+        self.videos_part = ['001'] # 测试时数据搞小点
 
         # Downsample FPS to `1 / sample_rate`. Default: 5.
         # 30    -> 3142
