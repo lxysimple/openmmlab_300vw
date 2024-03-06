@@ -268,7 +268,7 @@ def testall():
         for png in pngs: # 遍历 001中的[00000001.png, ...]
             # 某个帧 某个帧注解 路径
             png_path = join(pngs_dir, png)
-            annot_path = join(annots_dir, png[-12:-4]+'pts')
+            annot_path = join(annots_dir, png[-10:-4]+'pts')
 
             # 从注解中提取信息
             max_edge = find_edge(annot_path)
@@ -288,7 +288,7 @@ def testall():
             
             # 对crop_image进行二次加工
             png_path = join(crop_pic, png)
-            annot_path = join(crop_annot, png[-12:-4]+'pts')
+            annot_path = join(crop_annot, png[-10:-4]+'pts')
 
             resize256(
                 png_path,
