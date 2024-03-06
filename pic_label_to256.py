@@ -80,7 +80,6 @@ def crop_image(apic_path, res_path, max_edge, midx, midy):
         res_path: 裁剪后结果图所放置的路径
         max_edge: 图片将要被裁剪边的长度
     """
-    
     image = Image.open(apic_path)
     cropped_image = image.crop(
                         (
@@ -91,15 +90,19 @@ def crop_image(apic_path, res_path, max_edge, midx, midy):
                         )   
                     )
     # 创建注解文件的目录（没有该目录，无法创建注解文件）
-    # edge_dir = self.edges_dir + f"/{video_id}"
-    edge_dir = save_path
-    if not os.path.exists(edge_dir):
-        os.makedirs(edge_dir)
+    if not os.path.exists(res_path):
+        os.makedirs(res_path)
 
-    # 保存图像,若是n.jpg，就保存为n-3.jpg
-    save_pic = f'{edge_dir}/{id}.jpg'
-    cropped_image.save(save_pic)
+    file_name = apic_path[-12:]
+
+    print(file_name)
+    # # 保存图像,若是n.jpg，就保存为n-3.jpg
+    # save_pic = f'{edge_dir}/{id}.jpg'
+    # cropped_image.save(save_pic)
 
 if __name__ == '__main__':
 
-    max_edge = find_edge('/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot')
+    # max_edge = find_edge('/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot')
+    crop_image('/home/lxy/桌面/00000001.png', '/home/lxy/桌面/', 150, 0, 0)
+
+
