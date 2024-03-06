@@ -31,3 +31,7 @@ def frames_1video(frames_dir, res_dir):
     out.release()
 
 if __name__ == '__main__':
+    frames_1video(
+        '/home/xyli/data/dest/001/resize_pic',
+        '/home/xyli/data/dest/001'
+    )
