@@ -237,22 +237,66 @@ def testall():
     pic_300vw_dir = '/home/lxy/桌面/dest'
     annot_300vw_dir = '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14'
 
-    for video in videos:
+    # dest/[001,002,...]/crop_pic
+    # dest/[001,002,...]/crop_annot
+    data300vw_dir_res = '/home/lxy/桌面/dest/' 
+
+
+    for video in videos: # 遍历 [001,002,...]
+        # 待转化数据路径
         pngs_dir = join(pic_300vw_dir, video, 'images')
         annots_dir = join(annot_300vw_dir, video, 'annot')
+        # 转化结果路径
+        crop_pic = join(annot_300vw_dir, video, 'crop_pic')
+        crop_annot = join(annot_300vw_dir, video, 'crop_annot')
+        resize_pic = join(annot_300vw_dir, video, 'resize_pic')
+        resize_annot = join(annot_300vw_dir, video, 'resize_annot')
+
+
+        # 如果转化结果路径不存在, 则创建
+        if not os.path.exists(crop_pic):
+            os.makedirs(crop_pic)
+        if not os.path.exists(crop_annot):
+            os.makedirs(crop_annot) 
+        if not os.path.exists(resize_pic):
+            os.makedirs(resize_pic)
+        if not os.path.exists(resize_annot):
+            os.makedirs(resize_annot)
 
         
-        
-        pngs = os.listdir(pngs_dir)
-        for png in pngs:
-            # max_edge = find_edge(annots_dir)
-            # x_left, y_low = findxy(annots_dir)
-            print(png) 
-            # crop_image( 
-            #     '/home/lxy/桌面/00000001.png', 
-            #     '/home/lxy/桌面/pic/', max_edge, x_left, y_low
-            # )
+        pngs = os.listdir(pngs_dir) 
+        for png in pngs: # 遍历 001中的[00000001.png, ...]
+            # 某个帧 某个帧注解 路径
+            png_path = join(pngs_dir, png)
+            annot_path = join(annots_dir, png[-12:-4]+'pts')
 
+            # 从注解中提取信息
+            max_edge = find_edge(annot_path)
+            x_left, y_low = findxy(annot_path)
+ 
+            crop_image( 
+                png_path, 
+                crop_pic, 
+                max_edge, x_left, y_low
+            )
+
+            chage_annot_with_crop(
+                annot_path,
+                crop_annot,
+                max_edge+40, x_left-20, y_low-20
+            )
+            
+            # 对crop_image进行二次加工
+            png_path = join(crop_pic, png)
+            annot_path = join(crop_annot, png[-12:-4]+'pts')
+
+            resize256(
+                png_path,
+                annot_path,
+                resize_pic,
+                resize_annot,
+                max_edge+40
+            )  
 
 
 if __name__ == '__main__':
