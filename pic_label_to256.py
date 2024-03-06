@@ -263,7 +263,8 @@ def testall():
         if not os.path.exists(resize_annot):
             os.makedirs(resize_annot)
 
-        max_edge = find_edge(annots_dir)
+        max_edge = find_edge(annots_dir) # 获取001中的最大边长
+
         pngs = os.listdir(pngs_dir) 
         for png in pngs: # 遍历 001中的[00000001.png, ...]
             # 某个帧 某个帧注解 路径
