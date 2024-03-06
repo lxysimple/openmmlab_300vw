@@ -103,9 +103,7 @@ def chage_annot_with_crop(anont_path, res_path, max_edge, midx, midy):
             f.write(f'{x_new} {y_new}\n')
 
         f.write(end)
-
-
-
+        
     return 
 
 def crop_image(apic_path, res_path, max_edge, midx, midy):
