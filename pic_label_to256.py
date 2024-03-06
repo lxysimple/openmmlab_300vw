@@ -233,7 +233,8 @@ def test1():
     )   
 
 def testall():
-    videos = ['001', '002', '003', '004', '007']
+    # videos = ['001', '002', '003', '004', '007']
+    videos = ['001']
     # windows
     # pic_300vw_dir = '/home/lxy/桌面/dest'
     # annot_300vw_dir = '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14'
