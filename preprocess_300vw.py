@@ -278,6 +278,14 @@ class Preprocess300vw:
         self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
         self.processed_dir = '/home/xyli/data/dest'
 
+        id = 1
+        for i in self.videos_train:
+            print(f'{i}',end=' ')
+            if id%10==0:
+                print()
+            id = id+1
+
+
         for video in videos:
             video_path = join(self.original_dir, video, 'vid.avi')
             cap = cv2.VideoCapture(video_path)
