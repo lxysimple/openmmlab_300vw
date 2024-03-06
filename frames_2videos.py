@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import os
 from os.path import join
 
 def frames_1video(frames_dir, res_dir):
