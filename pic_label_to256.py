@@ -245,11 +245,11 @@ def testall():
 
         pngs = os.listdir(pngs_dir)
         for png in pngs:
-            crop_image(
-            '/home/lxy/桌面/00000001.png', 
-            '/home/lxy/桌面/pic/', max_edge, x_left, y_low
-
-    )
+            print(png)
+            # crop_image(
+            #     '/home/lxy/桌面/00000001.png', 
+            #     '/home/lxy/桌面/pic/', max_edge, x_left, y_low
+            # )
 
 
 
