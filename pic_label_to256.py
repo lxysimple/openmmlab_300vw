@@ -1,3 +1,6 @@
+import os
+
+
 def _keypoint_from_pts_(file_path):
     """
     从一个.pts格式文件中提取68个关键点到列表中,并返回该列表
@@ -48,5 +51,5 @@ def find_edge(avideo_annots_path):
 
 
 if __name__ == '__main__':
-    
+
     find_edge('/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot')
