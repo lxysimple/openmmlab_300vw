@@ -1,6 +1,5 @@
 import os
 
-
 def _keypoint_from_pts_(file_path):
     """
     从一个.pts格式文件中提取68个关键点到列表中,并返回该列表
@@ -43,13 +42,34 @@ def find_edge(avideo_annots_path):
     annots = os.listdir(avideo_annots_path)
     annots.sort() # 服务器上这个列表默认是乱的，无语
 
+    max_edge = 0
     for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
-        print(annot)
+        
+        annot_path = join(avideo_annots_path, annot) # .../annot/001564.pts
+        keypoints = _keypoint_from_pts_(annot_path)
 
-    return 
+        keypoints_x = []
+        keypoints_y = []
+        for j in range(68*2):
+            if j%2 == 0:
+                keypoints_x.append(keypoints[j])
+            else:
+                keypoints_y.append(keypoints[j])
+        x_left = min(keypoints_x)  
+        x_right = max(keypoints_x) 
+        y_low = min(keypoints_y) 
+        y_high = max(keypoints_y) 
+        w = x_right - x_left 
+        h = y_high - y_low 
+
+        edge = max(w, h)
+        max_edge = max(max_edge, edge)
+
+    return max_edge
 
 
 
 if __name__ == '__main__':
 
-    find_edge('/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot')
+    max_edge = find_edge('/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot')
+    print(max_edge)
