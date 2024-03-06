@@ -191,7 +191,7 @@ if __name__ == '__main__':
     
     crop_image(
         '/home/lxy/桌面/00000001.png', 
-        '/home/lxy/桌面/pic256/', max_edge, x_left, y_low
+        '/home/lxy/桌面/pic/', max_edge, x_left, y_low
     )
 
     chage_annot_with_crop(
@@ -200,7 +200,9 @@ if __name__ == '__main__':
         max_edge+40, x_left-20, y_low-20
     )
 
-    # resize256(
-    #     '/home/lxy/桌面/pic256/00000001.png',
-
-    # )
+    resize256(
+        '/home/lxy/桌面/pic/00000001.png',
+        '/home/lxy/桌面/annot/000001.pts',
+        '/home/lxy/桌面/pic256/',
+        '/home/lxy/桌面/annot256'
+    )   
