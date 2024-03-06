@@ -33,22 +33,21 @@ def _keypoint_from_pts_(file_path):
 
     return keypoints
 
-def find_edge(avideo_annots_path):
+def find_edge(videos_annots_path):
     """
     用所有帧中最大的人脸框的边做所有帧的框边长,这样就保证所有帧在时间维度上对齐了
     args:
         一个视频对应所有帧的注解目录
     return:
         max_edge: 这些注解中,求得最大边长并返回
-        midx, midy: 中心点x y坐标
     """
-    annots = os.listdir(avideo_annots_path)
+    annots = os.listdir(videos_annots_path)
     annots.sort() # 服务器上这个列表默认是乱的，无语
 
     max_edge = 0
     for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
         
-        annot_path = join(avideo_annots_path, annot) # .../annot/001564.pts
+        annot_path = join(videos_annots_path, annot) # .../annot/001564.pts
         keypoints = _keypoint_from_pts_(annot_path)
 
         keypoints_x = []
@@ -68,7 +67,30 @@ def find_edge(avideo_annots_path):
         edge = max(w, h)
         max_edge = max(max_edge, edge)
 
-    return max_edge, x_left, y_low
+    return max_edge
+
+def findxy(avideo_annot_path):
+    """
+    找到某个帧人脸框的左上角坐标
+    args:
+        avideo_annot_path: 某个帧注解的路径, .../000001.pts
+    """
+    keypoints = _keypoint_from_pts_(annot_path)
+
+    keypoints_x = [] 
+    keypoints_y = []
+    for j in range(68*2):
+        if j%2 == 0:
+            keypoints_x.append(keypoints[j])
+        else:
+            keypoints_y.append(keypoints[j])
+    x_left = min(keypoints_x)  
+    x_right = max(keypoints_x) 
+    y_low = min(keypoints_y) 
+    y_high = max(keypoints_y) 
+
+    return x_left, y_low
+
 
 def chage_annot_with_crop(anont_path, res_path, max_edge, x_left, y_low):
     """
@@ -181,8 +203,12 @@ def resize256(apic_path, annot_path, pic_res_dir, annot_res_dir, max_edge):
     return 
 
 def test1():
-    max_edge, x_left, y_low= find_edge(
+    max_edge = find_edge(
         '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot'
+    )
+
+    x_left, y_low = findxy(
+        '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot/000001.pts'
     )
 
     print('max_edge: ', max_edge)
@@ -208,10 +234,23 @@ def test1():
 
 def testall():
     videos = ['001', '002', '003', '004', '007']
-    data_300vw_dir = '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14'
+    pic_300vw_dir = '/home/lxy/桌面/dest'
+    annot_300vw_dir = '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14'
 
-    for i in videos:
-        video_path
+    for video in videos:
+        pngs_dir = join(pic_300vw_dir, video, 'images')
+        annots_dir = join(annot_300vw_dir, video, 'annot')
+
+        max_edge, x_left, y_low= find_edge(annots_dir)
+
+        pngs = os.listdir(pngs_dir)
+        for png in pngs:
+            crop_image(
+            '/home/lxy/桌面/00000001.png', 
+            '/home/lxy/桌面/pic/', max_edge, x_left, y_low
+
+    )
+
 
 
 if __name__ == '__main__':
