@@ -183,10 +183,17 @@ def resize256(apic_path, annot_path, pic_res_dir, annot_res_dir, max_edge):
 
 if __name__ == '__main__':
 
-    max_edge, x_left, y_low= find_edge('/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot')
+    max_edge, x_left, y_low= find_edge(
+        '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot'
+    )
+
     print('max_edge: ', max_edge)
     
-    crop_image('/home/lxy/桌面/00000001.png', '/home/lxy/桌面/pic256/', max_edge, x_left, y_low)
+    crop_image(
+        '/home/lxy/桌面/00000001.png', 
+        '/home/lxy/桌面/pic256/', max_edge, x_left, y_low
+    )
+    
     chage_annot_with_crop(
         '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot/000001.pts',
         '/home/lxy/桌面/annot',
