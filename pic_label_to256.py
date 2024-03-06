@@ -241,13 +241,14 @@ def testall():
         pngs_dir = join(pic_300vw_dir, video, 'images')
         annots_dir = join(annot_300vw_dir, video, 'annot')
 
-        max_edge = find_edge(annots_dir)
-        x_left, y_low = findxy(annots_dir)
+        
         
         pngs = os.listdir(pngs_dir)
         for png in pngs:
-            print(png)
-            # crop_image(
+            max_edge = find_edge(annots_dir)
+            x_left, y_low = findxy(annots_dir)
+            print(png) 
+            # crop_image( 
             #     '/home/lxy/桌面/00000001.png', 
             #     '/home/lxy/桌面/pic/', max_edge, x_left, y_low
             # )
