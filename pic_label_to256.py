@@ -68,12 +68,9 @@ def find_edge(avideo_annots_path):
         edge = max(w, h)
         max_edge = max(max_edge, edge)
 
-        midx = (x_left + x_right)/2,
-        midy = (y_low + y_high)/2
+    return max_edge, x_left, y_high
 
-    return max_edge, midx, midy
-
-def chage_annot_with_crop(anont_path, res_path, max_edge, midx, midy):
+def chage_annot_with_crop(anont_path, res_path, max_edge, x_left, y_high):
     """
     args: 
         anont_path: 要变化注解文件的路径, .../000001.pts
@@ -81,8 +78,6 @@ def chage_annot_with_crop(anont_path, res_path, max_edge, midx, midy):
         max_edge: crop时的边长
         midx, midy: crop时的左上坐标
     """
-    left_x = midx - 0.5*max_edge
-    top_y = midy - 0.5*max_edge
 
     with open(anont_path, 'r') as f:
         lines = f.readlines()
@@ -99,8 +94,8 @@ def chage_annot_with_crop(anont_path, res_path, max_edge, midx, midy):
         for point in points:
             x, y = point.strip().split()
             # 相对坐标就是crop后的绝对坐标
-            x_new = str(float(x) - left_x)
-            y_new = str(float(y) - top_y)
+            x_new = str(float(x) - x_left)
+            y_new = str(float(y) - y_high)
 
             # 写入新的点坐标
             f.write(f'{x_new} {y_new}\n')
@@ -109,7 +104,7 @@ def chage_annot_with_crop(anont_path, res_path, max_edge, midx, midy):
 
     return 
 
-def crop_image(apic_path, res_path, max_edge, midx, midy):
+def crop_image(apic_path, res_path, max_edge, x_left, y_high):
     """
     args:
         apic_path: 一个要被裁剪的图片路径, 要求图片命名形式为{:08d}.png
@@ -119,10 +114,10 @@ def crop_image(apic_path, res_path, max_edge, midx, midy):
     image = Image.open(apic_path)
     cropped_image = image.crop(
                         (
-                            midx - 20 , 
-                            midy - 20 , 
-                            midx + max_edge + 40 ,
-                            midy + max_edge + 40 ,
+                            x_left - 20 , 
+                            y_high - 20 , 
+                            x_left + max_edge + 40 ,
+                            y_high + max_edge + 40 ,
                         )   
                     )
     # 创建注解文件的目录（没有该目录，无法创建注解文件）
@@ -140,12 +135,12 @@ def crop_image(apic_path, res_path, max_edge, midx, midy):
 
 if __name__ == '__main__':
 
-    # max_edge = find_edge('/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot')
-    # crop_image('/home/lxy/桌面/00000001.png', '/home/lxy/桌面/', 150, 0, 0)
+    max_edge, x_left, y_high= find_edge('/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot')
+    crop_image('/home/lxy/桌面/00000001.png', '/home/lxy/桌面/', max_edge, x_left, y_high)
     chage_annot_with_crop(
         '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot/000001.pts',
         '/home/lxy/桌面/annot',
-        1,2,3
+        max_edge+40, x_left-20, y_high-20
     )
 
 
