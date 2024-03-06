@@ -136,10 +136,10 @@ def crop_image(apic_path, res_path, max_edge, x_left, y_low):
     image = Image.open(apic_path)
     cropped_image = image.crop(
                         (
-                            x_left - 20 , 
-                            y_low - 20 , 
-                            x_left + max_edge + 40 ,
-                            y_low + max_edge + 40 ,
+                            x_left , 
+                            y_low  , 
+                            x_left + max_edge  ,
+                            y_low + max_edge  ,
                         )   
                     )
     # 创建注解文件的目录（没有该目录，无法创建注解文件）
@@ -215,7 +215,7 @@ def test1():
     
     crop_image(
         '/home/lxy/桌面/00000001.png', 
-        '/home/lxy/桌面/pic/', max_edge, x_left, y_low
+        '/home/lxy/桌面/pic/', max_edge+40, x_left-20, y_low-20
     )
 
     chage_annot_with_crop(
@@ -283,7 +283,7 @@ def testall():
             crop_image( 
                 png_path, 
                 crop_pic, 
-                max_edge, x_left, y_low
+                max_edge+40, x_left-20, y_low-20
             )
 
             chage_annot_with_crop(
