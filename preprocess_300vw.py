@@ -278,12 +278,7 @@ class Preprocess300vw:
         self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
         self.processed_dir = '/home/xyli/data/dest'
 
-        id = 1
-        for i in self.videos_train:
-            print(f'{i}',end=' ')
-            if id%10==0:
-                print()
-            id = id+1
+
 
 
         for video in videos:
@@ -373,6 +368,15 @@ class Preprocess300vw:
         self.processed_dir = '/home/xyli/data/300vw/annotations'
         filename = 'train.json'
         dataroot = '/home/xyli/data/300vw/images'
+
+
+        id = 1
+        for i in self.videos_train:
+            print(f'{i}',end=' ')
+            if id%10==0:
+                print()
+            id = id+1
+
 
         json_data = { 
                 'images': [ 
