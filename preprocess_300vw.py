@@ -73,7 +73,7 @@ class Preprocess300vw:
                                                         and i not in self.videos_test_2 
                                                         and i not in self.videos_test_3]
         
-        self.videos_part = ['546'] # 测试时数据搞小点
+        self.videos_part = ['001', '002', '003', '004', '007'] # 测试时数据搞小点
 
         # Downsample FPS to `1 / sample_rate`. Default: 5.
         # 30    -> 3142
@@ -272,6 +272,8 @@ class Preprocess300vw:
     # 对数据集中所有视频转换成多张图片
     # 其中self.sample_rate可控制转换率，其越小，单个视频转换的图片数量越多
     def convert_jpg(self, videos):
+        self.original_dir = '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14'
+        self.processed_dir = ''
 
         for video in videos:
             video_path = join(self.original_dir, video, 'vid.avi')
@@ -290,7 +292,7 @@ class Preprocess300vw:
                     
                 if i % self.sample_rate == 0: # 用这种方式控制视频转化率
                     # f是格式化字符串，d表示i是整数，06代表占6个格子多余填充0
-                    imgname = f'{i:06d}.jpg' # 要高精度的化.png最好
+                    imgname = f'{i:08d}.png' # 要高精度的化.png最好
 
                     dest_path = join(self.processed_dir, 'images', video)
                     dest = join(dest_path, imgname)

@@ -180,9 +180,7 @@ def resize256(apic_path, annot_path, pic_res_dir, annot_res_dir, max_edge):
 
     return 
 
-
-if __name__ == '__main__':
-
+def test1():
     max_edge, x_left, y_low= find_edge(
         '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot'
     )
@@ -207,3 +205,15 @@ if __name__ == '__main__':
         '/home/lxy/桌面/annot256',
         max_edge+40
     )   
+
+def testall():
+    videos = ['001', '002', '003', '004', '007']
+    data_300vw_dir = '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14'
+
+    for i in videos:
+        video_path
+
+
+if __name__ == '__main__':
+
+    return 
