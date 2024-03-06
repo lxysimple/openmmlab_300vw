@@ -72,7 +72,13 @@ class Preprocess300vw:
         self.videos_train = [ i for i in self.videos_all if i not in self.videos_test_1 
                                                         and i not in self.videos_test_2 
                                                         and i not in self.videos_test_3]
-        
+        self.videos_train = [
+            '001' '002' '003' '004' '007' '009' '010' '011' '013' '015' 
+            '016' '017' '018' '019' '020' '022' '025' '027' '028' '029' 
+            '031' '033' '034' '035' '037' '039' '041' '043' '044' '046' 
+            '047' '048' '049' '053' '057' '059' '112' '113' '115' '119' 
+            '120' '123' '138' '143' '144' '160' '204' '205' '223' '225'
+        ]
         self.videos_part = ['001', '002', '003', '004', '007']
         # self.videos_part = ['001'] # 测试时数据搞小点
 
@@ -370,12 +376,12 @@ class Preprocess300vw:
         dataroot = '/home/xyli/data/300vw/images'
 
 
-        id = 1
-        for i in self.videos_train:
-            print(f"\'{i}\'",end=' ')
-            if id%10==0:
-                print()
-            id = id+1
+        # id = 1
+        # for i in self.videos_train:
+        #     print(f"\'{i}\'",end=' ')
+        #     if id%10==0:
+        #         print()
+        #     id = id+1
 
 
         json_data = { 
