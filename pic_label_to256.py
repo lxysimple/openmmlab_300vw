@@ -86,7 +86,7 @@ def chage_annot_with_crop(anont_path, res_path, max_edge, x_left, y_low):
     points = lines[3:71]
     end = lines[71]
 
-    annot_name = anont_path[-6:]
+    annot_name = anont_path[-10:]
     res_path_file = join(res_path, annot_name)
     with open(res_path_file, 'w') as f:
         f.writelines(header)
@@ -193,11 +193,14 @@ if __name__ == '__main__':
         '/home/lxy/桌面/00000001.png', 
         '/home/lxy/桌面/pic256/', max_edge, x_left, y_low
     )
-    
+
     chage_annot_with_crop(
         '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot/000001.pts',
         '/home/lxy/桌面/annot',
         max_edge+40, x_left-20, y_low-20
     )
 
+    resize256(
+        '/home/lxy/桌面/pic256/00000001.png',
 
+    )
