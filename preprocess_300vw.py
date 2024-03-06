@@ -573,7 +573,7 @@ if __name__ == '__main__':
     # All the data
     # videos_test_3
     # videos_train
-    # convert300vw.convert_jpg(convert300vw.videos_part)
+    convert300vw.convert_jpg(convert300vw.videos_part)
     # convert300vw.convert_annot(convert300vw.videos_part,'train.json', 
     #                            '/home/xyli/data/300vw/images')
 
@@ -592,6 +592,6 @@ if __name__ == '__main__':
     #                            '/home/xyli/data/546/Blur')
 
 
-    convert300vw.convert_1video()
+    # convert300vw.convert_1video()
 
 
