@@ -133,13 +133,18 @@ def crop_image(apic_path, res_path, max_edge, x_left, y_low):
 def resize256(apic_path, annot_path, pic_res_dir, annot_res_dir, max_edge):
     """
     args:
-        apic_path: 要resize的某个帧地址
-        annot_path: 其对应annot地址
+        apic_path: 要resize的某个帧地址, 要求图片命名形式为{:08d}.png
+        annot_path: 其对应annot地址, .../000001.pts
         pic_res_dir: 输出的图片存放目录
         annot_res_dir: 修改后注解存放目录
         max_edge: 图片的边长
     """
-    with open(anont_path, 'r') as f:
+
+    # 修改注解坐标
+    # ?/x = 256/max_edge, ?=256*x/max_edge
+    scale = 256.0/max_edge 
+
+    with open(annot_path, 'r') as f:
         lines = f.readlines()
     # 处理第一部分，不改变（版本号和点的数量）
     header = lines[:3]
@@ -148,19 +153,30 @@ def resize256(apic_path, annot_path, pic_res_dir, annot_res_dir, max_edge):
 
     annot_name = anont_path[-6:]
     res_path_file = join(res_path, annot_name)
-    with open(res_path_file, 'w') as f:
+    with open(annot_res_dir, 'w') as f:
         f.writelines(header)
 
         for point in points:
             x, y = point.strip().split()
             # 相对坐标就是crop后的绝对坐标
-            x_new = str(float(x) - x_left)
-            y_new = str(float(y) - y_low)
+            x_new = str(float(x)*scale)
+            y_new = str(float(y)*scale)
 
             # 写入新的点坐标
             f.write(f'{x_new} {y_new}\n')
 
         f.write(end)
+
+
+    # 修改图片
+    image = Image.open(apic_path)
+    image = image.resize((256, 256))
+
+    if not os.path.exists(pic_res_dir):
+        os.makedirs(pic_res_dir)
+
+    save_pic = join(pic_res_dir, apic_path[-12:]) 
+    image.save(save_pic)
 
     return 
 
