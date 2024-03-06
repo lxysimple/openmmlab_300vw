@@ -164,7 +164,7 @@ def resize256(apic_path, annot_path, pic_res_dir, annot_res_dir, max_edge):
 
     # 修改注解坐标
     # ?/x = 256/max_edge, ?=256*x/max_edge
-    scale = 256.0/(max_edge+40) 
+    scale = 256.0/max_edge 
 
     with open(annot_path, 'r') as f:
         lines = f.readlines()
