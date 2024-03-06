@@ -284,25 +284,28 @@ def testall():
             crop_image( 
                 png_path, 
                 crop_pic, 
-                max_edge+40, x_left-20, y_low-20
+                # max_edge+40, x_left-20, y_low-20
+                max_edge, x_left, y_low
             )
 
             chage_annot_with_crop(
                 annot_path,
                 crop_annot,
-                max_edge+40, x_left-20, y_low-20
+                # max_edge+40, x_left-20, y_low-20
+                max_edge, x_left, y_low
             )
             
             # 对crop_image进行二次加工
             png_path = join(crop_pic, png)
             annot_path = join(crop_annot, png[-10:-4]+'.pts')
 
-            resize256(
+            resize256( 
                 png_path,
                 annot_path,
                 resize_pic,
                 resize_annot,
-                max_edge+40
+                # max_edge+40,
+                max_edge
             )  
 
         print(f'{video}转化结束！')
