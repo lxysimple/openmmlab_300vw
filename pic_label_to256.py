@@ -1,4 +1,5 @@
 import os
+from os.path import join
 
 def _keypoint_from_pts_(file_path):
     """
