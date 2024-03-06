@@ -297,7 +297,7 @@ def testall():
                 resize_annot,
                 max_edge+40
             )  
-
+        print(f'{video}转化结束！')
 
 if __name__ == '__main__':
     testall()
