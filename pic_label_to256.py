@@ -65,6 +65,7 @@ def find_edge(avideo_annots_path):
 
         edge = max(w, h)
         max_edge = max(max_edge, edge)
+        print('edge: ', edge)
 
     return max_edge
 
@@ -73,4 +74,4 @@ def find_edge(avideo_annots_path):
 if __name__ == '__main__':
 
     max_edge = find_edge('/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot')
-    print(max_edge)
+    print('max_edge: ', max_edge)
