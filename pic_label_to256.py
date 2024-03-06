@@ -73,6 +73,42 @@ def find_edge(avideo_annots_path):
 
     return max_edge, midx, midy
 
+def chage_annot_with_crop(anont_path, res_path, max_edge, midx, midy):
+    """
+    args: 
+        anont_path: 要变化注解文件的路径, .../000001.pts
+        res_path: 储存结果的目录
+        max_edge: crop时的边长
+        midx, midy: crop时的左上坐标
+    """
+
+    with open(input_file, 'r') as f:
+        lines = f.readlines()
+    # 处理第一部分，不改变（版本号和点的数量）
+    header = lines[:3]
+    points = lines[3:71]
+    end = lines[71]
+
+    annot_name = anont_path[-6:]
+    res_path_file = join(res_path, annot_name)
+    with open(res_path_file, 'w') as f:
+        # 写入头部信息
+        f.writelines(header)
+
+        for point in points:
+            x, y = point.strip().split()
+            # 调整点坐标
+            x_new = str(float(x) + 1000)
+            y_new = str(float(y) + 1000)
+            # 写入新的点坐标
+            f.write(f'{x_new} {y_new}\n')
+
+        f.write(end)
+
+
+
+    return 
+
 def crop_image(apic_path, res_path, max_edge, midx, midy):
     """
     args:
@@ -96,6 +132,11 @@ def crop_image(apic_path, res_path, max_edge, midx, midy):
     file_name = apic_path[-12:]
     save_path = join(res_path, file_name)
     cropped_image.save(save_path)
+
+    return 
+
+
+
 
 if __name__ == '__main__':
 
