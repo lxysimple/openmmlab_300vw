@@ -40,7 +40,7 @@ def find_edge(avideo_annots_path):
     return:
         这些注解中,求得最大边长并返回
     """
-    annots = os.listdir(annot_path)
+    annots = os.listdir(avideo_annots_path)
     annots.sort() # 服务器上这个列表默认是乱的，无语
 
     for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
