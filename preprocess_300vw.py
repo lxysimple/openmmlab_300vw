@@ -429,12 +429,12 @@ class Preprocess300vw:
             annots.sort() # 服务器上这个列表默认是乱的，无语
             for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
 
-                # 做小数据测试：2~100个帧
-                if int(annot.split('.')[0]) == 1:
-                    i += 1
-                    continue
-                if int(annot.split('.')[0]) > 100:
-                    break
+                # # 做小数据测试：2~100个帧
+                # if int(annot.split('.')[0]) == 1:
+                #     i += 1
+                #     continue
+                # if int(annot.split('.')[0]) > 100:
+                #     break
 
                 
                 # # if this frame is broken, skip it.
@@ -457,7 +457,7 @@ class Preprocess300vw:
                     # 找到1个帧注解所对应图片的路径
                     # pic_name = os.path.splitext(annot)[0] + ".jpg"
                     # pic_path = join(video_id, pic_name)
-                    pic_name = f"{i:08d}.png" 
+                    pic_name = f"{i+1:08d}.png" 
                     pic_path_rel = join(video_id, 'blur', pic_name)
 
                     image['file_name'] = pic_path_rel
