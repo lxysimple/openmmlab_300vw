@@ -79,7 +79,7 @@ class Preprocess300vw:
             '047' '048' '049' '053' '057' '059' '112' '113' '115' '119' 
             '120' '123' '138' '143' '144' '160' '204' '205' '223' '225'
         ]
-        self.videos_part = ['001']
+        self.videos_part = ['004']
         # self.videos_part = ['001'] # 测试时数据搞小点
 
         # Downsample FPS to `1 / sample_rate`. Default: 5.
@@ -571,8 +571,8 @@ if __name__ == '__main__':
     # videos_test_3
     # videos_train
     # convert300vw.convert_jpg(convert300vw.videos_part)
-    convert300vw.convert_1video()
-    # convert300vw.convert_annot(convert300vw.videos_part)
+    # convert300vw.convert_1video()
+    convert300vw.convert_annot(convert300vw.videos_part)
 
     # A bit of data to test
     # convert300vw.convert_jpg(convert300vw.videos_part)
