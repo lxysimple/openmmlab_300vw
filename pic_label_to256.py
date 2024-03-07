@@ -237,7 +237,8 @@ def testall():
     # videos = ['001']
 
     # cilent
-    pic_300vw_dir = '/home/lxy/桌面/dest'
+    # pic_300vw_dir = '/home/lxy/桌面/dest'
+    pic_300vw_dir = '/home/lxy/桌面/dest_blur'
     annot_300vw_dir = '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14'
 
     # server
