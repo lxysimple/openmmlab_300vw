@@ -250,8 +250,8 @@ def testall():
     # dest/[001,002,...]/resize_pic
     # dest/[001,002,...]/resize_annot
     # data300vw_dir_res = '/home/lxy/桌面/dest/' 
-    # data300vw_dir_res = pic_300vw_dir 
-    data300vw_dir_res = '/home/lxy/桌面/dest_blur'
+    data300vw_dir_res = pic_300vw_dir 
+    # data300vw_dir_res = '/home/lxy/桌面/dest_blur'
 
     for video in videos: # 遍历 [001,002,...]
         # 待转化数据路径
