@@ -435,7 +435,8 @@ class Preprocess300vw:
                 #     continue
                 # if int(annot.split('.')[0]) > 100:
                 #     break
-
+                if i == len(annots):
+                    break
                 
                 # # if this frame is broken, skip it.
                 # # '000001.pts' -> '000001' -> 1
