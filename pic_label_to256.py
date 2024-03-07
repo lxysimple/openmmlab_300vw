@@ -255,7 +255,8 @@ def testall():
 
     for video in videos: # 遍历 [001,002,...]
         # 待转化数据路径
-        pngs_dir = join(pic_300vw_dir, video, 'images')
+        # pngs_dir = join(pic_300vw_dir, video, 'images')
+        pngs_dir = join(pic_300vw_dir, video, 'images_blur')
         annots_dir = join(annot_300vw_dir, video, 'annot')
         # 转化结果路径
         crop_pic = join(data300vw_dir_res, video, 'crop_pic')
