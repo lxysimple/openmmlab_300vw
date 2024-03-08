@@ -79,7 +79,7 @@ class Preprocess300vw:
             '047' '048' '049' '053' '057' '059' '112' '113' '115' '119' 
             '120' '123' '138' '143' '144' '160' '204' '205' '223' '225'
         ]
-        self.videos_part = ['004']
+        self.videos_part = ['001']
         # self.videos_part = ['001'] # 测试时数据搞小点
 
         # Downsample FPS to `1 / sample_rate`. Default: 5.
@@ -333,8 +333,8 @@ class Preprocess300vw:
         # video_path = '/home/xyli/data/vid.avi_sharp.mp4'
         # dest_path = '/home/xyli/data/BSD/BSD_2ms16ms/train/002/Sharp/RGB'
 
-        video_path = '/home/lxy/桌面/exp/004/vid.avi_blurry.mp4'
-        dest_path = '/home/lxy/桌面/dest_blur/004/images'
+        video_path = '/home/lxy/桌面/exp/001/vid.avi_blurry.mp4'
+        dest_path = '/home/lxy/桌面/dest_blur/001/images'
         # video_path = '/home/xyli/data/vid.avi_sharp_valid.mp4'
         # dest_path = '/home/xyli/data/546/Sharp'
 
