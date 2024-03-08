@@ -234,7 +234,7 @@ def test1():
 
 def testall():
     # videos = ['001', '002', '003', '004', '007']
-    videos = ['003']
+    videos = ['007']
 
     # cilent
     # pic_300vw_dir = '/home/lxy/桌面/dest'
