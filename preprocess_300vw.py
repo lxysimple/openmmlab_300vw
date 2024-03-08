@@ -334,7 +334,7 @@ class Preprocess300vw:
         # dest_path = '/home/xyli/data/BSD/BSD_2ms16ms/train/002/Sharp/RGB'
 
         video_path = '/home/lxy/桌面/exp/001/vid.avi_blurry.mp4'
-        dest_path = '/home/lxy/桌面/dest_blur/001/images'
+        dest_path = '/home/lxy/桌面/dest_blur/002/images'
         # video_path = '/home/xyli/data/vid.avi_sharp_valid.mp4'
         # dest_path = '/home/xyli/data/546/Sharp'
 
