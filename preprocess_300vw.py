@@ -373,7 +373,7 @@ class Preprocess300vw:
         self.original_dir = '/home/xyli/data/dest_blur'
         self.processed_dir = '/home/xyli/data/300vw/annotations'
         filename = 'train.json'
-
+        self.videos_part = ['001']
 
         # id = 1
         # for i in self.videos_train:
@@ -572,8 +572,8 @@ if __name__ == '__main__':
     # videos_test_3
     # videos_train
     # convert300vw.convert_jpg(convert300vw.videos_part)
-    convert300vw.convert_1video()
-    # convert300vw.convert_annot(convert300vw.videos_part)
+    # convert300vw.convert_1video()
+    convert300vw.convert_annot(convert300vw.videos_part)
 
     # A bit of data to test
     # convert300vw.convert_jpg(convert300vw.videos_part)
