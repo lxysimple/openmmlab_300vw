@@ -191,7 +191,8 @@ class Preprocess300vw:
                 outputs.append(anno_1pic)
 
         # 去掉最后一个序列的最后2帧
-        return outputs[:-2]
+        # return outputs[:-2]
+        return outputs[:801]
 
 if __name__ == '__main__':
     convert300vw = Preprocess300vw()
