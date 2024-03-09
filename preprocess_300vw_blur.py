@@ -174,10 +174,11 @@ class Preprocess300vw:
                 if path[0:3] != '004':
                     continue
                 
+                pic_id = int(path[4:-4])
 
                 anno_1pic = {} 
                 anno_1pic['keypoints'] = keypoints
-                anno_1pic['path'] = f'{int(path):08d}'
+                anno_1pic['path'] = path[0:3] + '/' + f'{pic_id:08d}' + '.png'
 
                 # 为了和FSTRNN生成结果一致
                 # 丢弃每个序列最后2帧
