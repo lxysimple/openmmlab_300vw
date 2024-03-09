@@ -430,7 +430,7 @@ class Preprocess300vw:
             for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
 
                 # 做小数据测试：2~800个帧
-                if int(annot.split('.')[0]) == 1:
+                if int(annot.split('.')[0]) <= 3:
                     i += 1
                     continue
                 if int(annot.split('.')[0]) > 800:
