@@ -370,10 +370,10 @@ class Preprocess300vw:
     
     # 该函数应该在convert_jpg后执行
     def convert_annot(self, dataset):
-        self.original_dir = '/home/xyli/data/dest_blur'
+        self.original_dir = '/home/xyli/data/dest'
         self.processed_dir = '/home/xyli/data/300vw/annotations'
         filename = 'train.json'
-        self.videos_part = ['001']
+        self.videos_part = ['004']
 
         # id = 1
         # for i in self.videos_train:
