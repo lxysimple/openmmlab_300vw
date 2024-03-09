@@ -177,7 +177,7 @@ class Preprocess300vw:
 
                 anno_1pic = {} 
                 anno_1pic['keypoints'] = keypoints
-                anno_1pic['path'] = f'{path:08d}'
+                anno_1pic['path'] = f'{int(path):08d}'
 
                 # 为了和FSTRNN生成结果一致
                 # 丢弃每个序列最后2帧
