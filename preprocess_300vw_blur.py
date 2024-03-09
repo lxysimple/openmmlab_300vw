@@ -13,7 +13,7 @@ from PIL import Image, ImageDraw
 class Preprocess300vw:
     def __init__(self):
         # In Linux:
-        self.original_dir = '/home/xyli/data/Blurred-300VW-deblur'
+        self.original_dir = '/home/xyli/data/Blurred-300VW'
 
 
         self.processed_file = '/home/xyli/data/annotations/300VW_blur_label_list_256_train_mmpose.json' # 转换后的主目录
