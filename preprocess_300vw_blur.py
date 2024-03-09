@@ -179,6 +179,7 @@ class Preprocess300vw:
                 anno_1pic['keypoints'] = keypoints
                 anno_1pic['path'] = path
 
+                # 为了和FSTRNN生成结果一致
                 # 丢弃每个序列最后2帧
                 if int(path[4:-4]) == 0 and len(outputs)!=0:
                     outputs = outputs[:-2]
