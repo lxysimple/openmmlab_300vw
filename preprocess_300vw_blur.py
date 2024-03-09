@@ -169,10 +169,10 @@ class Preprocess300vw:
                 path = strings[68*2]
 
                 # 做一个小样本测试
-                if path[0:3] == '015':
-                    break
-                if path[0:3] == '001': # 忽略001序列
-                    continue 
+                if path[0:3] == '007': # 忽略001序列
+                    break 
+                if path[0:3] != '004':
+                    continue
                 
 
                 anno_1pic = {} 
@@ -189,7 +189,7 @@ class Preprocess300vw:
                 outputs.append(anno_1pic)
 
         # 去掉最后一个序列的最后2帧
-        return outputs[:-2]
+        return outputs
 
 if __name__ == '__main__':
     convert300vw = Preprocess300vw()
