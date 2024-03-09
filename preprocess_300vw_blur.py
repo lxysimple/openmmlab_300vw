@@ -169,9 +169,9 @@ class Preprocess300vw:
                 path = strings[68*2]
 
                 # 做一个小样本测试
-                if path[0:3] == '007': # 忽略001序列
+                if path[0:3] == '016': # 忽略001序列
                     break 
-                if path[0:3] != '004':
+                if path[0:3] != '015':
                     continue
                 
                 pic_id = int(path[4:-4])
