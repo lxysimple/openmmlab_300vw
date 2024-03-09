@@ -422,7 +422,7 @@ class Preprocess300vw:
         id = 0 
         for video_id in dataset: # 遍历不同数据集所包含的各视频所在目录
             # annot_path = join(self.original_dir, video_id, 'annot')
-            annot_path = join(self.original_dir, video_id, 'resize_annot')
+            annot_path = join(self.original_dir, video_id, 'resize_pic_0.053715')
 
             i = 1
             annots = os.listdir(annot_path)
