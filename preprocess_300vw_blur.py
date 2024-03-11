@@ -202,7 +202,7 @@ class Preprocess300vw:
 
         # 去掉最后一个序列的最后2帧
         # return outputs[:-2]
-        return outputs[:801]
+        return outputs[:-2]
 
 if __name__ == '__main__':
     convert300vw = Preprocess300vw()
