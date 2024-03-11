@@ -207,7 +207,6 @@ class Preprocess300vw:
 
                 # if this frame is broken, skip it.
                 if path[0:3] in self.broken_frames and pic_id in self.broken_frames[path[0:3]]:
-                    i += 1
                     continue
 
 
