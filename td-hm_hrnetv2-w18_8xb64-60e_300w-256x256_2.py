@@ -209,7 +209,9 @@ dataset_300vw =dict(
     data_root = data_root_300vw,
     
     data_mode='topdown',
-    ann_file='annotations/train.json',
+    # ann_file='annotations/train.json',
+    ann_file='annotations/300vw_train.json',
+    
     data_prefix=dict(img='images/'),
     pipeline=train_pipeline,
 ) 
