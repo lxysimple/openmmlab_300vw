@@ -371,8 +371,9 @@ class Preprocess300vw:
     
     # 该函数应该在convert_jpg后执行
     def convert_annot(self, dataset):
-        self.original_dir = '/home/xyli/data/300vw'
+        self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
         self.processed_dir = '/home/xyli/data/annotations'
+        pic_dir = '/home/xyli/data/300vw'
         filename = '300vw_test.json'
         # self.videos_part = ['004']
 
@@ -466,7 +467,7 @@ class Preprocess300vw:
                     image['file_name'] = pic_path
 
                     # 添加图片宽、高
-                    pic_path = join(self.original_dir, pic_path)
+                    pic_path = join(pic_dir, pic_path)
                     # pic_path = join(self.original_dir, video_id, 'resize_pic_0.053715', pic_name)
 
                     image_pic = Image.open(pic_path) # 打开图片
