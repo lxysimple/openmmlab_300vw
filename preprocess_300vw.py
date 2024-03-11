@@ -79,6 +79,7 @@ class Preprocess300vw:
             '047' '048' '049' '053' '057' '059' '112' '113' '115' '119' 
             '120' '123' '138' '143' '144' '160' '204' '205' '223' '225'
         ]
+        self.videos_test = self.videos_test_1 + self.videos_test_2 + self.videos_test_3
         self.videos_part = ['004']
         # self.videos_part = ['001'] # 测试时数据搞小点
 
@@ -370,10 +371,11 @@ class Preprocess300vw:
     
     # 该函数应该在convert_jpg后执行
     def convert_annot(self, dataset):
-        self.original_dir = '/home/xyli/data/dest'
-        self.processed_dir = '/home/xyli/data/300vw/annotations'
-        filename = 'train.json'
+        self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
+        self.processed_dir = '/home/xyli/data/annotations'
+        filename = 'valid.json'
         self.videos_part = ['004']
+
 
         # id = 1
         # for i in self.videos_train:
@@ -421,8 +423,8 @@ class Preprocess300vw:
 
         id = 0 
         for video_id in dataset: # 遍历不同数据集所包含的各视频所在目录
-            # annot_path = join(self.original_dir, video_id, 'annot')
-            annot_path = join(self.original_dir, video_id, 'resize_annot')
+            annot_path = join(self.original_dir, video_id, 'annot')
+            # annot_path = join(self.original_dir, video_id, 'resize_annot')
 
             i = 1
             annots = os.listdir(annot_path)
@@ -458,7 +460,8 @@ class Preprocess300vw:
                     # pic_name = os.path.splitext(annot)[0] + ".jpg"
                     # pic_path = join(video_id, pic_name)
                     pic_name = f"{i:08d}.png" 
-                    pic_path_rel = join(video_id, 'resize_pic_0.053715', pic_name)
+                    # pic_path = join(video_id, pic_name)
+                    # pic_path_rel = join(video_id, 'resize_pic_0.053715', pic_name)
 
                     image['file_name'] = pic_path_rel
 
