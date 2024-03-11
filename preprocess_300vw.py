@@ -89,7 +89,7 @@ class Preprocess300vw:
         # 140   -> 654
         # 270   -> 328 
         # 1000  -> 63 
-        self.sample_rate = 1 
+        self.sample_rate = 30 
         # self.sample_rate = 1 # all the frames
 
     def make_edges(self, dataset):
@@ -282,7 +282,7 @@ class Preprocess300vw:
         # self.original_dir = '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14'
         # self.processed_dir = '/home/lxy/桌面/dest'
         self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
-        self.processed_dir = '/home/xyli/data/dest'
+        self.processed_dir = '/home/xyli/data/300vw'
 
 
 
@@ -570,9 +570,9 @@ if __name__ == '__main__':
     # All the data
     # videos_test_3
     # videos_train
-    # convert300vw.convert_jpg(convert300vw.videos_part)
+    convert300vw.convert_jpg(convert300vw.videos_all)
     # convert300vw.convert_1video()
-    convert300vw.convert_annot(convert300vw.videos_part)
+    # convert300vw.convert_annot(convert300vw.videos_part)
 
     # A bit of data to test
     # convert300vw.convert_jpg(convert300vw.videos_part)
