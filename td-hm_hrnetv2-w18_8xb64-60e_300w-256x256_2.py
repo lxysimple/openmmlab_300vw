@@ -241,11 +241,11 @@ dataset_vali = dict(
     # ann_file='annotations/face_landmarks_300w_valid_common.json',
     # ann_file='annotations/face_landmarks_300w_test.json', # no Test data in server.
 
-    ann_file='data/annotations/300VW_blur_label_list_256_test_mmpose.json',
+    # ann_file='data/annotations/300VW_blur_label_list_256_test_mmpose.json',
     # ann_file='annotations/300VW_blur_label_list_256_train_mmpose.json',
     # ann_file='data/annotations/300VW_blur_label_list_256_train_mmpose.json',
     # ann_file='data/300vw/annotations/train.json', 
-    # ann_file='data/annotations/300vw_test3.json',
+    ann_file='data/annotations/300vw_test3.json',
 
     # data_prefix=dict(img='images/'),
     # data_prefix=dict(img='ESTRNN/2024_03_05_15_03_49_ESTRNN_300vw/300vw_ESTRNN_test/546/'),
@@ -253,8 +253,8 @@ dataset_vali = dict(
 
     # data_root + data_prefix + 注解文件中的相对路径 = 绝对路径
     # data_prefix=dict(img='data/Blurred-300VW-deblur'),
-    data_prefix=dict(img='data/Blurred-300VW'),
-    # data_prefix=dict(img='data/300vw'),
+    # data_prefix=dict(img='data/Blurred-300VW'),
+    data_prefix=dict(img='data/300vw'),
     # data_prefix=dict(img='ESTRNN/2024_02_27_14_58_03_ESTRNN_300vw/300vw_ESTRNN_test/'),
     
 
@@ -276,9 +276,9 @@ train_dataloader = dict(
 
     sampler=dict(type='DefaultSampler', shuffle=True),
 
-    dataset = dataset_all # 300vw + 300w
+    # dataset = dataset_all # 300vw + 300w
     # dataset = dataset_300w # 300w
-    # dataset = dataset_300vw # 300vw
+    dataset = dataset_300vw # 300vw
 
     # dataset=dict(
     #     type='Face300VWDataset',
