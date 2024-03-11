@@ -576,7 +576,7 @@ if __name__ == '__main__':
     # videos_train
     # convert300vw.convert_jpg(convert300vw.videos_all)
     # convert300vw.convert_1video()
-    convert300vw.convert_annot(convert300vw.videos_test)
+    convert300vw.convert_annot(convert300vw.videos_test_3)
 
     # A bit of data to test
     # convert300vw.convert_jpg(convert300vw.videos_part)
