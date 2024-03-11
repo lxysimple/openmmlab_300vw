@@ -182,6 +182,7 @@ class Preprocess300vw:
                 if path[0:3] not in self.videos_test_3:
                     continue
                 
+                print('path[0:3] in test.json: ', path[0:3])
                 
                 pic_id = int(path[4:-4])
 
