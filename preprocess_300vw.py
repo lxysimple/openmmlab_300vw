@@ -306,12 +306,12 @@ class Preprocess300vw:
                 if i % self.sample_rate == 0: # 用这种方式控制视频转化率
                     # f是格式化字符串，d表示i是整数，06代表占6个格子多余填充0
                     imgname = f'{i:08d}.png' # 要高精度的化.png最好
-
+                    
                     dest_path = join(self.processed_dir, video, 'images')
                     dest = join(dest_path, imgname)
                     if not os.path.exists(dest_path): # 需要先有目录，之后才能创建图片类型文件
                         os.makedirs(dest_path)
-                    
+
                     cv2.imwrite(dest, img)
 
                     if i == frame_count: # 如果读到最后1帧，则退出
@@ -373,8 +373,8 @@ class Preprocess300vw:
     def convert_annot(self, dataset):
         self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
         self.processed_dir = '/home/xyli/data/annotations'
-        filename = 'valid.json'
-        self.videos_part = ['004']
+        filename = '300vw_test.json'
+        # self.videos_part = ['004']
 
 
         # id = 1
@@ -431,19 +431,19 @@ class Preprocess300vw:
             annots.sort() # 服务器上这个列表默认是乱的，无语
             for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
 
-                # 做小数据测试：2~800个帧
-                if int(annot.split('.')[0]) <= 3:
-                    i += 1
-                    continue
-                if int(annot.split('.')[0]) > 800:
-                    break
-             
-                
-                # # if this frame is broken, skip it.
-                # # '000001.pts' -> '000001' -> 1
-                # if video_id in self.broken_frames and int(annot.split('.')[0]) in self.broken_frames[video_id]:
+                # # 做小数据测试：2~800个帧
+                # if int(annot.split('.')[0]) <= 3:
                 #     i += 1
                 #     continue
+                # if int(annot.split('.')[0]) > 800:
+                #     break
+             
+                
+                # if this frame is broken, skip it.
+                # '000001.pts' -> '000001' -> 1
+                if video_id in self.broken_frames and int(annot.split('.')[0]) in self.broken_frames[video_id]:
+                    i += 1
+                    continue
 
                 if i % self.sample_rate == 0: # 在这里控制转化率
                     annotation = {
@@ -457,9 +457,9 @@ class Preprocess300vw:
                     # print(annot,i,)
 
                     # 找到1个帧注解所对应图片的路径
-                    # pic_name = os.path.splitext(annot)[0] + ".jpg"
-                    # pic_path = join(video_id, pic_name)
-                    pic_name = f"{i:08d}.png" 
+                    pic_name = os.path.splitext(annot)[0] + ".png"
+                    pic_path = join(video_id, pic_name)
+                    # pic_name = f"{i:08d}.png" 
                     # pic_path = join(video_id, pic_name)
                     # pic_path_rel = join(video_id, 'resize_pic_0.053715', pic_name)
 
