@@ -463,7 +463,7 @@ class Preprocess300vw:
                     # pic_path = join(video_id, pic_name)
                     # pic_path_rel = join(video_id, 'resize_pic_0.053715', pic_name)
 
-                    image['file_name'] = pic_path_rel
+                    image['file_name'] = pic_path
 
                     # 添加图片宽、高
                     # pic_path = join(dataroot, pic_path)
