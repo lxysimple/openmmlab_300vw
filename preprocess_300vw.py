@@ -428,6 +428,7 @@ class Preprocess300vw:
             # annot_path = join(self.original_dir, video_id, 'resize_annot')
 
             i = 1
+            print('annot_path: ', annot_path)
             annots = os.listdir(annot_path)
             annots.sort() # 服务器上这个列表默认是乱的，无语
             for annot in annots: # 因为1个video的注解文件有很多，所以要遍历
