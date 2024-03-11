@@ -4,10 +4,7 @@
 
 _base_ = ["/home/xyli/mmpose/configs/_base_/default_runtime.py"]
 
-data_root_300w='/home/xyli/data/300w'
-data_root_300vw='/home/xyli/data/300vw'
-data_root_300vw_blur='/home/xyli/data'
-data_root_300vw_deblur='/home/xyli'
+
 
 
 # runtime
@@ -191,6 +188,11 @@ val_pipeline = [
 
 
 
+data_root_300w='/home/xyli/data/300w'
+data_root_300vw='/home/xyli/data'
+data_root_300vw_blur='/home/xyli/data'
+data_root_300vw_deblur='/home/xyli'
+
 # 300w dataset
 dataset_300w =dict(
     type='Face300WDataset',
@@ -202,6 +204,7 @@ dataset_300w =dict(
     data_prefix=dict(img='images/'),
     pipeline=train_pipeline,
 ) 
+
 # 300vw dataset
 dataset_300vw =dict(
     type='Face300WDataset',
@@ -210,9 +213,9 @@ dataset_300vw =dict(
     
     data_mode='topdown',
     # ann_file='annotations/train.json',
-    ann_file='annotations/300vw_train.json',
+    ann_file='data/annotations/300vw_train.json',
     
-    data_prefix=dict(img='images/'),
+    data_prefix=dict(img='300vw/'),
     pipeline=train_pipeline,
 ) 
 # 300vw + 300w
@@ -241,7 +244,7 @@ dataset_vali = dict(
     # ann_file='annotations/300VW_blur_label_list_256_train_mmpose.json',
     # ann_file='data/annotations/300VW_blur_label_list_256_train_mmpose.json',
     # ann_file='data/300vw/annotations/train.json', 
-    ann_file='data/annotations/300vw_test3.json',
+    ann_file='data/annotations/300vw_test.json',
 
     # data_prefix=dict(img='images/'),
     # data_prefix=dict(img='ESTRNN/2024_03_05_15_03_49_ESTRNN_300vw/300vw_ESTRNN_test/546/'),
