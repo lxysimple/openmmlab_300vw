@@ -577,6 +577,7 @@ if __name__ == '__main__':
     # videos_train
     # convert300vw.convert_jpg(convert300vw.videos_test_3)
     # convert300vw.convert_1video()
+    print("convert300vw.videos_train: ", convert300vw.videos_train)
     convert300vw.convert_annot(convert300vw.videos_train)
 
     # A bit of data to test
