@@ -23,7 +23,7 @@ class Preprocess300vw:
         self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_test.txt'
         self.processed_file = '/home/xyli/data/annotations/300VW_blur_label_list_256_test_mmpose.json' # 转换后的主目录
 
-        self.videos_test_3 = ['203', '208', '211']
+        self.videos_test_3 = ['410', '411', '516', '517', '526', '528']
     
     # 该函数应该在convert_jpg后执行
     def convert_annot(self, dataset):
