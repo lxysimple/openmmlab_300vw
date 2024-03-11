@@ -466,8 +466,8 @@ class Preprocess300vw:
                     image['file_name'] = pic_path
 
                     # 添加图片宽、高
-                    # pic_path = join(dataroot, pic_path)
-                    pic_path = join(self.original_dir, video_id, 'resize_pic_0.053715', pic_name)
+                    pic_path = join(self.original_dir, pic_path)
+                    # pic_path = join(self.original_dir, video_id, 'resize_pic_0.053715', pic_name)
 
                     image_pic = Image.open(pic_path) # 打开图片
                     pic_width, pic_height = image_pic.size
