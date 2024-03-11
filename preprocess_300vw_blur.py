@@ -22,6 +22,8 @@ class Preprocess300vw:
         # self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_test.txt'
         # self.processed_file = '/home/xyli/data/annotations/300VW_blur_label_list_256_test_mmpose.json' # 转换后的主目录
 
+        self.videos_test_3 = ['410', '411', '516', '517', '526', '528', '529', '530', '531', '533',  
+                              '557', '558', '559', '562']
     
     # 该函数应该在convert_jpg后执行
     def convert_annot(self, dataset):
@@ -169,10 +171,15 @@ class Preprocess300vw:
                 path = strings[68*2]
 
                 # 做一个小样本测试
-                if path[0:3] == '016': # 忽略001序列
-                    break 
-                if path[0:3] != '015':
+                # if path[0:3] == '016': # 忽略001序列
+                #     break 
+
+                # if path[0:3] != '015':
+                #     continue
+
+                if path[0:3] not in self.videos_test_3:
                     continue
+
                 
                 pic_id = int(path[4:-4])
 
