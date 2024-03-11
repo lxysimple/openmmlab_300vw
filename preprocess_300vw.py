@@ -458,7 +458,7 @@ class Preprocess300vw:
                     # print(annot,i,)
 
                     # 找到1个帧注解所对应图片的路径
-                    pic_name = f"{os.path.splitext(annot)[0]:08d}.png" 
+                    pic_name = f"{int(os.path.splitext(annot)[0]):08d}.png" 
                     pic_path = join(video_id, pic_name)
                     # pic_name = f"{i:08d}.png" 
                     # pic_path = join(video_id, pic_name)
