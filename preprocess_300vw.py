@@ -374,7 +374,7 @@ class Preprocess300vw:
         self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
         self.processed_dir = '/home/xyli/data/annotations'
         pic_dir = '/home/xyli/data/300vw'
-        filename = '300vw_test123.json'
+        filename = '300vw_train_all.json'
         # self.videos_part = ['004']
 
 
