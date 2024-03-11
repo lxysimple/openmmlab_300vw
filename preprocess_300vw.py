@@ -69,16 +69,16 @@ class Preprocess300vw:
         self.videos_test_3 = ['410', '411', '516', '517', '526', '528', '529', '530', '531', '533', 
                               '557', '558', '559', '562']
 
-        # self.videos_train = [ i for i in self.videos_all if i not in self.videos_test_1 
-        #                                                 and i not in self.videos_test_2 
-        #                                                 and i not in self.videos_test_3]
-        self.videos_train = [
-            '001' '002' '003' '004' '007' '009' '010' '011' '013' '015' 
-            '016' '017' '018' '019' '020' '022' '025' '027' '028' '029' 
-            '031' '033' '034' '035' '037' '039' '041' '043' '044' '046' 
-            '047' '048' '049' '053' '057' '059' '112' '113' '115' '119' 
-            '120' '123' '138' '143' '144' '160' '204' '205' '223' '225'
-        ]
+        self.videos_train = [ i for i in self.videos_all if i not in self.videos_test_1 
+                                                        and i not in self.videos_test_2 
+                                                        and i not in self.videos_test_3]
+        # self.videos_train = [
+        #     '001', '002', '003', '004' '007' '009' '010' '011' '013' '015' 
+        #     '016', '017', '018', '019' '020' '022' '025' '027' '028' '029' 
+        #     '031', '033', '034' '035' '037' '039' '041' '043' '044' '046' 
+        #     '047', '048', '049' '053' '057' '059' '112' '113' '115' '119' 
+        #     '120', '123', '138' '143' '144' '160' '204' '205' '223' '225'
+        # ]
         self.videos_test = self.videos_test_1 + self.videos_test_2 + self.videos_test_3
         self.videos_part = ['004']
         # self.videos_part = ['001'] # 测试时数据搞小点
