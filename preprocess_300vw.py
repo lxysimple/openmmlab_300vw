@@ -91,7 +91,7 @@ class Preprocess300vw:
         # 270   -> 328 
         # 1000  -> 63 
         # self.sample_rate = 30 
-        self.sample_rate = 30 # all the frames
+        self.sample_rate = 1 # all the frames
 
     def make_edges(self, dataset):
         for video_id in dataset: # 遍历不同数据集所包含的各视频所在目录
