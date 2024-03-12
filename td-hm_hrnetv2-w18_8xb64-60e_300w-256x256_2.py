@@ -80,7 +80,7 @@ codec = dict(
 # load_from = '/home/xyli/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth' # ubuntu
 # load_from = 'E:/mmpose/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth' # windows
 # load_from = '/home/xyli/checkpoint/hrnetv2_w18_300w_256x256-eea53406_20211019.pth' # ubuntu
-load_from = '/home/xyli/openmmlab_300vw/work_dirs/td-hm_hrnetv2-w18_8xb64-60e_300w-256x256_2/best_NME_epoch_6.pth' # ubuntu
+load_from = '/home/xyli/checkpoint/best_NME_epoch_1.pth' # ubuntu
 model = dict(
     type='TopdownPoseEstimator',
     data_preprocessor=dict(
@@ -262,11 +262,11 @@ dataset_vali = dict(
     # ann_file='annotations/face_landmarks_300w_valid_common.json',
     # ann_file='annotations/face_landmarks_300w_test.json', # no Test data in server.
 
-    ann_file='data/annotations/300VW_blur_label_list_256_test_mmpose.json',
+    # ann_file='data/annotations/300VW_blur_label_list_256_test_mmpose.json',
     # ann_file='annotations/300VW_blur_label_list_256_train_mmpose.json',
     # ann_file='data/annotations/300VW_blur_label_list_256_train_mmpose.json',
     # ann_file='data/300vw/annotations/train.json', 
-    # ann_file='data/annotations/300vw_test2.json',
+    ann_file='data/annotations/300vw_test3.json',
 
     # data_prefix=dict(img='images/'),
     # data_prefix=dict(img='ESTRNN/2024_03_05_15_03_49_ESTRNN_300vw/300vw_ESTRNN_test/546/'),
