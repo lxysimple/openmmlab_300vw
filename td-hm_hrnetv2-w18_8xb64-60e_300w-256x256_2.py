@@ -221,6 +221,23 @@ dataset_300vw =dict(
     data_prefix=dict(img='300vw/'),
     pipeline=train_pipeline,
 ) 
+
+# 300vw dataset
+dataset_300vw_blur =dict(
+    type='Face300WDataset',
+
+    data_root = data_root_300vw,
+    
+    data_mode='topdown',
+    # ann_file='annotations/train.json',
+    ann_file='annotations/300vw_train_all.json',
+    
+    data_prefix=dict(img='300vw/'),
+    pipeline=train_pipeline,
+) 
+
+
+
 # 300vw + 300w
 # warning: you should cross out the validate 'meta300w == meta300vw?' at the MMEngine code in system env.
 dataset_all = dict(
