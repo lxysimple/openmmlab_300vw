@@ -230,9 +230,9 @@ dataset_300vw_blur =dict(
     
     data_mode='topdown',
     # ann_file='annotations/train.json',
-    ann_file='annotations/300vw_train_all.json',
+    ann_file='annotations/300VW_blur_label_list_256_train_mmpose.json',
     
-    data_prefix=dict(img='300vw/'),
+    data_prefix=dict(img='Blurred-300VW/'),
     pipeline=train_pipeline,
 ) 
 
@@ -242,7 +242,9 @@ dataset_300vw_blur =dict(
 # warning: you should cross out the validate 'meta300w == meta300vw?' at the MMEngine code in system env.
 dataset_all = dict(
     type='ConcatDataset',
-    datasets=(dataset_300w, dataset_300vw)
+    # datasets=(dataset_300w, dataset_300vw),
+    datasets=(dataset_300w, dataset_300vw, dataset_300vw_blur)
+
 )
 
 # validation in 300w
