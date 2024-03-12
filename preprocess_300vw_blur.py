@@ -231,7 +231,7 @@ class Preprocess300vw:
 
                 # print('path[0:3]: ', path[0:3]) 
 
-                if path[0:3] not in self.videos_test_2:
+                if path[0:3] not in self.videos_test_3:
                     continue
                 
                 pic_id = int(path[4:-4])
