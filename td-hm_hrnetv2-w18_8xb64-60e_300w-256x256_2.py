@@ -176,7 +176,7 @@ train_pipeline = [
     
     ), # 这里可视化发现框+关键点变换后都蛮准的
 
-    dict(type='PhotometricDistortion'), # 我自己加的
+    # dict(type='PhotometricDistortion'), # 我自己加的
 
     dict(type='TopdownAffine', input_size=codec['input_size']),
     dict(type='GenerateTarget', encoder=codec),
