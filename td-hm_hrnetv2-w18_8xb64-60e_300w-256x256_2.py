@@ -8,7 +8,7 @@ _base_ = ["/home/xyli/mmpose/configs/_base_/default_runtime.py"]
 
 
 # runtime
-train_cfg = dict(max_epochs=80, val_interval=1)
+train_cfg = dict(max_epochs=10, val_interval=1)
 
 
 # my optimizer
@@ -53,9 +53,9 @@ param_scheduler = [
         type='MultiStepLR',
         begin=0,
         # end=60,
-        end=80,
+        end=10,
         # milestones=[40, 55],
-        milestones=[50, 75],
+        milestones=[5, 8],
         gamma=0.1,
         by_epoch=True)
 ]
