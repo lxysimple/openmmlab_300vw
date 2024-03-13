@@ -336,8 +336,8 @@ def test_300vw_blur():
 
         pngs = os.listdir(pngs_dir) 
         
-        from IPython import embed
-        embed()
+        # from IPython import embed
+        # embed()
         for png in pngs: 
             # 某个帧 某个帧注解 路径
             png_path = join(pngs_dir, png)
