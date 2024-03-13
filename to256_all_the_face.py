@@ -342,8 +342,8 @@ def test_300vw_blur():
             # 某个帧 某个帧注解 路径
             png_path = join(pngs_dir, png)
 
-            # from IPython import embed
-            # embed()
+            from IPython import embed
+            embed()
             
             # 从注解中提取信息
             x_left, y_low, x_right, y_high = videos_xy[video][png[:-4]]
