@@ -148,7 +148,8 @@ def testall():
     # dest/[001,002,...]/crop_annot
     # dest/[001,002,...]/resize_pic
     # dest/[001,002,...]/resize_annot
-    data300vw_dir_res = '/home/xyli/data/300vw_crop256' 
+    data300vw_crop_dir_res = '/home/xyli/data/300vw_crop'
+    data300vw_resize256_dir_res = '/home/xyli/data/300vw_resize256' 
     # data300vw_dir_res = pic_300vw_dir 
     # data300vw_dir_res = '/home/lxy/桌面/dest_blur'
 
@@ -159,22 +160,17 @@ def testall():
         annots_dir = join(annot_300vw_dir, video, 'annot')
         
         # 转化结果路径
-        crop_pic = join(data300vw_dir_res, video, 'crop_pic')
-        crop_annot = join(data300vw_dir_res, video, 'crop_annot')
+        crop_pic = join(data300vw_crop_dir_res, video)
+        # crop_annot = join(data300vw_dir_res, video, 'crop_annot')
 
-        resize_pic = join(data300vw_dir_res, video, 'resize_pic')
-        resize_annot = join(data300vw_dir_res, video, 'resize_annot')
+        resize_pic = join(data300vw_resize256_dir_res, video)
+        # resize_annot = join(data300vw_dir_res, video, 'resize_annot')
 
         # 如果转化结果路径不存在, 则创建
         if not os.path.exists(crop_pic):
             os.makedirs(crop_pic)
-        if not os.path.exists(crop_annot):
-            os.makedirs(crop_annot) 
         if not os.path.exists(resize_pic):
             os.makedirs(resize_pic)
-        if not os.path.exists(resize_annot):
-            os.makedirs(resize_annot)
-
 
         pngs = os.listdir(pngs_dir) 
         for png in pngs: # 遍历 001中的[00000001.png, ...]
