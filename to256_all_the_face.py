@@ -362,7 +362,7 @@ def test_300vw_blur():
 
 if __name__ == '__main__':
     # test_300vw()
-    videos_xy_from_txt()
+    videos_xy = videos_xy_from_txt()
     from IPython import embed
     embed()
 
