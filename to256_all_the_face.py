@@ -135,23 +135,12 @@ def testall():
     # videos = ['001', '002', '003', '004', '007']
     videos = ['001']
 
-    # cilent
-    # pic_300vw_dir = '/home/lxy/桌面/dest'
     pic_300vw_dir = '/home/xyli/data/300vw'
     annot_300vw_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
 
-    # server
-    # pic_300vw_dir = '/home/xyli/data/dest'
-    # annot_300vw_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
-
-    # dest/[001,002,...]/crop_pic
-    # dest/[001,002,...]/crop_annot
-    # dest/[001,002,...]/resize_pic
-    # dest/[001,002,...]/resize_annot
     data300vw_crop_dir_res = '/home/xyli/data/300vw_crop'
     data300vw_resize256_dir_res = '/home/xyli/data/300vw_resize256' 
-    # data300vw_dir_res = pic_300vw_dir 
-    # data300vw_dir_res = '/home/lxy/桌面/dest_blur'
+
 
     for video in videos: # 遍历 [001,002,...]
         # 待转化数据路径
