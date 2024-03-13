@@ -330,7 +330,10 @@ def test_300vw_blur():
 
             # 从注解中提取信息
             x_left, y_low, x_right, y_high = videos_xy[video][png[:-4]]
- 
+
+            from IPython import embed
+            embed()
+
             resize256( 
                 png_path,
                 resize_pic,
