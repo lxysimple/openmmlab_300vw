@@ -357,6 +357,7 @@ def test_300vw_blur():
             
             # if this frame is broken, skip it.
             if video in broken_frames and int(png[:-4]) in broken_frames[video]:
+                print('video: ', video)
                 print('png: ', png)
                 continue
             
