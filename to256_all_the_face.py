@@ -366,11 +366,10 @@ def test_300vw_blur():
         os.system(f'rm -rf {data300vw_crop_dir_res}')
 
 if __name__ == '__main__':
-    # test_300vw()
+    test_300vw()
     
-    test_300vw_blur()
-    # from IPython import embed
-    # embed()
+    # test_300vw_blur()
+
 
     
 
