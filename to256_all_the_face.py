@@ -164,6 +164,10 @@ def test_300vw():
             )  
 
         print(f'{video}转化结束！')
+        os.system(f'rm -rf {data300vw_crop_dir_res}')
 
 if __name__ == '__main__':
     test_300vw()
+
+    
+
