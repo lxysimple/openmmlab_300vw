@@ -67,41 +67,7 @@ def findxy(avideo_annot_path):
     return x_left, y_low, x_right, y_high
 
 
-def chage_annot_with_crop(anont_path, res_path, max_edge, x_left, y_low):
-    """
-    args: 
-        anont_path: 要变化注解文件的路径, .../000001.pts
-        res_path: 储存结果的目录
-        max_edge: crop时的边长
-        midx, midy: crop时的左上坐标
-    """
-
-    with open(anont_path, 'r') as f:
-        lines = f.readlines()
-    # 处理第一部分，不改变（版本号和点的数量）
-    header = lines[:3]
-    points = lines[3:71]
-    end = lines[71]
-
-    annot_name = anont_path[-10:]
-    res_path_file = join(res_path, annot_name)
-    with open(res_path_file, 'w') as f:
-        f.writelines(header)
-
-        for point in points:
-            x, y = point.strip().split()
-            # 相对坐标就是crop后的绝对坐标
-            x_new = str(float(x) - x_left)
-            y_new = str(float(y) - y_low)
-
-            # 写入新的点坐标
-            f.write(f'{x_new} {y_new}\n')
-
-        f.write(end)
-
-    return 
-
-def crop_image(apic_path, res_path, max_edge, x_left, y_low):
+def crop_image(apic_path, res_path, x_left, y_low, x_right, y_high):
     """
     args:
         apic_path: 一个要被裁剪的图片路径, 要求图片命名形式为{:08d}.png
@@ -110,12 +76,7 @@ def crop_image(apic_path, res_path, max_edge, x_left, y_low):
     """
     image = Image.open(apic_path)
     cropped_image = image.crop(
-                        (
-                            x_left , 
-                            y_low  , 
-                            x_left + max_edge  ,
-                            y_low + max_edge  ,
-                        )   
+                        (x_left, y_low, x_right, y_high)   
                     )
     # 创建注解文件的目录（没有该目录，无法创建注解文件）
     if not os.path.exists(res_path):
@@ -127,43 +88,12 @@ def crop_image(apic_path, res_path, max_edge, x_left, y_low):
 
     return 
 
-def resize256(apic_path, annot_path, pic_res_dir, annot_res_dir, max_edge):
+def resize256(apic_path, pic_res_dir):
     """
     args:
         apic_path: 要resize的某个帧地址, 要求图片命名形式为{:08d}.png
-        annot_path: 其对应annot地址, .../000001.pts
         pic_res_dir: 输出的图片存放目录
-        annot_res_dir: 修改后注解存放目录
-        max_edge: 图片的边长
     """
-
-    # 修改注解坐标
-    # ?/x = 256/max_edge, ?=256*x/max_edge
-    scale = 256.0/max_edge 
-
-    with open(annot_path, 'r') as f:
-        lines = f.readlines()
-    # 处理第一部分，不改变（版本号和点的数量）
-    header = lines[:3]
-    points = lines[3:71]
-    end = lines[71]
-
-    annot_name = annot_path[-10:]
-    res_path_file = join(annot_res_dir, annot_name)
-    with open(res_path_file, 'w') as f:
-        f.writelines(header)
-
-        for point in points:
-            x, y = point.strip().split()
-            # 相对坐标就是crop后的绝对坐标
-            x_new = str(float(x)*scale)
-            y_new = str(float(y)*scale)
-
-            # 写入新的点坐标
-            f.write(f'{x_new} {y_new}\n')
-
-        f.write(end)
-
 
     # 修改图片
     image = Image.open(apic_path)
@@ -193,12 +123,6 @@ def test1():
         '/home/lxy/桌面/pic/', max_edge+40, x_left-20, y_low-20
     )
 
-    chage_annot_with_crop(
-        '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot/000001.pts',
-        '/home/lxy/桌面/annot',
-        max_edge+40, x_left-20, y_low-20
-    )
-
     resize256(
         '/home/lxy/桌面/pic/00000001.png',
         '/home/lxy/桌面/annot/000001.pts',
@@ -209,12 +133,12 @@ def test1():
 
 def testall():
     # videos = ['001', '002', '003', '004', '007']
-    videos = ['007']
+    videos = ['001']
 
     # cilent
     # pic_300vw_dir = '/home/lxy/桌面/dest'
-    pic_300vw_dir = '/home/lxy/桌面/dest_blur'
-    annot_300vw_dir = '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14'
+    pic_300vw_dir = '/home/xyli/data/300vw'
+    annot_300vw_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
 
     # server
     # pic_300vw_dir = '/home/xyli/data/dest'
@@ -224,18 +148,20 @@ def testall():
     # dest/[001,002,...]/crop_annot
     # dest/[001,002,...]/resize_pic
     # dest/[001,002,...]/resize_annot
-    # data300vw_dir_res = '/home/lxy/桌面/dest/' 
-    data300vw_dir_res = pic_300vw_dir 
+    data300vw_dir_res = '/home/xyli/data/300vw_crop256' 
+    # data300vw_dir_res = pic_300vw_dir 
     # data300vw_dir_res = '/home/lxy/桌面/dest_blur'
 
     for video in videos: # 遍历 [001,002,...]
         # 待转化数据路径
         # pngs_dir = join(pic_300vw_dir, video, 'images')
-        pngs_dir = join(pic_300vw_dir, video, 'images')
+        pngs_dir = join(pic_300vw_dir, video)
         annots_dir = join(annot_300vw_dir, video, 'annot')
+        
         # 转化结果路径
         crop_pic = join(data300vw_dir_res, video, 'crop_pic')
         crop_annot = join(data300vw_dir_res, video, 'crop_annot')
+
         resize_pic = join(data300vw_dir_res, video, 'resize_pic')
         resize_annot = join(data300vw_dir_res, video, 'resize_annot')
 
@@ -249,7 +175,6 @@ def testall():
         if not os.path.exists(resize_annot):
             os.makedirs(resize_annot)
 
-        max_edge = find_edge(annots_dir) # 获取001中的最大边长
 
         pngs = os.listdir(pngs_dir) 
         for png in pngs: # 遍历 001中的[00000001.png, ...]
@@ -258,33 +183,20 @@ def testall():
             annot_path = join(annots_dir, png[-10:-4]+'.pts')
 
             # 从注解中提取信息
-            x_left, y_low = findxy(annot_path)
+            x_left, y_low, x_right, y_high = findxy(annot_path)
  
             crop_image( 
                 png_path, 
                 crop_pic, 
-                max_edge+40, x_left-20, y_low-20
-                # max_edge, x_left, y_low
-            )
-
-            chage_annot_with_crop(
-                annot_path,
-                crop_annot,
-                max_edge+40, x_left-20, y_low-20
-                # max_edge, x_left, y_low
+                x_left, y_low, x_right, y_high
             )
             
             # 对crop_image进行二次加工
             png_path = join(crop_pic, png)
-            annot_path = join(crop_annot, png[-10:-4]+'.pts')
 
             resize256( 
                 png_path,
-                annot_path,
                 resize_pic,
-                resize_annot,
-                max_edge+40,
-                # max_edge
             )  
 
         print(f'{video}转化结束！')
