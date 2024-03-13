@@ -131,7 +131,7 @@ def test1():
         max_edge+40
     )   
 
-def testall():
+def test_300vw():
     # videos = ['001', '002', '003', '004', '007']
     videos = ['001']
 
@@ -187,4 +187,4 @@ def testall():
         print(f'{video}转化结束！')
 
 if __name__ == '__main__':
-    testall()
+    test_300vw()
