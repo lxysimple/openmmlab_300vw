@@ -146,9 +146,9 @@ def videos_xy_from_txt(voides, txt_path):
             
             pic_id = int(path[4:-4])
 
-            # # if this frame is broken, skip it.
-            # if path[0:3] in broken_frames and pic_id in broken_frames[path[0:3]]:
-            #     continue
+            # if this frame is broken, skip it.
+            if path[0:3] in broken_frames and pic_id in broken_frames[path[0:3]]:
+                continue
             
             # print('path[0:3] in test.json: ', path[0:3])
             
@@ -272,6 +272,8 @@ def test_300vw():
         resize_pic = join(data300vw_resize256_dir_res, video)
         # resize_annot = join(data300vw_dir_res, video, 'resize_annot')
 
+        
+
         # 如果转化结果路径不存在, 则创建
         if not os.path.exists(crop_pic):
             os.makedirs(crop_pic)
@@ -287,6 +289,9 @@ def test_300vw():
             png_path = join(pngs_dir, png)
             annot_path = join(annots_dir, png[-10:-4]+'.pts')
 
+            if video in broken_frames and int(png[:-4]) in broken_frames[video]:
+                continue
+        
             # 从注解中提取信息
             x_left, y_low, x_right, y_high = findxy(annot_path)
  
