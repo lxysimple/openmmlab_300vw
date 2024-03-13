@@ -298,10 +298,10 @@ class Preprocess300vw:
                 if not success: # 如果读一个帧失败了，则退出读取该视频帧过程，换到其它视频
                     break
                     
-                # if this frame is broken, skip it.
-                if video in self.broken_frames and i in self.broken_frames[video]:
-                    i += 1
-                    continue
+                # # if this frame is broken, skip it.
+                # if video in self.broken_frames and i in self.broken_frames[video]:
+                #     i += 1
+                #     continue
                     
                 if i % self.sample_rate == 0: # 用这种方式控制视频转化率
                     # f是格式化字符串，d表示i是整数，06代表占6个格子多余填充0
@@ -575,10 +575,10 @@ if __name__ == '__main__':
     # videos_test_3
     # videos_train
     # convert300vw.convert_jpg(convert300vw.videos_train)
-    # convert300vw.convert_jpg(convert300vw.videos_test_2)
+    convert300vw.convert_jpg(convert300vw.videos_test_3)
     # convert300vw.convert_1video()
 
-    convert300vw.convert_annot(convert300vw.videos_train)
+    # convert300vw.convert_annot(convert300vw.videos_train)
 
     # A bit of data to test
     # convert300vw.convert_jpg(convert300vw.videos_part)
