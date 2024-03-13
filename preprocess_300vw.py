@@ -298,7 +298,7 @@ class Preprocess300vw:
                 if not success: # 如果读一个帧失败了，则退出读取该视频帧过程，换到其它视频
                     break
                     
-                # # if this frame is broken, skip it.
+                # # 在注解文件中忽略broken帧最好
                 # if video in self.broken_frames and i in self.broken_frames[video]:
                 #     i += 1
                 #     continue
