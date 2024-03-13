@@ -310,7 +310,9 @@ def test_300vw_blur():
     videos = videos_test_3
 
     pic_300vw_dir = '/home/xyli/data/Blurred-300VW'
-    annot_300vw_dir = '/home/xyli/data/annotations/300VW_blur_label_list_256_valid.txt'
+    # annot_300vw_dir = '/home/xyli/data/annotations/300VW_blur_label_list_256_train.txt'
+    annot_300vw_dir = '/home/xyli/data/annotations/300VW_blur_label_list_256_test.txt'
+    
 
     data300vw_crop_dir_res = '/home/xyli/data/300vw_crop_blur_valid'
     data300vw_resize256_dir_res = '/home/xyli/data/300vw_resize256_blur_valid' 
