@@ -223,9 +223,10 @@ def crop_image(png, apic_path, res_path, x_left, y_low, x_right, y_high):
 
     return 
 
-def resize256(apic_path, pic_res_dir):
+def resize256(png, apic_path, pic_res_dir):
     """
     args:
+        png: 图片名
         apic_path: 要resize的某个帧地址, 要求图片命名形式为{:08d}.png
         pic_res_dir: 输出的图片存放目录
     """
@@ -237,7 +238,7 @@ def resize256(apic_path, pic_res_dir):
     if not os.path.exists(pic_res_dir):
         os.makedirs(pic_res_dir)
 
-    save_pic = join(pic_res_dir, apic_path[-12:]) 
+    save_pic = join(pic_res_dir, png) 
     image.save(save_pic)
 
     return  
@@ -352,6 +353,7 @@ def test_300vw_blur():
             png_path = join(crop_pic, png)
 
             resize256( 
+                png,
                 png_path,
                 resize_pic,
             )  
