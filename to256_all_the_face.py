@@ -105,31 +105,7 @@ def resize256(apic_path, pic_res_dir):
     save_pic = join(pic_res_dir, apic_path[-12:]) 
     image.save(save_pic)
 
-    return 
-
-def test1():
-    max_edge = find_edge(
-        '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot'
-    )
-
-    x_left, y_low = findxy(
-        '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot/000001.pts'
-    )
-
-    print('max_edge: ', max_edge)
-    
-    crop_image(
-        '/home/lxy/桌面/00000001.png', 
-        '/home/lxy/桌面/pic/', max_edge+40, x_left-20, y_low-20
-    )
-
-    resize256(
-        '/home/lxy/桌面/pic/00000001.png',
-        '/home/lxy/桌面/annot/000001.pts',
-        '/home/lxy/桌面/pic256/',
-        '/home/lxy/桌面/annot256',
-        max_edge+40
-    )   
+    return  
 
 def test_300vw():
     # videos = ['001', '002', '003', '004', '007']
