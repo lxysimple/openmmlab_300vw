@@ -49,11 +49,10 @@ class Preprocess300vw:
         self.videos_test_2 = ['203', '208', '211', '212', '213', '214', '218', '224', '403', '404', 
                               '405', '406', '407', '408', '409', '412', '550', '551', '553']
         
-        # Category 3 in arbitrary conditions
-        # self.videos_test_3 = ['410', '411', '516', '517', '526', '528', '529', '530', '531', '533', 
-        #                       '557', '558', '559', '562']
-        self.videos_test_3 = ['533', 
+        Category 3 in arbitrary conditions
+        self.videos_test_3 = ['410', '411', '516', '517', '526', '528', '529', '530', '531', '533', 
                               '557', '558', '559', '562']
+
         
         self.videos_train = [ i for i in self.videos_all if i not in self.videos_test_1 
                                                         and i not in self.videos_test_2 
