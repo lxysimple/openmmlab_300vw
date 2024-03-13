@@ -201,12 +201,13 @@ def findxy(avideo_annot_path):
     return x_left, y_low, x_right, y_high
 
 
-def crop_image(apic_path, res_path, x_left, y_low, x_right, y_high):
+def crop_image(png, apic_path, res_path, x_left, y_low, x_right, y_high):
     """
     args:
+        png: 图片名
         apic_path: 一个要被裁剪的图片路径, 要求图片命名形式为{:08d}.png
         res_path: 裁剪后结果图所放置的路径
-        max_edge: 图片将要被裁剪边的长度
+        x_left, y_low, x_right, y_high: 略
     """
     image = Image.open(apic_path)
     cropped_image = image.crop(
@@ -216,8 +217,8 @@ def crop_image(apic_path, res_path, x_left, y_low, x_right, y_high):
     if not os.path.exists(res_path):
         os.makedirs(res_path)
 
-    file_name = apic_path[-12:]
-    save_path = join(res_path, file_name)
+
+    save_path = join(res_path, png)
     cropped_image.save(save_path)
 
     return 
@@ -331,7 +332,7 @@ def test_300vw_blur():
         
         # from IPython import embed
         # embed()
-        for png in pngs: # 遍历 001中的[00000001.png, ...]
+        for png in pngs: 
             # 某个帧 某个帧注解 路径
             png_path = join(pngs_dir, png)
             # 从注解中提取信息
@@ -341,6 +342,7 @@ def test_300vw_blur():
             from IPython import embed
             embed()
             crop_image( 
+                png,
                 png_path, 
                 crop_pic, 
                 x_left, y_low, x_right, y_high
