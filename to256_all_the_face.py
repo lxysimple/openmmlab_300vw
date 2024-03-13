@@ -336,7 +336,10 @@ def test_300vw_blur():
             png_path = join(pngs_dir, png)
             # 从注解中提取信息
             x_left, y_low, x_right, y_high = videos_xy[video][png[:-4]]
- 
+
+
+            from IPython import embed
+            embed()
             crop_image( 
                 png_path, 
                 crop_pic, 
