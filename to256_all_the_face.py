@@ -289,8 +289,8 @@ def test_300vw():
             png_path = join(pngs_dir, png)
             annot_path = join(annots_dir, png[-10:-4]+'.pts')
 
-            if video in broken_frames and int(png[:-4]) in broken_frames[video]:
-                continue
+            # if video in broken_frames and int(png[:-4]) in broken_frames[video]:
+            #     continue
         
             # 从注解中提取信息
             x_left, y_low, x_right, y_high = findxy(annot_path)
@@ -355,12 +355,12 @@ def test_300vw_blur():
             # from IPython import embed
             # embed()
             
-            # if this frame is broken, skip it.
-            # 记得blur数据集中索引是比正常索引少2的，这里注意要+2
-            if video in broken_frames and int(png[:-4])+2 in broken_frames[video]:
-                # print('video: ', video)
-                # print('png: ', png)
-                continue
+            # # if this frame is broken, skip it.
+            # # 记得blur数据集中索引是比正常索引少2的，这里注意要+2
+            # if video in broken_frames and int(png[:-4])+2 in broken_frames[video]:
+            #     # print('video: ', video)
+            #     # print('png: ', png)
+            #     continue
             
             # 从注解中提取信息
             # print('video, ', video)
