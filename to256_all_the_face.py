@@ -146,9 +146,9 @@ def videos_xy_from_txt(voides, txt_path):
             
             pic_id = int(path[4:-4])
 
-            # if this frame is broken, skip it.
-            if path[0:3] in broken_frames and pic_id in broken_frames[path[0:3]]:
-                continue
+            # # if this frame is broken, skip it.
+            # if path[0:3] in broken_frames and pic_id in broken_frames[path[0:3]]:
+            #     continue
             
             # print('path[0:3] in test.json: ', path[0:3])
             
@@ -356,7 +356,8 @@ def test_300vw_blur():
             # embed()
             
             # if this frame is broken, skip it.
-            if video in broken_frames and int(png[:-4]) in broken_frames[video]:
+            # 记得blur数据集中索引是比正常索引少2的，这里注意要+2
+            if video in broken_frames and int(png[:-4])+2 in broken_frames[video]:
                 # print('video: ', video)
                 # print('png: ', png)
                 continue
