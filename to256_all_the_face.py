@@ -342,7 +342,7 @@ def test_300vw_blur():
 if __name__ == '__main__':
     # test_300vw()
     
-
+    test_300vw_blur()
     # from IPython import embed
     # embed()
 
