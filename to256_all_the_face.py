@@ -245,7 +245,7 @@ def resize256(move, png, apic_path, pic_res_dir):
 
 def test_300vw():
     # videos = ['001', '002', '003', '004', '007']
-    videos = ['001']
+    videos = videos_train
 
     pic_300vw_dir = '/home/xyli/data/300vw'
     annot_300vw_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
@@ -286,6 +286,7 @@ def test_300vw():
             x_left, y_low, x_right, y_high = findxy(annot_path)
  
             crop_image( 
+                png,
                 png_path, 
                 crop_pic, 
                 x_left, y_low, x_right, y_high
@@ -295,6 +296,8 @@ def test_300vw():
             png_path = join(crop_pic, png)
 
             resize256( 
+                0,
+                png,
                 png_path,
                 resize_pic,
             )  
@@ -304,7 +307,7 @@ def test_300vw():
 
 def test_300vw_blur():
     # videos = ['001', '002', '003', '004', '007']
-    videos = ['001']
+    videos = videos_train
 
     pic_300vw_dir = '/home/xyli/data/Blurred-300VW'
     annot_300vw_dir = '/home/xyli/data/annotations/300VW_blur_label_list_256_train.txt'
