@@ -163,7 +163,7 @@ def videos_xy_from_txt():
             y_high = max(keypoints_y) 
 
 
-            outputs[path[0:3]][pic_id] = [x_left, y_low, x_right, y_high] 
+            outputs[path[0:3]][str(pic_id)] = [x_left, y_low, x_right, y_high] 
 
             # # 为了和FSTRNN生成结果一致
             # # 丢弃每个序列最后2帧
