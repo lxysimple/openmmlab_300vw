@@ -339,8 +339,8 @@ def test_300vw_blur():
             x_left, y_low, x_right, y_high = videos_xy[video][png[:-4]]
 
 
-            from IPython import embed
-            embed()
+            # from IPython import embed
+            # embed()
             crop_image( 
                 png,
                 png_path, 
