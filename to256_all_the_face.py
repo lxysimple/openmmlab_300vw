@@ -245,13 +245,16 @@ def resize256(move, png, apic_path, pic_res_dir):
 
 def test_300vw():
     # videos = ['001']
-    videos = videos_train
+    # videos = videos_train
+    videos = videos_test_3
 
     pic_300vw_dir = '/home/xyli/data/300vw'
     annot_300vw_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
 
-    data300vw_crop_dir_res = '/home/xyli/data/300vw_crop'
-    data300vw_resize256_dir_res = '/home/xyli/data/300vw_resize256' 
+    # data300vw_crop_dir_res = '/home/xyli/data/300vw_crop'
+    # data300vw_resize256_dir_res = '/home/xyli/data/300vw_resize256' 
+    data300vw_crop_dir_res = '/home/xyli/data/300vw_crop_valid'
+    data300vw_resize256_dir_res = '/home/xyli/data/300vw_resize256_valid' 
 
 
     for video in videos: # 遍历 [001,002,...]
@@ -375,9 +378,9 @@ def test_300vw_blur():
         os.system(f'rm -rf {data300vw_crop_dir_res}')
 
 if __name__ == '__main__':
-    # test_300vw()
+    test_300vw()
     
-    test_300vw_blur()
+    # test_300vw_blur()
 
 
     
