@@ -360,7 +360,6 @@ def test_300vw_blur():
             # print('png, ', png)
             x_left, y_low, x_right, y_high = videos_xy[video][png[:-4]]
 
-            videos_xy['410']['823']
 
             # from IPython import embed
             # embed()
