@@ -118,7 +118,7 @@ def videos_xy_from_txt():
     voides = ['001']
     txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_train.txt'
 
-    outputs = []
+    outputs = {}
 
     with open(txt_path, 'r') as file:
         for line in file:
