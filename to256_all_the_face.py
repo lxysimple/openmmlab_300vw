@@ -144,8 +144,8 @@ def test_300vw():
 
     for video in videos: # 遍历 [001,002,...]
         # 待转化数据路径
-        # pngs_dir = join(pic_300vw_dir, video, 'images')
-        pngs_dir = join(pic_300vw_dir, video)
+        pngs_dir = join(pic_300vw_dir, video, 'images')
+        # pngs_dir = join(pic_300vw_dir, video)
         annots_dir = join(annot_300vw_dir, video, 'annot')
         
         # 转化结果路径
