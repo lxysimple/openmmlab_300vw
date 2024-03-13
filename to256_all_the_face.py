@@ -321,7 +321,7 @@ def test_300vw_blur():
 
     for video in videos: # 遍历 [001,002,...]
         # 待转化数据路径
-        pngs_dir = join(pic_300vw_dir, video,)
+        pngs_dir = join(pic_300vw_dir, video)
         
         # 转化结果路径
         crop_pic = join(data300vw_crop_dir_res, video)
