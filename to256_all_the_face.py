@@ -144,9 +144,9 @@ def videos_xy_from_txt(voides, txt_path):
             
             pic_id = int(path[4:-4])
 
-            # if this frame is broken, skip it.
-            if path[0:3] in broken_frames and pic_id in broken_frames[path[0:3]]:
-                continue
+            # # if this frame is broken, skip it.
+            # if path[0:3] in broken_frames and pic_id in broken_frames[path[0:3]]:
+            #     continue
             
             # print('path[0:3] in test.json: ', path[0:3])
             
@@ -350,6 +350,7 @@ def test_300vw_blur():
             print('png, ', png)
             x_left, y_low, x_right, y_high = videos_xy[video][png[:-4]]
 
+            videos_xy['410']['823']
 
             # from IPython import embed
             # embed()
