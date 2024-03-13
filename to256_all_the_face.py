@@ -96,7 +96,7 @@ def _keypoint_from_pts_(file_path):
     return keypoints
 
 
-def videos_xy_from_txt():
+def videos_xy_from_txt(voides, txt_path):
     """
     提取一个.txt，114个视频，所有的帧
 
@@ -115,8 +115,7 @@ def videos_xy_from_txt():
             ...
         }
     """
-    voides = ['001']
-    txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_train.txt'
+
 
     from collections import defaultdict
     outputs = defaultdict(dict) # 定义二维字典
@@ -304,30 +303,20 @@ def test_300vw():
 def test_300vw_blur():
     # videos = ['001', '002', '003', '004', '007']
     videos = ['001']
-
     pic_300vw_dir = '/home/xyli/data/Blurred-300VW'
     annot_300vw_dir = '/home/xyli/data/annotations/300VW_blur_label_list_256_train.txt'
-
-    data300vw_crop_dir_res = '/home/xyli/data/300vw_crop_blur'
     data300vw_resize256_dir_res = '/home/xyli/data/300vw_resize256_blur' 
 
+    videos_xy = videos_xy_from_txt(videos, annot_300vw_dir)
 
     for video in videos: # 遍历 [001,002,...]
         # 待转化数据路径
-        pngs_dir = join(pic_300vw_dir, video, 'images')
-        # pngs_dir = join(pic_300vw_dir, video)
-        annots_dir = join(annot_300vw_dir, video, 'annot')
-        
+        pngs_dir = join(pic_300vw_dir, video)
+ 
         # 转化结果路径
-        crop_pic = join(data300vw_crop_dir_res, video)
-        # crop_annot = join(data300vw_dir_res, video, 'crop_annot')
-
         resize_pic = join(data300vw_resize256_dir_res, video)
-        # resize_annot = join(data300vw_dir_res, video, 'resize_annot')
 
         # 如果转化结果路径不存在, 则创建
-        if not os.path.exists(crop_pic):
-            os.makedirs(crop_pic)
         if not os.path.exists(resize_pic):
             os.makedirs(resize_pic)
 
@@ -338,20 +327,10 @@ def test_300vw_blur():
         for png in pngs: # 遍历 001中的[00000001.png, ...]
             # 某个帧 某个帧注解 路径
             png_path = join(pngs_dir, png)
-            annot_path = join(annots_dir, png[-10:-4]+'.pts')
 
             # 从注解中提取信息
-            x_left, y_low, x_right, y_high = findxy(annot_path)
+            x_left, y_low, x_right, y_high = videos_xy[video][png[:-4]]
  
-            crop_image( 
-                png_path, 
-                crop_pic, 
-                x_left, y_low, x_right, y_high
-            )
-            
-            # 对crop_image进行二次加工
-            png_path = join(crop_pic, png)
-
             resize256( 
                 png_path,
                 resize_pic,
@@ -362,9 +341,10 @@ def test_300vw_blur():
 
 if __name__ == '__main__':
     # test_300vw()
-    videos_xy = videos_xy_from_txt()
-    from IPython import embed
-    embed()
+    
+
+    # from IPython import embed
+    # embed()
 
     
 
