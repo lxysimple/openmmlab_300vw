@@ -162,6 +162,7 @@ def test_300vw():
             os.makedirs(resize_pic)
 
         pngs = os.listdir(pngs_dir) 
+        
         for png in pngs: # 遍历 001中的[00000001.png, ...]
             # 某个帧 某个帧注解 路径
             png_path = join(pngs_dir, png)
