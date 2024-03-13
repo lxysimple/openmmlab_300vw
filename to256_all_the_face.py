@@ -244,8 +244,8 @@ def resize256(move, png, apic_path, pic_res_dir):
     return  
 
 def test_300vw():
-    # videos = ['001', '002', '003', '004', '007']
-    videos = videos_train
+    videos = ['001']
+    # videos = videos_train
 
     pic_300vw_dir = '/home/xyli/data/300vw'
     annot_300vw_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
