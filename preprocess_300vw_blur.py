@@ -21,7 +21,7 @@ class Preprocess300vw:
         # self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_train.txt'
 
         self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_test.txt'
-        self.processed_file = '/home/xyli/data/annotations/300VW_blur_test1_x.jpg.json' # 转换后的主目录
+        self.processed_file = '/home/xyli/data/annotations/300VW_blur_test123_x.jpg.json' # 转换后的主目录
 
 
 
@@ -53,7 +53,8 @@ class Preprocess300vw:
         self.videos_test_3 = ['410', '411', '516', '517', '526', '528', '529', '530', '531', '533', 
                               '557', '558', '559', '562']
 
-        
+        self.videos_test_123 = self.videos_test_1 + self.videos_test_2 + self.videos_test_3
+
         self.videos_train = [ i for i in self.videos_all if i not in self.videos_test_1 
                                                         and i not in self.videos_test_2 
                                                         and i not in self.videos_test_3]
@@ -232,7 +233,7 @@ class Preprocess300vw:
 
                 # print('path[0:3]: ', path[0:3]) 
 
-                if path[0:3] not in self.videos_test_1:
+                if path[0:3] not in self.videos_test_123:
                     continue
                 
                 pic_id = int(path[4:-4])
