@@ -374,7 +374,7 @@ class Preprocess300vw:
         self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
         self.processed_dir = '/home/xyli/data/annotations'
         pic_dir = '/home/xyli/data/300vw'
-        filename = '300vw_train_all.json'
+        filename = '300vw_test1.json'
         # self.videos_part = ['004']
 
 
@@ -439,6 +439,13 @@ class Preprocess300vw:
                 # if int(annot.split('.')[0]) > 800:
                 #     break
              
+                # 去除前2帧和最后2帧,和ESTRNN生成的结果保持一致
+                if i<=2:
+                    i = i+1
+                    continue
+                if i>=len(annots)-2:
+                    i = i+1
+                    continue
                 
                 # if this frame is broken, skip it.
                 # '000001.pts' -> '000001' -> 1
