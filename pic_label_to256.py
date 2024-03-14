@@ -205,10 +205,10 @@ def testall():
                 x_left, y_low, x_right, y_high
             )
 
-            # resize256( 
-            #     annot_path,
-            #     x_left, y_low, x_right, y_high
-            # )  
+            resize256( 
+                annot_path,
+                x_left, y_low, x_right, y_high
+            )  
 
         print(f'{video}转化结束！')
 
