@@ -249,7 +249,7 @@ class Preprocess300vw:
 
                 anno_1pic = {} 
                 anno_1pic['keypoints'] = keypoints
-                anno_1pic['path'] = path[0:3] + '/' + f'{pic_id}' + '.png'
+                anno_1pic['path'] = path[0:3] + '/' + f'{pic_id}' + '.jpg'
 
                 # 为了和FSTRNN生成结果一致
                 # 丢弃每个序列最后2帧
