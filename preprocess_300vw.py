@@ -371,10 +371,10 @@ class Preprocess300vw:
     
     # 该函数应该在convert_jpg后执行
     def convert_annot(self, dataset):
-        self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
+        self.original_dir = '/home/xyli/data/300vw_resize256_valid_annot'
         self.processed_dir = '/home/xyli/data/annotations'
-        pic_dir = '/home/xyli/data/300vw'
-        filename = '300vw_test3.json'
+        pic_dir = '/home/xyli/data/300vw_resize256_valid'
+        filename = '300vw_test3_256.json'
         # self.videos_part = ['004']
 
 
@@ -466,7 +466,9 @@ class Preprocess300vw:
 
                     # 找到1个帧注解所对应图片的路径
                     pic_name = f"{int(os.path.splitext(annot)[0]):08d}.png" 
-                    pic_path = join(video_id, 'images', pic_name)
+                    # pic_path = join(video_id, 'images', pic_name)
+                    pic_path = join(video_id, pic_name)
+
                     # pic_name = f"{i:08d}.png" 
                     # pic_path = join(video_id, pic_name)
                     # pic_path_rel = join(video_id, 'resize_pic_0.053715', pic_name)
