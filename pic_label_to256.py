@@ -249,7 +249,7 @@ def resize256(annot_path, x_left, y_low, x_right, y_high):
 
 def testall():
     # videos = ['001', '002', '003', '004', '007']
-    videos = ['007']
+    videos = videos_test_3
 
     # # cilent
     # pic_300vw_dir = '/home/lxy/桌面/dest_blur'
