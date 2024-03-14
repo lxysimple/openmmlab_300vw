@@ -69,6 +69,29 @@ def find_edge(videos_annots_path):
 
     return max_edge
 
+# def findxy(avideo_annot_path):
+#     """
+#     找到某个帧人脸框的左上角坐标
+#     args:
+#         avideo_annot_path: 某个帧注解的路径, .../000001.pts
+#     """
+#     keypoints = _keypoint_from_pts_(avideo_annot_path)
+
+#     keypoints_x = [] 
+#     keypoints_y = []
+#     for j in range(68*2):
+#         if j%2 == 0:
+#             keypoints_x.append(keypoints[j])
+#         else:
+#             keypoints_y.append(keypoints[j])
+#     x_left = min(keypoints_x)  
+#     x_right = max(keypoints_x) 
+#     y_low = min(keypoints_y) 
+#     y_high = max(keypoints_y) 
+
+#     return x_left, y_low
+
+
 def findxy(avideo_annot_path):
     """
     找到某个帧人脸框的左上角坐标
@@ -89,10 +112,10 @@ def findxy(avideo_annot_path):
     y_low = min(keypoints_y) 
     y_high = max(keypoints_y) 
 
-    return x_left, y_low
+    return x_left, y_low, x_right, y_high
 
 
-def chage_annot_with_crop(anont_path, res_path, max_edge, x_left, y_low):
+def chage_annot_with_crop(anont_path, res_path, x_left, y_low, x_right, y_high):
     """
     args: 
         anont_path: 要变化注解文件的路径, .../000001.pts
@@ -152,19 +175,18 @@ def crop_image(apic_path, res_path, max_edge, x_left, y_low):
 
     return 
 
-def resize256(apic_path, annot_path, pic_res_dir, annot_res_dir, max_edge):
+def resize256(annot_path, x_left, y_low, x_right, y_high):
     """
     args:
-        apic_path: 要resize的某个帧地址, 要求图片命名形式为{:08d}.png
         annot_path: 其对应annot地址, .../000001.pts
-        pic_res_dir: 输出的图片存放目录
-        annot_res_dir: 修改后注解存放目录
         max_edge: 图片的边长
     """
 
     # 修改注解坐标
     # ?/x = 256/max_edge, ?=256*x/max_edge
-    scale = 256.0/max_edge 
+    scale_x = 256.0/(x_right-x_left)
+    scale_y = 256.0/(y_high-y_low)
+
 
     with open(annot_path, 'r') as f:
         lines = f.readlines()
@@ -173,16 +195,15 @@ def resize256(apic_path, annot_path, pic_res_dir, annot_res_dir, max_edge):
     points = lines[3:71]
     end = lines[71]
 
-    annot_name = annot_path[-10:]
-    res_path_file = join(annot_res_dir, annot_name)
-    with open(res_path_file, 'w') as f:
+    # 在原文件中改动
+    with open(annot_path, 'w') as f:
         f.writelines(header)
 
         for point in points:
             x, y = point.strip().split()
             # 相对坐标就是crop后的绝对坐标
-            x_new = str(float(x)*scale)
-            y_new = str(float(y)*scale)
+            x_new = str(float(x)*scale_x)
+            y_new = str(float(y)*scale_y)
 
             # 写入新的点坐标
             f.write(f'{x_new} {y_new}\n')
@@ -202,114 +223,52 @@ def resize256(apic_path, annot_path, pic_res_dir, annot_res_dir, max_edge):
 
     return 
 
-def test1():
-    max_edge = find_edge(
-        '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot'
-    )
-
-    x_left, y_low = findxy(
-        '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot/000001.pts'
-    )
-
-    print('max_edge: ', max_edge)
-    
-    crop_image(
-        '/home/lxy/桌面/00000001.png', 
-        '/home/lxy/桌面/pic/', max_edge+40, x_left-20, y_low-20
-    )
-
-    chage_annot_with_crop(
-        '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14/001/annot/000001.pts',
-        '/home/lxy/桌面/annot',
-        max_edge+40, x_left-20, y_low-20
-    )
-
-    resize256(
-        '/home/lxy/桌面/pic/00000001.png',
-        '/home/lxy/桌面/annot/000001.pts',
-        '/home/lxy/桌面/pic256/',
-        '/home/lxy/桌面/annot256',
-        max_edge+40
-    )   
 
 def testall():
     # videos = ['001', '002', '003', '004', '007']
     videos = ['007']
 
-    # cilent
-    # pic_300vw_dir = '/home/lxy/桌面/dest'
-    pic_300vw_dir = '/home/lxy/桌面/dest_blur'
-    annot_300vw_dir = '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14'
+    # # cilent
+    # pic_300vw_dir = '/home/lxy/桌面/dest_blur'
+    # annot_300vw_dir = '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14'
 
     # server
-    # pic_300vw_dir = '/home/xyli/data/dest'
-    # annot_300vw_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
+    pic_300vw_dir = '/home/xyli/data/300vw'
+    annot_300vw_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
+
+    res_annot_300vw_dir = '/home/xyli/data/300vw_resize256_valid_annot'
 
     # dest/[001,002,...]/crop_pic
     # dest/[001,002,...]/crop_annot
     # dest/[001,002,...]/resize_pic
     # dest/[001,002,...]/resize_annot
     # data300vw_dir_res = '/home/lxy/桌面/dest/' 
-    data300vw_dir_res = pic_300vw_dir 
     # data300vw_dir_res = '/home/lxy/桌面/dest_blur'
 
     for video in videos: # 遍历 [001,002,...]
-        # 待转化数据路径
-        # pngs_dir = join(pic_300vw_dir, video, 'images')
-        pngs_dir = join(pic_300vw_dir, video, 'images')
-        annots_dir = join(annot_300vw_dir, video, 'annot')
-        # 转化结果路径
-        crop_pic = join(data300vw_dir_res, video, 'crop_pic')
-        crop_annot = join(data300vw_dir_res, video, 'crop_annot')
-        resize_pic = join(data300vw_dir_res, video, 'resize_pic')
-        resize_annot = join(data300vw_dir_res, video, 'resize_annot')
 
-        # 如果转化结果路径不存在, 则创建
-        if not os.path.exists(crop_pic):
-            os.makedirs(crop_pic)
-        if not os.path.exists(crop_annot):
-            os.makedirs(crop_annot) 
-        if not os.path.exists(resize_pic):
-            os.makedirs(resize_pic)
-        if not os.path.exists(resize_annot):
-            os.makedirs(resize_annot)
+        annots_path = join(annot_300vw_dir, video, 'annot')
+        annots = os.listdir(annots_path) 
+        for annot in annots: # 遍历 001中的[00000001.png, ...]
 
-        max_edge = find_edge(annots_dir) # 获取001中的最大边长
+            annot_path = join(annots_path, annot)
+            annot_path_res = join(res_annot_300vw_dir, video, 'annot')
 
-        pngs = os.listdir(pngs_dir) 
-        for png in pngs: # 遍历 001中的[00000001.png, ...]
-            # 某个帧 某个帧注解 路径
-            png_path = join(pngs_dir, png)
-            annot_path = join(annots_dir, png[-10:-4]+'.pts')
+            if not os.path.exists(annot_path_res):
+                os.makedirs(annot_path_res)
 
             # 从注解中提取信息
-            x_left, y_low = findxy(annot_path)
- 
-            crop_image( 
-                png_path, 
-                crop_pic, 
-                max_edge+40, x_left-20, y_low-20
-                # max_edge, x_left, y_low
-            )
+            x_left, y_low, x_right, y_high = findxy(annot_path)
 
             chage_annot_with_crop(
                 annot_path,
-                crop_annot,
-                max_edge+40, x_left-20, y_low-20
-                # max_edge, x_left, y_low
+                annot_path_res,
+                x_left, y_low, x_right, y_high
             )
-            
-            # 对crop_image进行二次加工
-            png_path = join(crop_pic, png)
-            annot_path = join(crop_annot, png[-10:-4]+'.pts')
 
             resize256( 
-                png_path,
                 annot_path,
-                resize_pic,
-                resize_annot,
-                max_edge+40,
-                # max_edge
+                x_left, y_low, x_right, y_high
             )  
 
         print(f'{video}转化结束！')
