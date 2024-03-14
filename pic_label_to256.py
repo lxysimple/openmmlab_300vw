@@ -210,17 +210,6 @@ def resize256(annot_path, x_left, y_low, x_right, y_high):
 
         f.write(end)
 
-
-    # 修改图片
-    image = Image.open(apic_path)
-    image = image.resize((256, 256))
-
-    if not os.path.exists(pic_res_dir):
-        os.makedirs(pic_res_dir)
-
-    save_pic = join(pic_res_dir, apic_path[-12:]) 
-    image.save(save_pic)
-
     return 
 
 
