@@ -443,7 +443,7 @@ class Preprocess300vw:
                 if i<=2:
                     i = i+1
                     continue
-                if i>=len(annots)-1:
+                if i>=len(annots)-2:
                     i = i+1
                     continue
                 
