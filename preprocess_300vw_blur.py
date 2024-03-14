@@ -13,15 +13,15 @@ from PIL import Image, ImageDraw
 class Preprocess300vw:
     def __init__(self):
         # In Linux:
-        # self.original_dir = '/home/xyli/data/Blurred-300VW-deblur'
-        self.original_dir = '/home/xyli/data/Blurred-300VW'
+        self.original_dir = '/home/xyli/data/Blurred-300VW-deblur'
+        # self.original_dir = '/home/xyli/data/Blurred-300VW'
 
 
         # self.processed_file = '/home/xyli/data/annotations/300VW_blur_label_list_256_train_mmpose.json' # 转换后的主目录
         # self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_train.txt'
 
         self.txt_path = '/home/xyli/data/annotations/300VW_blur_label_list_256_test.txt'
-        self.processed_file = '/home/xyli/data/annotations/300VW_blur_test123_x.jpg.json' # 转换后的主目录
+        self.processed_file = '/home/xyli/data/annotations/300VW_blur_test123_x.png.json' # 转换后的主目录
 
 
 
@@ -250,7 +250,7 @@ class Preprocess300vw:
 
                 anno_1pic = {} 
                 anno_1pic['keypoints'] = keypoints
-                anno_1pic['path'] = path[0:3] + '/' + f'{pic_id}' + '.jpg'
+                anno_1pic['path'] = path[0:3] + '/' + f'{pic_id}' + '.png'
 
                 # 为了和FSTRNN生成结果一致
                 # 丢弃每个序列最后2帧
