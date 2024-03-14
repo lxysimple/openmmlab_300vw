@@ -183,32 +183,6 @@ def chage_annot_with_crop(anont_path, res_path, x_left, y_low, x_right, y_high):
 
     return 
 
-def crop_image(apic_path, res_path, max_edge, x_left, y_low):
-    """
-    args:
-        apic_path: 一个要被裁剪的图片路径, 要求图片命名形式为{:08d}.png
-        res_path: 裁剪后结果图所放置的路径
-        max_edge: 图片将要被裁剪边的长度
-    """
-    image = Image.open(apic_path)
-    cropped_image = image.crop(
-                        (
-                            x_left , 
-                            y_low  , 
-                            x_left + max_edge  ,
-                            y_low + max_edge  ,
-                        )   
-                    )
-    # 创建注解文件的目录（没有该目录，无法创建注解文件）
-    if not os.path.exists(res_path):
-        os.makedirs(res_path)
-
-    file_name = apic_path[-12:]
-    save_path = join(res_path, file_name)
-    cropped_image.save(save_path)
-
-    return 
-
 def resize256(annot_path, x_left, y_low, x_right, y_high):
     """
     args:
