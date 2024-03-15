@@ -300,7 +300,10 @@ def test_300vw():
             # 某个帧 某个帧注解 路径
             png_path = join(pngs_dir, png)
             png_res_path = join(data300vw_res_video_dir, png)
-            annot_path = join(annots_dir, png[-10:-4]+'.pts')
+
+            annot_name = png[-10:-4]
+            annot_name = f"{int(annot_name):08d}"
+            annot_path = join(annots_dir, annot_name + '.pts')
 
             # if video in broken_frames and int(png[:-4]) in broken_frames[video]:
             #     continue
