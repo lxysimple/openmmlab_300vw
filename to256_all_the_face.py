@@ -245,16 +245,17 @@ def resize256(move, png, apic_path, pic_res_dir):
 
     return  
 
-def crop_resize256_image(pic_path, res_path, x_left, y_low, x_right, y_high):
-    image = Image.open(apic_path)
+def crop_resize256_image(png, pic_path, res_path, x_left, y_low, x_right, y_high):
+    image = Image.open(pic_path)
     image = image.crop(
                         (x_left, y_low, x_right, y_high)   
                     )
     image = image.resize((256, 256))
 
-    if not os.path.exists(pic_res_dir):
-        os.makedirs(pic_res_dir)
-    save_pic = join(pic_res_dir, f"{int(png[:-4])+move:08d}.png") 
+    if not os.path.exists(res_path):
+        os.makedirs(res_path)
+
+    save_pic = join(res_path, f"{int(png[:-4]):08d}.png") 
     image.save(save_pic)
 
     return
@@ -311,7 +312,7 @@ def test_300vw():
             # 从注解中提取信息
             x_left, y_low, x_right, y_high = findxy(annot_path)
 
-            crop_resize256_image(png_path, png_res_path, x_left, y_low, x_right, y_high)
+            crop_resize256_image(png, png_path, png_res_path, x_left, y_low, x_right, y_high)
  
             # crop_image( 
             #     png,
