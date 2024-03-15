@@ -245,40 +245,52 @@ def resize256(move, png, apic_path, pic_res_dir):
 
     return  
 
+def crop_resize256_image(pic_path, res_path, x_left, y_low, x_right, y_high):
+    image = Image.open(apic_path)
+    image = image.crop(
+                        (x_left, y_low, x_right, y_high)   
+                    )
+    image = image.resize((256, 256))
+
+    if not os.path.exists(pic_res_dir):
+        os.makedirs(pic_res_dir)
+    save_pic = join(pic_res_dir, f"{int(png[:-4])+move:08d}.png") 
+    image.save(save_pic)
+
+    return
+
+
 def test_300vw():
     # videos = ['001']
     # videos = videos_train
     videos = videos_test_3
 
-    pic_300vw_dir = '/home/xyli/data/300vw'
+    pic_300vw_dir = '/media/lxy/新加卷/Ubuntu/300vw_myblur'
     annot_300vw_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
 
     # data300vw_crop_dir_res = '/home/xyli/data/300vw_crop'
     # data300vw_resize256_dir_res = '/home/xyli/data/300vw_resize256' 
-    data300vw_crop_dir_res = '/home/xyli/data/300vw_crop_valid'
-    data300vw_resize256_dir_res = '/home/xyli/data/300vw_resize256_valid' 
+    data300vw_res_dir = '/media/lxy/新加卷/Ubuntu/300vw_myblur_256'
 
 
     for video in videos: # 遍历 [001,002,...]
         # 待转化数据路径
-        pngs_dir = join(pic_300vw_dir, video, 'images')
+        pngs_dir = join(pic_300vw_dir, video)
         # pngs_dir = join(pic_300vw_dir, video)
-        annots_dir = join(annot_300vw_dir, video, 'annot')
+        annots_dir = join(annot_300vw_dir, video, 'annot') # 用于规定如何crop
         
         # 转化结果路径
-        crop_pic = join(data300vw_crop_dir_res, video)
+        # crop_pic = join(data300vw_crop_dir_res, video)
         # crop_annot = join(data300vw_dir_res, video, 'crop_annot')
 
-        resize_pic = join(data300vw_resize256_dir_res, video)
+        # resize_pic = join(data300vw_resize256_dir_res, video)
         # resize_annot = join(data300vw_dir_res, video, 'resize_annot')
 
-        
+        data300vw_res_video_dir = join(data300vw_res_dir, video)
 
         # 如果转化结果路径不存在, 则创建
-        if not os.path.exists(crop_pic):
-            os.makedirs(crop_pic)
-        if not os.path.exists(resize_pic):
-            os.makedirs(resize_pic)
+        if not os.path.exists(data300vw_res_video_dir):
+            os.makedirs(data300vw_res_video_dir)
 
         pngs = os.listdir(pngs_dir) 
         
@@ -287,6 +299,7 @@ def test_300vw():
         for png in pngs: # 遍历 001中的[00000001.png, ...]
             # 某个帧 某个帧注解 路径
             png_path = join(pngs_dir, png)
+            png_res_path = join(data300vw_res_video_dir, png)
             annot_path = join(annots_dir, png[-10:-4]+'.pts')
 
             # if video in broken_frames and int(png[:-4]) in broken_frames[video]:
@@ -294,26 +307,27 @@ def test_300vw():
         
             # 从注解中提取信息
             x_left, y_low, x_right, y_high = findxy(annot_path)
- 
-            crop_image( 
-                png,
-                png_path, 
-                crop_pic, 
-                x_left, y_low, x_right, y_high
-            )
-            
-            # 对crop_image进行二次加工
-            png_path = join(crop_pic, png)
 
-            resize256( 
-                0,
-                png,
-                png_path,
-                resize_pic,
-            )  
+            crop_resize256_image(png_path, png_res_path, x_left, y_low, x_right, y_high)
+ 
+            # crop_image( 
+            #     png,
+            #     png_path, 
+            #     crop_pic, 
+            #     x_left, y_low, x_right, y_high
+            # )
+            
+            # # 对crop_image进行二次加工
+            # png_path = join(crop_pic, png)
+
+            # resize256( 
+            #     0,
+            #     png,
+            #     png_path,
+            #     resize_pic,
+            # )  
 
         print(f'{video}转化结束！')
-        os.system(f'rm -rf {data300vw_crop_dir_res}')
 
 def test_300vw_blur():
     # videos = ['001', '002', '003', '004', '007']
@@ -391,9 +405,9 @@ def test_300vw_blur():
         os.system(f'rm -rf {data300vw_crop_dir_res}')
 
 if __name__ == '__main__':
-    test_300vw()
+    test_300vw() # 指的是注解用.pt装的数据
     
-    # test_300vw_blur()
+    # test_300vw_blur() # 指的是注解用.txt装的数据
 
 
     
