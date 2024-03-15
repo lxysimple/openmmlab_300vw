@@ -245,18 +245,14 @@ def resize256(move, png, apic_path, pic_res_dir):
 
     return  
 
-def crop_resize256_image(png, pic_path, res_path, x_left, y_low, x_right, y_high):
+def crop_resize256_image(pic_path, res_path, x_left, y_low, x_right, y_high):
     image = Image.open(pic_path)
     image = image.crop(
                         (x_left, y_low, x_right, y_high)   
                     )
     image = image.resize((256, 256))
 
-    if not os.path.exists(res_path):
-        os.makedirs(res_path)
-
-    save_pic = join(res_path, f"{int(png[:-4]):08d}.png") 
-    image.save(save_pic)
+    image.save(res_path)
 
     return
 
@@ -300,7 +296,9 @@ def test_300vw():
         for png in pngs: # 遍历 001中的[00000001.png, ...]
             # 某个帧 某个帧注解 路径
             png_path = join(pngs_dir, png)
-            png_res_path = join(data300vw_res_video_dir, png)
+
+            png_res_path = join(data300vw_res_video_dir, f"{int(png[:-4]):08d}.png")
+            
 
             annot_name = png[-10:-4]
             annot_name = f"{int(annot_name):06d}"
@@ -312,7 +310,7 @@ def test_300vw():
             # 从注解中提取信息
             x_left, y_low, x_right, y_high = findxy(annot_path)
 
-            crop_resize256_image(png, png_path, png_res_path, x_left, y_low, x_right, y_high)
+            crop_resize256_image(png_path, png_res_path, x_left, y_low, x_right, y_high)
  
             # crop_image( 
             #     png,
