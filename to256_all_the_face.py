@@ -246,6 +246,10 @@ def resize256(move, png, apic_path, pic_res_dir):
     return  
 
 def crop_resize256_image(pic_path, res_path, x_left, y_low, x_right, y_high):
+
+    from IPython import embed
+    embed()
+    
     image = Image.open(pic_path)
     image = image.crop(
                         (x_left, y_low, x_right, y_high)   
