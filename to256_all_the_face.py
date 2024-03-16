@@ -250,7 +250,7 @@ def crop_resize256_image(pic_path, res_path, x_left, y_low, x_right, y_high):
     image = image.crop(
                         (x_left, y_low, x_right, y_high)   
                     )
-    image = image.resize((256, 256))
+    # image = image.resize((256, 256))
 
     image.save(res_path)
 
