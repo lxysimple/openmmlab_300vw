@@ -482,10 +482,6 @@ class Preprocess300vw:
                     image_pic = Image.open(pic_path) # 打开图片
                     pic_width, pic_height = image_pic.size
 
-                    print('pic_height: ',pic_height)
-                    print('pic_width: ',pic_width)
-                    input("dengdeng")
-
                     image['height'] = pic_height
                     image['width'] = pic_width
                     image_pic.close() # 关闭图像
