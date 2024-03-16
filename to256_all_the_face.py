@@ -247,10 +247,10 @@ def resize256(move, png, apic_path, pic_res_dir):
 
 def crop_resize256_image(pic_path, res_path, x_left, y_low, x_right, y_high):
     image = Image.open(pic_path)
-    image = image.crop(
-                        (x_left, y_low, x_right, y_high)   
-                    )
-    # image = image.resize((256, 256))
+    # image = image.crop(
+    #                     (x_left, y_low, x_right, y_high)   
+    #                 )
+    image = image.resize((256, 256))
 
     image.save(res_path)
 
