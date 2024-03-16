@@ -290,7 +290,7 @@ def test_300vw():
             os.makedirs(data300vw_res_video_dir)
 
         pngs = os.listdir(pngs_dir) 
-        
+        pngs.sort()
         # from IPython import embed
         # embed()
         for png in pngs: # 遍历 001中的[00000001.png, ...]
