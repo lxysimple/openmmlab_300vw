@@ -277,7 +277,7 @@ dataset_vali = dict(
     # data_prefix=dict(img='data/Blurred-300VW-deblur'),
     # data_prefix=dict(img='data/Blurred-300VW'),
     # data_prefix=dict(img='data/300vw'),
-    data_prefix=dict(img='data/300vw_resize256_myblur'),
+    data_prefix=dict(img='data/300vw_resize256'),
     # data_prefix=dict(img='ESTRNN/2024_02_27_14_58_03_ESTRNN_300vw/300vw_ESTRNN_test/'),
     
 
