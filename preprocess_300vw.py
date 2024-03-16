@@ -374,7 +374,7 @@ class Preprocess300vw:
         self.original_dir = '/home/xyli/data/300vw_resize256_valid_annot'
         self.processed_dir = '/home/xyli/data/annotations'
         pic_dir = '/home/xyli/data/300vw_resize256_valid'
-        filename = '300vw_myblur_test2.json'
+        filename = '    .json'
         # self.videos_part = ['004']
 
 
