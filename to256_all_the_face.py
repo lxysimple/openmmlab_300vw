@@ -291,8 +291,8 @@ def test_300vw():
 
         pngs = os.listdir(pngs_dir) 
         pngs.sort()
-        from IPython import embed
-        embed()
+        # from IPython import embed
+        # embed()
         for png in pngs: # 遍历 001中的[00000001.png, ...]
             # 某个帧 某个帧注解 路径
             png_path = join(pngs_dir, png)
