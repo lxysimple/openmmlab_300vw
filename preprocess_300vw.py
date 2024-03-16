@@ -374,7 +374,7 @@ class Preprocess300vw:
         self.original_dir = '/home/xyli/data/300vw_resize256_valid_annot'
         self.processed_dir = '/home/xyli/data/annotations'
         pic_dir = '/home/xyli/data/300vw_resize256_myblur'
-        filename = '300vw_test1_256.json'
+        filename = '300vw_test2_256.json'
         # self.videos_part = ['004']
 
 
@@ -485,7 +485,7 @@ class Preprocess300vw:
                     print('pic_height: ',pic_height)
                     print('pic_width: ',pic_width)
                     input("dengdeng")
-                    
+
                     image['height'] = pic_height
                     image['width'] = pic_width
                     image_pic.close() # 关闭图像
@@ -592,7 +592,7 @@ if __name__ == '__main__':
     # convert300vw.convert_jpg(convert300vw.videos_test_3)
     # convert300vw.convert_1video()
 
-    convert300vw.convert_annot(convert300vw.videos_test_1)
+    convert300vw.convert_annot(convert300vw.videos_test_2)
 
     # A bit of data to test
     # convert300vw.convert_jpg(convert300vw.videos_part)
