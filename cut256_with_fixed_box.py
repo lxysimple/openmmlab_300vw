@@ -214,7 +214,7 @@ def test_300vw():
         d = find_maxd(annots_dir, cx, cy)
 
         print('cx, cy: ',cx, cy)
-        print('d: ', d)
+        print('2*d: ', 2*d)
         
         pngs = os.listdir(pngs_dir) 
         pngs.sort()
