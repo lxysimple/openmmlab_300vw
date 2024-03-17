@@ -99,7 +99,7 @@ def find_center_xy(avideo_annot_dir):
     cy_list = []
 
     for pts in pts_list:
-        
+        # 获得单个.pts的 path
         avideo_annot_path = join(avideo_annot_dir, pts)
 
         keypoints = _keypoint_from_pts_(avideo_annot_path)
