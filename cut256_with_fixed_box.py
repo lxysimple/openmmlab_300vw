@@ -99,6 +99,8 @@ def find_center_xy(avideo_annot_dir):
     cy_list = []
 
     for pts in pts_list:
+        
+        avideo_annot_path = join(avideo_annot_dir, pts)
 
         keypoints = _keypoint_from_pts_(avideo_annot_path)
 
@@ -223,5 +225,5 @@ def test_300vw():
 
 
 if __name__ == '__main__':
-    
+
     test_300vw() # 指的是注解用.pt装的数据
