@@ -144,7 +144,7 @@ def find_maxd(avideo_annot_dir, cx, cy):
 
         # 获得单个.pts的 path
         avideo_annot_path = join(avideo_annot_dir, pts)
-        
+
         keypoints = _keypoint_from_pts_(avideo_annot_path)
 
         keypoints_x = [] 
@@ -212,6 +212,9 @@ def test_300vw():
 
         # 获得 d 
         d = find_maxd(annots_dir, cx, cy)
+
+        print('cx, cy: ',cx, cy)
+        print('d: ', d)
         
         pngs = os.listdir(pngs_dir) 
         pngs.sort()
