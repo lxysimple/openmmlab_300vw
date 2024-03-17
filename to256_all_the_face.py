@@ -10,6 +10,7 @@
 import os
 from os.path import join
 from PIL import Image
+import numpy as np
 
 
 # 300vw一共有这么多视频，每个视频都用一个文件夹装着
