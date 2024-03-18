@@ -189,7 +189,7 @@ def test_300vw():
 
     pic_300vw_dir = '/media/lxy/新加卷/Ubuntu/300vw_myblur'
     annot_300vw_dir = '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14'
-    data300vw_res_dir = '/media/lxy/新加卷/Ubuntu/300vw_resize256_myblur' 
+    data300vw_res_dir = '/media/lxy/新加卷/Ubuntu/300vw_fix256_myblur' 
     
     # pic_300vw_dir = '/home/xyli/data/300vw'
     # annot_300vw_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
@@ -212,8 +212,8 @@ def test_300vw():
         # 获得 d 
         d = find_maxd(annots_dir, cx, cy)
 
-        print('cx, cy: ',cx, cy)
-        print('2*d: ', 2*d)
+        # print('cx, cy: ',cx, cy)
+        # print('2*d: ', 2*d)
         
         pngs = os.listdir(pngs_dir) 
         pngs.sort()
