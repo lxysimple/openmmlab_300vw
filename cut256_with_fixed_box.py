@@ -197,8 +197,8 @@ def test_300vw():
 
     for video in videos: # 遍历 [001,002,...]
         # 将各路径join video
-        pngs_dir = join(pic_300vw_dir, video, 'images')
-        # pngs_dir = join(pic_300vw_dir, video)
+        pngs_dir = join(pic_300vw_dir, video, 'images') # 服务器
+        # pngs_dir = join(pic_300vw_dir, video) # 本地
         annots_dir = join(annot_300vw_dir, video, 'annot') # 用于规定如何crop
         data300vw_res_video_dir = join(data300vw_res_dir, video)
 
