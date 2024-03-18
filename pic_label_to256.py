@@ -247,7 +247,7 @@ def testall_justannot():
         for annot in annots: # 遍历 001中的[00000001.png, ...]
 
             annot_path = join(annots_path, annot)
-            annot_path_res = join(res_annot_300vw_dir, video, annot)
+            annot_path_res = join(res_annot_300vw_dir, video, 'annot', annot)
 
             if not os.path.exists(annot_path_res):
                 os.makedirs(annot_path_res)
