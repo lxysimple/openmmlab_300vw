@@ -138,6 +138,8 @@ def resize256(annot_path, x_left, y_low, x_right, y_high):
     scale_x = 256.0/(x_right-x_left)
     scale_y = 256.0/(y_high-y_low)
 
+    print('scale_x: ', scale_x)
+    print('scale_y: ', scale_y)
 
     with open(annot_path, 'r') as f:
         lines = f.readlines()
@@ -156,10 +158,10 @@ def resize256(annot_path, x_left, y_low, x_right, y_high):
             x_new = str(float(x)*scale_x)
             y_new = str(float(y)*scale_y)
 
-            print('x: ', x)
-            print('y: ', y)
-            print('x_new: ', x_new)
-            print('y_new: ', y_new)
+            # print('x: ', x)
+            # print('y: ', y)
+            # print('x_new: ', x_new)
+            # print('y_new: ', y_new)
 
             # 写入新的点坐标
             f.write(f'{x_new} {y_new}\n')
