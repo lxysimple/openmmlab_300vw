@@ -138,8 +138,8 @@ def resize256(annot_path, x_left, y_low, x_right, y_high):
     scale_x = 256.0/(x_right-x_left)
     scale_y = 256.0/(y_high-y_low)
 
-    print('scale_x: ', scale_x)
-    print('scale_y: ', scale_y)
+    # print('scale_x: ', scale_x)
+    # print('scale_y: ', scale_y)
 
     with open(annot_path, 'r') as f:
         lines = f.readlines()
