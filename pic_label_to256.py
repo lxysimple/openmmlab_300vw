@@ -259,4 +259,6 @@ def testall_justannot():
         print(f'{video}转化结束！')
 
 if __name__ == '__main__':
-    testall_justpic()
+    # testall_justpic()
+
+    testall_justannot()
