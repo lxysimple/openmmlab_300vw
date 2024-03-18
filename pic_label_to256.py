@@ -259,7 +259,7 @@ def testall_justannot():
             )
 
             resize256( 
-                annot_path,
+                annot_path_res,
                 cx-d, cy-d, cx+d, cy+d
             )  
 
