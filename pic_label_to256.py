@@ -224,7 +224,6 @@ def testall_justannot():
     # annot_300vw_dir = '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14'
 
     # server
-    pic_300vw_dir = '/home/xyli/data/300vw'
     annot_300vw_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
     res_annot_300vw_dir = '/home/xyli/data/300vw_fix256_valid_annot'
 
