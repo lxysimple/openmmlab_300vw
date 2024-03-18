@@ -214,7 +214,7 @@ def testall_justpic():
             )
 
             resize256( 
-                annot_path,
+                annot_path_res,
                 x_left, y_low, x_right, y_high
             )  
 
