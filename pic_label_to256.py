@@ -233,9 +233,9 @@ def testall_justannot():
         annots = os.listdir(annots_path) 
 
         # 获得中心点坐标
-        cx, cy = find_center_xy(annots_dir)
+        cx, cy = find_center_xy(annots_path)
         # 获得 d 
-        d = find_maxd(annots_dir, cx, cy)
+        d = find_maxd(annots_path, cx, cy)
 
         for annot in annots: # 遍历 001中的[00000001.png, ...]
 
