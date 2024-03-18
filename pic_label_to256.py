@@ -1,6 +1,7 @@
 import os
 from os.path import join
 from PIL import Image
+from cut256_with_fixed_box import find_center_xy, find_maxd
 
 # 300vw一共有这么多视频，每个视频都用一个文件夹装着
 videos_all =  ['001', '002', '003', '004', '007', '009', '010', '011', '013', '015', 
@@ -225,20 +226,18 @@ def testall_justannot():
     # server
     pic_300vw_dir = '/home/xyli/data/300vw'
     annot_300vw_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
-
-    res_annot_300vw_dir = '/home/xyli/data/300vw_resize256_valid_annot'
-
-    # dest/[001,002,...]/crop_pic
-    # dest/[001,002,...]/crop_annot
-    # dest/[001,002,...]/resize_pic
-    # dest/[001,002,...]/resize_annot
-    # data300vw_dir_res = '/home/lxy/桌面/dest/' 
-    # data300vw_dir_res = '/home/lxy/桌面/dest_blur'
+    res_annot_300vw_dir = '/home/xyli/data/300vw_fix256_valid_annot'
 
     for video in videos: # 遍历 [001,002,...]
 
         annots_path = join(annot_300vw_dir, video, 'annot')
         annots = os.listdir(annots_path) 
+
+        # 获得中心点坐标
+        cx, cy = find_center_xy(annots_dir)
+        # 获得 d 
+        d = find_maxd(annots_dir, cx, cy)
+
         for annot in annots: # 遍历 001中的[00000001.png, ...]
 
             annot_path = join(annots_path, annot)
@@ -247,18 +246,15 @@ def testall_justannot():
             if not os.path.exists(annot_path_res):
                 os.makedirs(annot_path_res)
 
-            # 从注解中提取信息
-            x_left, y_low, x_right, y_high = findxy(annot_path)
-
             chage_annot_with_crop(
                 annot_path,
                 annot_path_res,
-                x_left, y_low, x_right, y_high
+                cx-d, cy-d, cx+d, cy+d
             )
 
             resize256( 
                 annot_path,
-                x_left, y_low, x_right, y_high
+                cx-d, cy-d, cx+d, cy+d
             )  
 
         print(f'{video}转化结束！')
