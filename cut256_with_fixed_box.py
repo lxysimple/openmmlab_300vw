@@ -222,7 +222,8 @@ def test_300vw():
         for png in pngs: # 遍历 001中的[00000001.png, ...]
             # 某个帧 某个帧注解 路径
             png_path = join(pngs_dir, png)
-            png_res_path = join(data300vw_res_video_dir, f"{int(png[:-4]):08d}.png")
+            # png_res_path = join(data300vw_res_video_dir, f"{int(png[:-4]):08d}.png") # 本地
+            png_res_path = join(data300vw_res_video_dir, 'images', f"{int(png[:-4]):08d}.png") # 服务器
             
             crop_resize256_image(png_path, png_res_path, cx-d, cy-d, cx+d, cy+d) 
 
