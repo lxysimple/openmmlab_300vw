@@ -374,8 +374,8 @@ class Preprocess300vw:
 
         self.original_dir = '/home/xyli/data/300vw_fix256_valid_annot'
         self.processed_dir = '/home/xyli/data/annotations'
-        pic_dir = '/home/xyli/data/300vw_fix256_myblur_test3'
-        filename = '300VW_myblur_fix256_test3.json'
+        pic_dir = '/home/xyli/data/300vw_fix256_myblur_test2'
+        filename = '300VW_myblur_fix256_test2.json'
 
 
 
@@ -592,7 +592,7 @@ if __name__ == '__main__':
     # convert300vw.convert_jpg(convert300vw.videos_test_3)
     # convert300vw.convert_1video()
 
-    convert300vw.convert_annot(convert300vw.videos_test_3)
+    convert300vw.convert_annot(convert300vw.videos_test_2)
 
     # A bit of data to test
     # convert300vw.convert_jpg(convert300vw.videos_part)
