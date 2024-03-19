@@ -224,7 +224,7 @@ def testall_justpic():
 def testall_justannot():
 
      # videos = ['001', '002', '003', '004', '007']
-    videos = videos_test_3
+    videos = videos_test_1
 
     # # cilent
     # pic_300vw_dir = '/home/lxy/桌面/dest_blur'
