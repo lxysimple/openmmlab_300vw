@@ -446,11 +446,11 @@ class Preprocess300vw:
                 # if int(annot.split('.')[0]) > 800:
                 #     break
              
-                # 去除前3帧和最后3帧,为了和ESTRNN生成的结果保持一致
+                # 去除前3帧和最后5帧,为了和ESTRNN生成的结果保持一致
                 if i<=3:
                     i = i+1
                     continue
-                if i>=len(annots)-3:
+                if i>=len(annots)-5:
                     i = i+1
                     continue
                 
