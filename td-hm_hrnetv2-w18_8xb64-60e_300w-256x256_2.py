@@ -276,7 +276,7 @@ dataset_vali = dict(
     # data_root + data_prefix + 注解文件中的相对路径 = 绝对路径
     # data_prefix=dict(img='data/Blurred-300VW-deblur'),
     # data_prefix=dict(img='data/Blurred-300VW'),
-    data_prefix=dict(img='data/300vw_fix256_test3'),
+    data_prefix=dict(img='data/300vw_fix256_myblur_test3_deblur'),
     # data_prefix=dict(img='data/300vw_resize256_valid'),
     # data_prefix=dict(img='ESTRNN/2024_02_27_14_58_03_ESTRNN_300vw/300vw_ESTRNN_test/'),
     
