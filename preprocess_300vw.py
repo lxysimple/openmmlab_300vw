@@ -378,7 +378,7 @@ class Preprocess300vw:
         # filename = '300vw_test3_256.json'
 
         self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
-        pic_dir = '/home/xyli/data/300w'
+        pic_dir = '/home/xyli/data/300vw'
         self.processed_dir = '/home/xyli/data/annotations'
         filename = '300vw_test3.json'
 
