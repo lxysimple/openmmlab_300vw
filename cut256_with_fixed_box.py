@@ -194,7 +194,7 @@ def test_300vw():
     pic_300vw_dir = '/home/xyli/data/300vw'
     annot_300vw_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
     # data300vw_res_dir = '/home/xyli/data/300vw_fix256' 
-    data300vw_res_dir = '/home/xyli/data/300vw_fix512'
+    data300vw_res_dir = '/home/xyli/data/300vw_fix256_2d'
 
     for video in videos: # 遍历 [001,002,...]
         # 将各路径join video
