@@ -243,7 +243,6 @@ def testall_justannot():
         cx, cy = find_center_xy(annots_path)
         # 获得 d 
         d = find_maxd(annots_path, cx, cy)
-        d = d*2
 
         for annot in annots: # 遍历 001中的[00000001.png, ...]
 
