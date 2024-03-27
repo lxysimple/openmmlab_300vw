@@ -224,7 +224,7 @@ def testall_justpic():
 def testall_justannot():
 
      # videos = ['001', '002', '003', '004', '007']
-    videos = videos_test_1
+    videos = videos_test_3
 
     # # cilent
     # pic_300vw_dir = '/home/lxy/桌面/dest_blur'
@@ -243,6 +243,7 @@ def testall_justannot():
         cx, cy = find_center_xy(annots_path)
         # 获得 d 
         d = find_maxd(annots_path, cx, cy)
+        d = d*2
 
         for annot in annots: # 遍历 001中的[00000001.png, ...]
 
