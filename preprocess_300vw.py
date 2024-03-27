@@ -522,7 +522,7 @@ class Preprocess300vw:
 
                     # scale = math.ceil(max(w,h))/200
                     # scale = math.ceil(min(w,h))/200
-                    scale = min(w,h)/200.0
+                    scale = min(w,h)/200.0 -20
                     annotation['scale'] = scale
 
                     # 计算人脸面积
