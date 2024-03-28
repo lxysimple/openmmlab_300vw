@@ -268,7 +268,7 @@ dataset_vali = dict(
     # ann_file='annotations/300VW_blur_label_list_256_train_mmpose.json',
     # ann_file='data/annotations/300VW_blur_test1_x.png.json',
     # ann_file='data/annotations/300vw_fix256_test3.json',
-    ann_file='data/annotations/300vw_test1.json', 
+    ann_file='data/annotations/300vw_test3.json', 
     # ann_file='data/annotations/300vw_test1_256.json',
 
     # data_prefix=dict(img='images/'),
