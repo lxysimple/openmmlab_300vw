@@ -253,12 +253,13 @@ dataset_vali = dict(
     type='Face300WDataset',
     # data_root=data_root_300w,
     # data_root=data_root_300vw,
-    data_root='/home/xyli',
+    # data_root='/home/xyli',
+    data_root='E:\\mmpose\\data\\300vw',
     # data_root=data_root_300vw_deblur,
     
     data_mode='topdown',
 
-    # ann_file='annotations/face_landmarks_300w_valid.json', # all the validation data
+    ann_file='annotations\\train.json', # all the validation data
     # ann_file='annotations/face_landmarks_300w_valid_challenge.json',
     # ann_file='annotations/face_landmarks_300w_valid_common.json',
     # ann_file='annotations/face_landmarks_300w_test.json', # no Test data in server.
@@ -267,7 +268,7 @@ dataset_vali = dict(
     # ann_file='annotations/300VW_blur_label_list_256_train_mmpose.json',
     # ann_file='data/annotations/300VW_blur_test1_x.png.json',
     # ann_file='data/annotations/300vw_fix256_test3.json',
-    ann_file='data/annotations/300vw_test3.json', 
+    # ann_file='data/annotations/300vw_test3.json', 
     # ann_file='data/annotations/300vw_test3_256.json',
 
     # data_prefix=dict(img='images/'),
@@ -275,8 +276,8 @@ dataset_vali = dict(
     # data_prefix=dict(img='ESTRNN/2024_03_05_15_04_37_ESTRNN_300vw/300vw_ESTRNN_test/546/'),
 
     # data_root + data_prefix + 注解文件中的相对路径 = 绝对路径
-    data_prefix=dict(img='data/300vw'),
-    # data_prefix=dict(img='data/Blurred-300VW'),
+    # data_prefix=dict(img='data/300vw'),
+    data_prefix=dict(img='images'),
     # data_prefix=dict(img='data/300vw_fix256_test3'),
     # data_prefix=dict(img='data/300vw_fix256_2d'),
     # data_prefix=dict(img='ESTRNN/2024_02_27_14_58_03_ESTRNN_300vw/300vw_ESTRNN_test/'),
