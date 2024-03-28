@@ -372,15 +372,15 @@ class Preprocess300vw:
     # 该函数应该在convert_jpg后执行
     def convert_annot(self, dataset):
 
-        self.original_dir = '/home/xyli/data/300vw_fix256_valid_annot'
-        pic_dir = '/home/xyli/data/300vw_fix256_test3'
-        self.processed_dir = '/home/xyli/data/annotations'
-        filename = '300vw_test3_256.json'
-
-        # self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
-        # pic_dir = '/home/xyli/data/300vw'
+        # self.original_dir = '/home/xyli/data/300vw_fix256_valid_annot'
+        # pic_dir = '/home/xyli/data/300vw_fix256_test3'
         # self.processed_dir = '/home/xyli/data/annotations'
-        # filename = '300vw_test3.json'
+        # filename = '300vw_test3_256.json'
+
+        self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
+        pic_dir = '/home/xyli/data/300vw'
+        self.processed_dir = '/home/xyli/data/annotations'
+        filename = '300vw_test2.json'
 
         # self.videos_part = ['004']
 
