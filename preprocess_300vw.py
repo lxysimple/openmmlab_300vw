@@ -380,7 +380,7 @@ class Preprocess300vw:
         self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
         pic_dir = '/home/xyli/data/300vw'
         self.processed_dir = '/home/xyli/data/annotations'
-        filename = '300vw_test1.json'
+        filename = '300vw_test3.json'
 
         # self.videos_part = ['004']
 
@@ -601,7 +601,7 @@ if __name__ == '__main__':
     # convert300vw.convert_jpg(convert300vw.videos_test_3)
     # convert300vw.convert_1video()
 
-    convert300vw.convert_annot(convert300vw.videos_test_1)
+    convert300vw.convert_annot(convert300vw.videos_test_3)
 
     # A bit of data to test
     # convert300vw.convert_jpg(convert300vw.videos_part)
