@@ -184,7 +184,7 @@ def crop_resize256_image(pic_path, res_path, x_left, y_low, x_right, y_high):
 
 def test_300vw():
     # videos = ['001']
-    videos = videos_test_2
+    videos = videos_test_1
     # videos = videos_test_3 
 
     # pic_300vw_dir = '/media/lxy/新加卷/Ubuntu/300vw_myblur'
@@ -193,7 +193,7 @@ def test_300vw():
     
     pic_300vw_dir = '/home/xyli/data/300vw'
     annot_300vw_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
-    data300vw_res_dir = '/home/xyli/data/300vw_fix256_test2' 
+    data300vw_res_dir = '/home/xyli/data/300vw_fix256_test1' 
     # data300vw_res_dir = '/home/xyli/data/300vw_fix256_2d'
 
     for video in videos: # 遍历 [001,002,...]
