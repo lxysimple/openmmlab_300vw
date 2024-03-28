@@ -373,9 +373,9 @@ class Preprocess300vw:
     def convert_annot(self, dataset):
 
         self.original_dir = '/home/xyli/data/300vw_fix256_valid_annot'
-        pic_dir = '/home/xyli/data/300vw_fix256_test2'
+        pic_dir = '/home/xyli/data/300vw_fix256_test1'
         self.processed_dir = '/home/xyli/data/annotations'
-        filename = '300vw_test2_256.json'
+        filename = '300vw_test1_256.json'
 
         # self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
         # pic_dir = '/home/xyli/data/300vw'
