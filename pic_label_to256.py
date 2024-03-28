@@ -171,56 +171,6 @@ def resize256(annot_path, x_left, y_low, x_right, y_high):
     return 
 
 
-def testall_justpic():
-    # videos = ['001', '002', '003', '004', '007']
-    videos = videos_test_2
-
-    # # cilent
-    # pic_300vw_dir = '/home/lxy/桌面/dest_blur'
-    # annot_300vw_dir = '/media/lxy/新加卷/mmpose/data/300VW_Dataset_2015_12_14'
-
-    # server
-    pic_300vw_dir = '/home/xyli/data/300vw'
-    annot_300vw_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
-
-    res_annot_300vw_dir = '/home/xyli/data/300vw_resize256_valid_annot'
-
-    # dest/[001,002,...]/crop_pic
-    # dest/[001,002,...]/crop_annot
-    # dest/[001,002,...]/resize_pic
-    # dest/[001,002,...]/resize_annot
-    # data300vw_dir_res = '/home/lxy/桌面/dest/' 
-    # data300vw_dir_res = '/home/lxy/桌面/dest_blur'
-
-    for video in videos: # 遍历 [001,002,...]
-
-        annots_path = join(annot_300vw_dir, video, 'annot')
-        annots = os.listdir(annots_path) 
-        for annot in annots: # 遍历 001中的[00000001.png, ...]
-
-            annot_path = join(annots_path, annot)
-            annot_path_res = join(res_annot_300vw_dir, video, 'annot')
-
-            if not os.path.exists(annot_path_res):
-                os.makedirs(annot_path_res)
-
-            # 从注解中提取信息
-            x_left, y_low, x_right, y_high = findxy(annot_path)
-
-            chage_annot_with_crop(
-                annot_path,
-                annot_path_res,
-                x_left, y_low, x_right, y_high
-            )
-
-            resize256( 
-                annot_path_res,
-                x_left, y_low, x_right, y_high
-            )  
-
-        print(f'{video}转化结束！')
-
-
 def testall_justannot():
 
      # videos = ['001', '002', '003', '004', '007']
@@ -268,6 +218,5 @@ def testall_justannot():
         print(f'{video}转化结束！')
 
 if __name__ == '__main__':
-    # testall_justpic()
 
     testall_justannot()
