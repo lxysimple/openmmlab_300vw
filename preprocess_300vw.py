@@ -506,7 +506,7 @@ class Preprocess300vw:
                             if kp_i<=31:
                                 keypoints3.append(1)
                             else:
-                                keypoints3.append(0.1)
+                                keypoints3.append(0.5)
                     annotation['keypoints'] = keypoints3
                     
                      # 计算左上坐标、宽、高，无需计算bbox，因为Face300WDataset中会用scale+center求出bbox
