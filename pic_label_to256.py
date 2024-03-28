@@ -119,6 +119,11 @@ def chage_annot_with_crop(anont_path, res_path, x_left, y_low, x_right, y_high):
             x_new = str(float(x) - x_left)
             y_new = str(float(y) - y_low)
 
+            if float(x_new)<0:
+                x_new = float(0)
+            if float(y_new)<0:
+                y_new = float(0)
+
             # 写入新的点坐标
             f.write(f'{x_new} {y_new}\n')
 
@@ -157,6 +162,11 @@ def resize256(annot_path, x_left, y_low, x_right, y_high):
             # 相对坐标就是crop后的绝对坐标
             x_new = str(float(x)*scale_x)
             y_new = str(float(y)*scale_y)
+
+            if float(x_new)<0:
+                x_new = float(0)
+            if float(y_new)<0:
+                y_new = float(0)
 
             # print('x: ', x)
             # print('y: ', y)
