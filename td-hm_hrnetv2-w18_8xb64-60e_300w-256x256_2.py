@@ -268,17 +268,17 @@ dataset_vali = dict(
     # ann_file='annotations/300VW_blur_label_list_256_train_mmpose.json',
     # ann_file='data/annotations/300VW_blur_test1_x.png.json',
     # ann_file='data/annotations/300vw_fix256_test3.json',
-    ann_file='data/annotations/300vw_test3.json', 
-    # ann_file='data/annotations/300vw_test3_256.json',
+    # ann_file='data/annotations/300vw_test3.json', 
+    ann_file='data/annotations/300vw_test3_256.json',
 
     # data_prefix=dict(img='images/'),
     # data_prefix=dict(img='ESTRNN/2024_03_05_15_03_49_ESTRNN_300vw/300vw_ESTRNN_test/546/'),
     # data_prefix=dict(img='ESTRNN/2024_03_05_15_04_37_ESTRNN_300vw/300vw_ESTRNN_test/546/'),
 
     # data_root + data_prefix + 注解文件中的相对路径 = 绝对路径
-    data_prefix=dict(img='data/300vw'),
+    # data_prefix=dict(img='data/300vw'),
     # data_prefix=dict(img='images'),
-    # data_prefix=dict(img='data/300vw_fix256_test3'),
+    data_prefix=dict(img='data/300vw_fix256_test3'),
     # data_prefix=dict(img='data/300vw_fix256_2d'),
     # data_prefix=dict(img='ESTRNN/2024_02_27_14_58_03_ESTRNN_300vw/300vw_ESTRNN_test/'),
     
