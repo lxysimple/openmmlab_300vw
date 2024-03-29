@@ -522,9 +522,10 @@ class Preprocess300vw:
                     w = x_right - x_left 
                     h = y_high - y_low 
 
+                    # 300w注解文件有2个版本，1是ibug版本，2是mmpose版本
+                    # 版本1无scale，通过这里的算法求出的scale与mmpose版本几乎一致
+                    # 因为模型用的是mmpose提供的预训练权重，所以300vw+300w标注文件格式要接近mmpose
                     scale = math.ceil(max(w,h))/200
-                    # scale = math.ceil(min(w,h))/200
-                    # scale = min(w,h)/200.0 -20
                     annotation['scale'] = scale
 
                     # 计算人脸面积
