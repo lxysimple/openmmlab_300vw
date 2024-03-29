@@ -72,6 +72,8 @@ class Preprocess300vw:
         self.videos_train = [ i for i in self.videos_all if i not in self.videos_test_1 
                                                         and i not in self.videos_test_2 
                                                         and i not in self.videos_test_3]
+
+        self.videos_test_3_mychose = ['517','558']
         # self.videos_train = [
         #     '001', '002', '003', '004' '007' '009' '010' '011' '013' '015' 
         #     '016', '017', '018', '019' '020' '022' '025' '027' '028' '029' 
@@ -380,7 +382,7 @@ class Preprocess300vw:
         self.original_dir = '/home/xyli/data/300VW_Dataset_2015_12_14'
         pic_dir = '/home/xyli/data/300vw'
         self.processed_dir = '/home/xyli/data/annotations'
-        filename = '300vw_test3.json'
+        filename = '300vw_test3_mychose.json'
 
         # self.videos_part = ['004']
 
@@ -597,7 +599,7 @@ if __name__ == '__main__':
     # convert300vw.convert_jpg(convert300vw.videos_test_3)
     # convert300vw.convert_1video()
 
-    convert300vw.convert_annot(convert300vw.videos_test_3)
+    convert300vw.convert_annot(convert300vw.videos_test_3_mychose)
 
     # A bit of data to test
     # convert300vw.convert_jpg(convert300vw.videos_part)
